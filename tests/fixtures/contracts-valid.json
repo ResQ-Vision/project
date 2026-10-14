@@ -177,5 +177,21 @@
       "latency_ms": 100.0,
       "reason": "synthetic timeout"
     }
+  },
+  {
+    "name": "adequate image with inconclusive advisory evidence",
+    "schema": "ai/result.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "status": "unknown",
+      "label": "unknown",
+      "scores": {},
+      "image_quality": "adequate",
+      "model_id": "synthetic-model",
+      "runtime_version": "fixture-only",
+      "latency_ms": 100.0,
+      "reason": "insufficient evidence in synthetic example"
+    }
   }
 ]
