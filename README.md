@@ -1,35 +1,50 @@
-# ResQ-Vision — exploration rover (planning project)
+# ResQ-Vision
 
-A two-student, five-unit high-school Electronics and Computers Engineering project. The planned prototype autonomously navigates a controlled arena, avoids obstacles, creates an initial planar map, and associates camera images with estimated observation positions. Image analysis is advisory, not a safety certification.
+A school exploration-rover prototype for a flat, controlled arena: front steering,
+initial 2D mapping, image capture and advisory hazard analysis.
 
-## Current architecture (updated from live proposal, 12 October 2026)
+**Start at [docs/README.md](docs/README.md).** A new coding chat needs only this
+repository, its assigned issue, and the linked role documents.
 
-- **Motion ESP on rover:** motor-driver outputs, two encoder motors, IMU, left/right ToF, front/rear contact bumpers, wheel feedback and local stop on invalid or expired commands.
-- **Navigation laptop beside the arena:** receives telemetry, LiDAR scans and ESP CAM S3 images; handles localization, initial 2D occupancy mapping, navigation, event storage and the browser backend.
-- **ESP CAM S3:** separate image-capture module sending images to the laptop over WiFi.
-- **2D LiDAR:** scans the arena plane. A compatible wireless acquisition bridge for untethered driving remains to be selected and tested; USB to laptop is for bench testing.
-- **Manual C3 controller:** an additional proposed manual command source beside the browser, with explicit handover and one active controller at a time.
-- **AI:** Cloudflare Clef-Flash Q8_0 is the intended advisory image-decision model, hosted in a separate worker on the **same navigation laptop**. Runtime compatibility and concurrent workload remain unmeasured.
-- **Communication:** ESP telemetry and motion commands use WiFi when driving; USB serial is for tethered laboratory debugging. Browser access is via WiFi and WebSocket. Actual wireless message format, authentication and timing remain design/test work.
+Current direction, confirmed by the user on 14 October 2026:
+- One laptop beside the arena runs the PC Server, navigation, mapping and a separate local AI worker.
+- Motion ESP32 controls two rear encoder motors, front steering, IMU, one rotating top ToF,
+  front/rear contact sensors and independent local stops.
+- A C3 manual controller sends commands directly to the motion ESP32.
+- Separate ESP CAM S3 sends images to the laptop over WiFi.
+- One 2D LiDAR uses USB on the bench; a compatible wireless bridge is unresolved for driving.
 
-**There is no Raspberry Pi or separate home-PC inference host in the current architecture.** Previous documents and diagrams showing either are outdated. Local laptop AI calls alone do not meet the school's separate internet data-exchange requirement.
+The architecture is approved direction. All message schemas are **proposed**, and
+the robot modules contain ownership/build guidance, not working firmware or services.
+No hardware trials or AI benchmarks have been performed by this migration.
 
-## Project limits
+## Development
 
-Initial goals: safe manual driving, obstacle avoidance, wheel odometry, an initial 2D map and map-linked camera events. Full SLAM, 3D mapping, complete autonomous coverage, actual hazardous-site operation, and verified AI hazard detection are not yet delivered or committed. The older cleaning-robot concept is archived only.
+Python 3.11 is the CI baseline; these checks also run on Python 3.12.
 
-The proposal's figures of five collision-free trials, stop within one second of command loss, and mean location error at most 30 cm are **targets**, not measured results. Exact hardware, wiring, radio links, power budget, braking and supervisor approval remain open.
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+python scripts/check_repository.py
+python -m unittest discover -s tests -v
+```
 
-## Authoritative and working sources
+Windows PowerShell activation: `.venv\Scripts\Activate.ps1`.
 
-- [Live Hebrew proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit) — authoritative for proposal wording, updated 12 October 2026.
-- [ResQ-Vision build architecture and staged checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit) — implementation baseline, including updated wireless-plan note.
-- [Current context](resources/context/README.md)
-- [Engineering plan](resources/context/engineering-plan.md)
-- [AI model notes](resources/context/ai-model.md)
-- [Proposal folder and export status](resources/proposal/README.md)
-- [Diagrams and historical assets](resources/diagrams/README.md)
-- [Original school sources and manifest](resources/sources.json)
-- [Historical cleaning concept](resources/archive/cleaning-concept-2026-10-05/README.md)
+Use [AGENTS.md](AGENTS.md), the [startup procedure](docs/development/startup.md),
+and [isolated worktrees](docs/development/worktrees.md) for concurrent tasks.
+The workflow is Issue → feature branch → code/tests/docs → PR → review → merge.
+The migration PR requires the user's review before merging.
 
-This GitHub repository presently contains planning materials and source references, not verified working robot firmware. The October 7 Word/PDF exports and block diagram show an older architecture: consult the newer native Google Doc and build specification.
+## Evidence and planning
+
+- [Architecture](docs/architecture/system.md) and [accepted decisions](docs/architecture/decisions/README.md)
+- [Contract index](contracts/README.md) and [module roles](docs/development/roles.md)
+- [Roadmap](docs/project/roadmap.md) and [open decisions](docs/project/open-decisions.md)
+- [School requirements](docs/school/requirements.md) and [source hierarchy](docs/project/sources.md)
+- [Migration report](docs/development/migration-report.md), [manifest](docs/development/migration-manifest.json)
+- [Validation record](docs/development/validation.md)
+
+Original school documents and historical assets remain under `resources/`.
+They are evidence, not an alternative current specification.

@@ -1,0 +1,181 @@
+[
+  {
+    "name": "capture intent",
+    "schema": "camera/capture-request.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "capture_id": "capture-1",
+      "event_id": "event-1"
+    }
+  },
+  {
+    "name": "capture with uncertain timestamp",
+    "schema": "camera/capture-response.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "capture_id": "capture-1",
+      "status": "captured",
+      "captured_at": null,
+      "image_ref": "fixture-image-1",
+      "reason": null
+    }
+  },
+  {
+    "name": "camera unavailable",
+    "schema": "camera/capture-response.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "capture_id": "capture-1",
+      "status": "unavailable",
+      "captured_at": null,
+      "image_ref": null,
+      "reason": "camera disconnected"
+    }
+  },
+  {
+    "name": "scan with unknown distance",
+    "schema": "lidar/scan.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "scan_id": "scan-1",
+      "frame_id": "lidar_frame",
+      "acquired_at": {
+        "clock_id": "synthetic-camera-boot-1",
+        "monotonic_ns": 1000000
+      },
+      "quality": "degraded",
+      "points": [
+        {
+          "angle_rad": 0.0,
+          "range_m": 1.2,
+          "offset_ns": 0
+        },
+        {
+          "angle_rad": 0.2,
+          "range_m": null,
+          "offset_ns": 1000
+        }
+      ]
+    }
+  },
+  {
+    "name": "rotating ToF measured",
+    "schema": "lidar/rotating-tof.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "sample_id": "tof-1",
+      "frame_id": "tof_rotating_frame",
+      "acquired_at": {
+        "clock_id": "synthetic-camera-boot-1",
+        "monotonic_ns": 1000000
+      },
+      "angle_rad": 1.57,
+      "angle_quality": "measured",
+      "range_m": 0.7
+    }
+  },
+  {
+    "name": "rotating ToF unknown angle",
+    "schema": "lidar/rotating-tof.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "sample_id": "tof-2",
+      "frame_id": "tof_rotating_frame",
+      "acquired_at": {
+        "clock_id": "synthetic-camera-boot-1",
+        "monotonic_ns": 1000000
+      },
+      "angle_rad": null,
+      "angle_quality": "unknown",
+      "range_m": null
+    }
+  },
+  {
+    "name": "event unknown pose",
+    "schema": "events/event.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "capture_id": "capture-1",
+      "map_id": null,
+      "reason": "operator capture",
+      "image_ref": "fixture-image-1",
+      "captured_at": null,
+      "pose_at_capture": null,
+      "pose_quality": "unknown",
+      "analysis_status": "pending"
+    }
+  },
+  {
+    "name": "event estimated pose",
+    "schema": "events/event.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "capture_id": "capture-1",
+      "map_id": "map-1",
+      "reason": "operator capture",
+      "image_ref": "fixture-image-1",
+      "captured_at": {
+        "clock_id": "synthetic-camera-boot-1",
+        "monotonic_ns": 1000000
+      },
+      "pose_at_capture": {
+        "x_m": 0.2,
+        "y_m": 0.1,
+        "yaw_rad": 0.0,
+        "position_uncertainty_m": null
+      },
+      "pose_quality": "estimated",
+      "analysis_status": "pending"
+    }
+  },
+  {
+    "name": "inference intent",
+    "schema": "ai/request.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "capture_id": "capture-1",
+      "image_ref": "fixture-image-1",
+      "category_ids": [
+        "blocked",
+        "poor_image"
+      ]
+    }
+  },
+  {
+    "name": "advisory detected",
+    "schema": "ai/result.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "status": "completed",
+      "label": "suspected_hazard",
+      "scores": {
+        "blocked": 0.8
+      },
+      "image_quality": "adequate",
+      "model_id": "synthetic-model",
+      "runtime_version": "fixture-only",
+      "latency_ms": 25.0,
+      "reason": null
+    }
+  },
+  {
+    "name": "inference timeout",
+    "schema": "ai/result.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "status": "unknown",
+      "label": "unknown",
+      "scores": {},
+      "image_quality": "unknown",
+      "model_id": null,
+      "runtime_version": null,
+      "latency_ms": 100.0,
+      "reason": "synthetic timeout"
+    }
+  }
+]

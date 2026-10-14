@@ -1,0 +1,461 @@
+{
+  "base_commit": "a64031c",
+  "entries": [
+    {
+      "old": ".gitignore",
+      "destinations": [
+        ".gitignore"
+      ],
+      "action": "preserved",
+      "original_sha256": "6c740f2fae8f09df81f761d45e066201db723c438de437834d0b47299ebd476e"
+    },
+    {
+      "old": "README.md",
+      "destinations": [
+        "README.md"
+      ],
+      "action": "edited",
+      "original_sha256": "62a68ce75586f375c30fde19b374810c4bcfd61f780997d6a3b8cb0913ee1b5b"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/README.md",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/README.md"
+      ],
+      "action": "preserved",
+      "original_sha256": "4c3994828be0362cc887c51dfc7dc7f04ecff6650417df8177731c8f2871d3ad"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/context/README.md",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/context/README.md"
+      ],
+      "action": "preserved",
+      "original_sha256": "b8b4777915652ff894f4fb2e3976f05904b98e1b77db01fb644593c4b9ff932f"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/context/proposal-plan.md",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/context/proposal-plan.md"
+      ],
+      "action": "preserved",
+      "original_sha256": "b163da15874552adb17fa827aebacc6a703b9e35b4c1e3a262ce9a9ffb68af6a"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/context/proposal-working-draft.md",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/context/proposal-working-draft.md"
+      ],
+      "action": "preserved",
+      "original_sha256": "9f4d80f019bb1fb41a721f151df3f29aae00e31a4f127e35bc3dd1a78f8b57a9"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/proposal/build_proposal.py",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/proposal/build_proposal.py"
+      ],
+      "action": "preserved",
+      "original_sha256": "c5bf1ca39895bf857c5b4fa23adb341ad575837e9ca394d74acce3c4e8a9c43f"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/proposal/proposal-preview-1.png",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/proposal/proposal-preview-1.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "32a50c535ad13748e8c30ad5a4eb9ed4e607c1248f07d4f790b0c7191f3a76f5"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/proposal/proposal-preview-4.png",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/proposal/proposal-preview-4.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "dc3c96e123c44110c6111079906da0804ee3626c163aa30b88e6646660944610"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/proposal/proposal-preview-5.png",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/proposal/proposal-preview-5.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "70e96c1a14f09ff58d3fcd51b4c43404e8e9c5009bd5314c425027fee7e0a87f"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/proposal/requirements.txt",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/proposal/requirements.txt"
+      ],
+      "action": "preserved",
+      "original_sha256": "78e954716ca25f405ef803e7de144a4c28021882d9244e2858190b09fe934f82"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/proposal/robot-block-diagram.png",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/proposal/robot-block-diagram.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "9766bde250d8795b54daac3568508f4761c16e15c62aec1a406c549e5abbd98a"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/proposal/robot-project-proposal-draft.docx",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/proposal/robot-project-proposal-draft.docx"
+      ],
+      "action": "preserved",
+      "original_sha256": "9f7be862bc9cf775e5898ed4caf44c9e3fad4058e3069af7205abccf676cdd1d"
+    },
+    {
+      "old": "resources/archive/cleaning-concept-2026-10-05/resources/proposal/robot-project-proposal-draft.pdf",
+      "destinations": [
+        "resources/archive/cleaning-concept-2026-10-05/resources/proposal/robot-project-proposal-draft.pdf"
+      ],
+      "action": "preserved",
+      "original_sha256": "bcb4872cf9597bd19bc52bb22961420159ba69da8efca736334120009345b8bb"
+    },
+    {
+      "old": "resources/context/README.md",
+      "destinations": [
+        "resources/context/README.md"
+      ],
+      "action": "edited",
+      "original_sha256": "5c1b0fa43213e967d4a5d9641151e51a6309089a204f8dfc3975092706dc4d56"
+    },
+    {
+      "old": "resources/context/ai-model.md",
+      "destinations": [
+        "resources/archive/context-before-migration-2026-10-14/ai-model.md",
+        "docs/research/ai-model.md"
+      ],
+      "action": "archived-and-replaced",
+      "original_sha256": "779ee7f6cd01db6cf33ecc78f031ed410e8774277fee4cc00ce6a9e9e81a8279"
+    },
+    {
+      "old": "resources/context/engineering-plan.md",
+      "destinations": [
+        "resources/archive/context-before-migration-2026-10-14/engineering-plan.md",
+        "docs/project/roadmap.md",
+        "docs/architecture/system.md"
+      ],
+      "action": "archived-and-replaced",
+      "original_sha256": "ab8d7a35c6e2f90b1e8736ec04987bf32c563aa72c0224a245bf4101afb1074f"
+    },
+    {
+      "old": "resources/context/proposal-ai-section.md",
+      "destinations": [
+        "resources/archive/context-before-migration-2026-10-14/proposal-ai-section.md",
+        "docs/research/ai-model.md",
+        "docs/school/requirements.md"
+      ],
+      "action": "archived-and-replaced",
+      "original_sha256": "4256690aa5415ad6b37813ee8aee9ca0cbb808b12c4c43cfe3192e6fbe0161b4"
+    },
+    {
+      "old": "resources/context/proposal-plan.md",
+      "destinations": [
+        "resources/archive/context-before-migration-2026-10-14/proposal-plan.md",
+        "docs/project/roadmap.md",
+        "docs/project/open-decisions.md"
+      ],
+      "action": "archived-and-replaced",
+      "original_sha256": "4ba3035ea934c60d60bb28711bcf7605c7f796f9169ffa6969c598e5a5830033"
+    },
+    {
+      "old": "resources/context/proposal-review-2026-10-06.md",
+      "destinations": [
+        "resources/archive/context-before-migration-2026-10-14/proposal-review-2026-10-06.md",
+        "docs/project/sources.md"
+      ],
+      "action": "archived-and-replaced",
+      "original_sha256": "9fa75908dd294f19843016248cf923e59e4469ef97e692007767b518e41e0c58"
+    },
+    {
+      "old": "resources/design/README.md",
+      "destinations": [
+        "resources/design/README.md"
+      ],
+      "action": "edited",
+      "original_sha256": "91e118e1ab745e22abaad13aaa5f1e6d5b726228907486beb77721f9c338dc2e"
+    },
+    {
+      "old": "resources/design/driving-mapping-image-review.png",
+      "destinations": [
+        "resources/design/driving-mapping-image-review.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "222e2f2a0eebc4a8be7a75cb7b1db452c520c3049e08da459b486cdafa10cade"
+    },
+    {
+      "old": "resources/design/rover-cover-concept.png",
+      "destinations": [
+        "resources/design/rover-cover-concept.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "2c8e74795398887688ecf3f8054e0f34bdb7e6742abc1758fe8b159006b1ee10"
+    },
+    {
+      "old": "resources/design/webapp-rover-concept.png",
+      "destinations": [
+        "resources/design/webapp-rover-concept.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "6c86d36d9a15fec724270fbf3962fc4190b818c76ab8f9252d95383a503df7a5"
+    },
+    {
+      "old": "resources/diagrams/README.md",
+      "destinations": [
+        "resources/diagrams/README.md"
+      ],
+      "action": "edited",
+      "original_sha256": "4abc2337a2d41887cac4de7ef3253f4cb814ba67f6daea1ea656830605244085"
+    },
+    {
+      "old": "resources/diagrams/current-proposal-block-diagram.png",
+      "destinations": [
+        "resources/diagrams/current-proposal-block-diagram.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "b31fcc845452667e8b2256d9a8770e9a55e4914f1e22ef9ef7d251f7198e9dcf"
+    },
+    {
+      "old": "resources/diagrams/tldraw-current-pi-render.svg",
+      "destinations": [
+        "resources/diagrams/tldraw-current-pi-render.svg"
+      ],
+      "action": "preserved",
+      "original_sha256": "b5eebea4506dd53fe1550e717a53db9f8d53ae41a9c29b678d565eac9ee64ae8"
+    },
+    {
+      "old": "resources/diagrams/tldraw-current-pi-source.svg",
+      "destinations": [
+        "resources/diagrams/tldraw-current-pi-source.svg"
+      ],
+      "action": "preserved",
+      "original_sha256": "5600c8302be97e607c7a4099642ee52e642548030d6287344fceda2f3a16a977"
+    },
+    {
+      "old": "resources/diagrams/tldraw-current-pi.png",
+      "destinations": [
+        "resources/diagrams/tldraw-current-pi.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "6908ec554764e2028b7121654312f9b8f06995ad8984eaa0391e178c2c028d2f"
+    },
+    {
+      "old": "resources/diagrams/tldraw-original-page-1-render.svg",
+      "destinations": [
+        "resources/diagrams/tldraw-original-page-1-render.svg"
+      ],
+      "action": "preserved",
+      "original_sha256": "07278c3c57811da5cdaa6b06b86e6fc4fa16d0f807e4fc3a8526523ca76f9295"
+    },
+    {
+      "old": "resources/diagrams/tldraw-original-page-1-source.svg",
+      "destinations": [
+        "resources/diagrams/tldraw-original-page-1-source.svg"
+      ],
+      "action": "preserved",
+      "original_sha256": "47eb120033a13a8bbdfa25fb59363971520a0ac66601bebdfebaf61d87c4a496"
+    },
+    {
+      "old": "resources/diagrams/tldraw-original-page-1.png",
+      "destinations": [
+        "resources/diagrams/tldraw-original-page-1.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "8f78f2ecc605e55178470a67d0152671eaa98178d147cd89796ab7a704a345ce"
+    },
+    {
+      "old": "resources/diagrams/tldraw-proposal-render.svg",
+      "destinations": [
+        "resources/diagrams/tldraw-proposal-render.svg"
+      ],
+      "action": "preserved",
+      "original_sha256": "fe8ee62dde8321036ea9a7ef6749c46c08274da93c4be880358f07ab9969cf60"
+    },
+    {
+      "old": "resources/diagrams/tldraw-proposal-source.svg",
+      "destinations": [
+        "resources/diagrams/tldraw-proposal-source.svg"
+      ],
+      "action": "preserved",
+      "original_sha256": "838b16e6377e5d95c0f6b62e4be404ab01cd3613e308813a05e4b952bd65b0ba"
+    },
+    {
+      "old": "resources/diagrams/tldraw-proposal.png",
+      "destinations": [
+        "resources/diagrams/tldraw-proposal.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "ce386b385de600673283c04fdf00ee780918dc6298ad12acae765ddeec9375b1"
+    },
+    {
+      "old": "resources/extracted-text/Template_for_the_high_school_project_proposal (1) (1).txt",
+      "destinations": [
+        "resources/extracted-text/Template_for_the_high_school_project_proposal (1) (1).txt"
+      ],
+      "action": "preserved",
+      "original_sha256": "c5e89317e50d07c6489e950c2dcef308ffdbb5669557491356d7563af0cff261"
+    },
+    {
+      "old": "resources/extracted-text/Template_for_the_high_school_project_proposal (1).txt",
+      "destinations": [
+        "resources/extracted-text/Template_for_the_high_school_project_proposal (1).txt"
+      ],
+      "action": "preserved",
+      "original_sha256": "c5e89317e50d07c6489e950c2dcef308ffdbb5669557491356d7563af0cff261"
+    },
+    {
+      "old": "resources/extracted-text/הנחיות וקריטריונים לביצוע פרויקטים תשפו.txt",
+      "destinations": [
+        "resources/extracted-text/הנחיות וקריטריונים לביצוע פרויקטים תשפו.txt"
+      ],
+      "action": "preserved",
+      "original_sha256": "41c15c1be4b48cad1b79e7127dbd5d99cdf72040f1494c72e448c95b91716700"
+    },
+    {
+      "old": "resources/extracted-text/חוזר מפמר תשפז - הנדסת אלקטרוניקה ומחשבים.txt",
+      "destinations": [
+        "resources/extracted-text/חוזר מפמר תשפז - הנדסת אלקטרוניקה ומחשבים.txt"
+      ],
+      "action": "preserved",
+      "original_sha256": "80b2ed309e43a4e4a9396c68fbdfb0703dbf79e71fa4311e9b35575752655395"
+    },
+    {
+      "old": "resources/originals/Template_for_the_high_school_project_proposal (1) (1).docx",
+      "destinations": [
+        "resources/originals/Template_for_the_high_school_project_proposal (1) (1).docx"
+      ],
+      "action": "preserved",
+      "original_sha256": "94d4b579313bad2640d534cfff05f07147b585b1a8584e236ee41d40b490bebb"
+    },
+    {
+      "old": "resources/originals/Template_for_the_high_school_project_proposal (1).docx",
+      "destinations": [
+        "resources/originals/Template_for_the_high_school_project_proposal (1).docx"
+      ],
+      "action": "preserved",
+      "original_sha256": "94d4b579313bad2640d534cfff05f07147b585b1a8584e236ee41d40b490bebb"
+    },
+    {
+      "old": "resources/originals/הנחיות וקריטריונים לביצוע פרויקטים תשפו.docx",
+      "destinations": [
+        "resources/originals/הנחיות וקריטריונים לביצוע פרויקטים תשפו.docx"
+      ],
+      "action": "preserved",
+      "original_sha256": "1e03daf4da209b90ae5cca6a015a9efb211139373e41a81ba172916d9233d9f1"
+    },
+    {
+      "old": "resources/originals/חוזר מפמר תשפז - הנדסת אלקטרוניקה ומחשבים.pdf",
+      "destinations": [
+        "resources/originals/חוזר מפמר תשפז - הנדסת אלקטרוניקה ומחשבים.pdf"
+      ],
+      "action": "preserved",
+      "original_sha256": "249c713d17d63b2de674993a1e41b84acebef2fee25161f2eaf059db47565175"
+    },
+    {
+      "old": "resources/proposal/README.md",
+      "destinations": [
+        "resources/proposal/README.md"
+      ],
+      "action": "edited",
+      "original_sha256": "501bd8539f12d3b39234a2a3625b2628579baa05c7f8c86664a226bc42f0ae28"
+    },
+    {
+      "old": "resources/proposal/build_proposal.py",
+      "destinations": [
+        "resources/proposal/build_proposal.py"
+      ],
+      "action": "preserved",
+      "original_sha256": "fb6abd3d471ccab2f4d509541fa8159f36fc77d776a1330ed8f5fca6f27246c8"
+    },
+    {
+      "old": "resources/proposal/proposal-preview-1.png",
+      "destinations": [
+        "resources/proposal/proposal-preview-1.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "bd064599ea332714be6773712e094a22124f6008edf6c4f729a908b2fdd145c4"
+    },
+    {
+      "old": "resources/proposal/proposal-preview-4.png",
+      "destinations": [
+        "resources/proposal/proposal-preview-4.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "e254c7f95552ccda88ec183e52c3b7a98f72553e74d09083eaf9d38f97e65d2c"
+    },
+    {
+      "old": "resources/proposal/proposal-preview-5.png",
+      "destinations": [
+        "resources/proposal/proposal-preview-5.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "d1ba1b2e6fe2653fca8de92ac978223103b73409aa889ab5cd85d45b4489e97d"
+    },
+    {
+      "old": "resources/proposal/requirements.txt",
+      "destinations": [
+        "resources/proposal/requirements.txt"
+      ],
+      "action": "preserved",
+      "original_sha256": "78e954716ca25f405ef803e7de144a4c28021882d9244e2858190b09fe934f82"
+    },
+    {
+      "old": "resources/proposal/robot-block-diagram.png",
+      "destinations": [
+        "resources/proposal/robot-block-diagram.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "b31fcc845452667e8b2256d9a8770e9a55e4914f1e22ef9ef7d251f7198e9dcf"
+    },
+    {
+      "old": "resources/proposal/robot-project-proposal-draft.docx",
+      "destinations": [
+        "resources/proposal/robot-project-proposal-draft.docx"
+      ],
+      "action": "preserved",
+      "original_sha256": "8a3077d00a5a3ccaf02be1e6a2a91d4ba89f70da51615fdabfce158c616176d7"
+    },
+    {
+      "old": "resources/proposal/robot-project-proposal-draft.pdf",
+      "destinations": [
+        "resources/proposal/robot-project-proposal-draft.pdf"
+      ],
+      "action": "preserved",
+      "original_sha256": "236643b038fd000b4a3091934b9f010b3a4d3fc045a6404b9807d42cd5b11a46"
+    },
+    {
+      "old": "resources/proposal/webapp-concept-page-preview.png",
+      "destinations": [
+        "resources/proposal/webapp-concept-page-preview.png"
+      ],
+      "action": "preserved",
+      "original_sha256": "6088808b706553afb353768c7ff89c80cf1f62d542b5a3e9d2816589f7752f24"
+    },
+    {
+      "old": "resources/sources.json",
+      "destinations": [
+        "resources/sources.json"
+      ],
+      "action": "preserved",
+      "original_sha256": "cc8c4393aabf1fafff929852bdaf62c4c94769ef19811fefcb4202d49b6ee100"
+    },
+    {
+      "old": "skills/yotam-hebrew-writing/README.md",
+      "destinations": [
+        "skills/yotam-hebrew-writing/README.md"
+      ],
+      "action": "preserved",
+      "original_sha256": "2336ef2c4ba6d3c569165b57304290b904a061d0a7031837596839cd5f3374bf"
+    },
+    {
+      "old": "skills/yotam-hebrew-writing/SKILL.md",
+      "destinations": [
+        "skills/yotam-hebrew-writing/SKILL.md"
+      ],
+      "action": "preserved",
+      "original_sha256": "ab6ef8cffc08062342625e6210484256bdc23e0e1a5b0dbf17aeb62e75319646"
+    }
+  ]
+}

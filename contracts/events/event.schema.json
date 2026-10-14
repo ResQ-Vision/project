@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://resq-vision.invalid/contracts/events/event.schema.json",
+  "title": "Stored observation event",
+  "description": "Proposed internal application model; not an approved wire protocol.",
+  "x-status": "proposed",
+  "x-owner": "events/localization",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1-draft"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "capture_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "map_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048
+    },
+    "image_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048
+    },
+    "captured_at": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "clock_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "monotonic_ns": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "clock_id",
+            "monotonic_ns"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "pose_at_capture": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "x_m": {
+              "type": "number"
+            },
+            "y_m": {
+              "type": "number"
+            },
+            "yaw_rad": {
+              "type": "number"
+            },
+            "position_uncertainty_m": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "x_m",
+            "y_m",
+            "yaw_rad",
+            "position_uncertainty_m"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "pose_quality": {
+      "enum": [
+        "estimated",
+        "unknown"
+      ]
+    },
+    "analysis_status": {
+      "enum": [
+        "pending",
+        "completed",
+        "unknown"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "capture_id",
+    "map_id",
+    "reason",
+    "image_ref",
+    "captured_at",
+    "pose_at_capture",
+    "pose_quality",
+    "analysis_status"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "pose_quality": {
+            "const": "unknown"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pose_at_capture": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "pose_at_capture": {
+            "type": "object"
+          },
+          "captured_at": {
+            "type": "object"
+          },
+          "map_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        }
+      }
+    }
+  ]
+}

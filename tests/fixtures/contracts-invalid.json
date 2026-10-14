@@ -1,0 +1,289 @@
+[
+  {
+    "name": "wrong schema version",
+    "schema": "camera/capture-request.schema.json",
+    "data": {
+      "schema_version": "1",
+      "capture_id": "capture-1",
+      "event_id": "event-1"
+    }
+  },
+  {
+    "name": "captured without image",
+    "schema": "camera/capture-response.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "capture_id": "capture-1",
+      "status": "captured",
+      "captured_at": null,
+      "image_ref": null,
+      "reason": null
+    }
+  },
+  {
+    "name": "failed capture with usable image",
+    "schema": "camera/capture-response.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "capture_id": "capture-1",
+      "status": "unavailable",
+      "captured_at": null,
+      "image_ref": "misleading-image",
+      "reason": "camera disconnected"
+    }
+  },
+  {
+    "name": "negative distance",
+    "schema": "lidar/scan.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "scan_id": "scan-1",
+      "frame_id": "lidar_frame",
+      "acquired_at": {
+        "clock_id": "synthetic-camera-boot-1",
+        "monotonic_ns": 1000000
+      },
+      "quality": "degraded",
+      "points": [
+        {
+          "angle_rad": 0.0,
+          "range_m": -1,
+          "offset_ns": 0
+        },
+        {
+          "angle_rad": 0.2,
+          "range_m": null,
+          "offset_ns": 1000
+        }
+      ]
+    }
+  },
+  {
+    "name": "negative acquisition time",
+    "schema": "lidar/scan.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "scan_id": "scan-1",
+      "frame_id": "lidar_frame",
+      "acquired_at": {
+        "clock_id": "synthetic-camera-boot-1",
+        "monotonic_ns": -1
+      },
+      "quality": "degraded",
+      "points": [
+        {
+          "angle_rad": 0.0,
+          "range_m": 1.2,
+          "offset_ns": 0
+        },
+        {
+          "angle_rad": 0.2,
+          "range_m": null,
+          "offset_ns": 1000
+        }
+      ]
+    }
+  },
+  {
+    "name": "missing clock identity",
+    "schema": "lidar/scan.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "scan_id": "scan-1",
+      "frame_id": "lidar_frame",
+      "acquired_at": {
+        "monotonic_ns": 1000000
+      },
+      "quality": "degraded",
+      "points": [
+        {
+          "angle_rad": 0.0,
+          "range_m": 1.2,
+          "offset_ns": 0
+        },
+        {
+          "angle_rad": 0.2,
+          "range_m": null,
+          "offset_ns": 1000
+        }
+      ]
+    }
+  },
+  {
+    "name": "measured angle missing",
+    "schema": "lidar/rotating-tof.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "sample_id": "tof-1",
+      "frame_id": "tof_rotating_frame",
+      "acquired_at": {
+        "clock_id": "synthetic-camera-boot-1",
+        "monotonic_ns": 1000000
+      },
+      "angle_rad": null,
+      "angle_quality": "measured",
+      "range_m": 0.7
+    }
+  },
+  {
+    "name": "unknown angle reported as measured zero",
+    "schema": "lidar/rotating-tof.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "sample_id": "tof-2",
+      "frame_id": "tof_rotating_frame",
+      "acquired_at": {
+        "clock_id": "synthetic-camera-boot-1",
+        "monotonic_ns": 1000000
+      },
+      "angle_rad": 0,
+      "angle_quality": "unknown",
+      "range_m": null
+    }
+  },
+  {
+    "name": "unknown pose reported as origin",
+    "schema": "events/event.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "capture_id": "capture-1",
+      "map_id": null,
+      "reason": "operator capture",
+      "image_ref": "fixture-image-1",
+      "captured_at": null,
+      "pose_at_capture": {
+        "x_m": 0,
+        "y_m": 0,
+        "yaw_rad": 0,
+        "position_uncertainty_m": null
+      },
+      "pose_quality": "unknown",
+      "analysis_status": "pending"
+    }
+  },
+  {
+    "name": "estimated pose without capture time",
+    "schema": "events/event.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "capture_id": "capture-1",
+      "map_id": "map-1",
+      "reason": "operator capture",
+      "image_ref": "fixture-image-1",
+      "captured_at": null,
+      "pose_at_capture": {
+        "x_m": 0.2,
+        "y_m": 0.1,
+        "yaw_rad": 0.0,
+        "position_uncertainty_m": null
+      },
+      "pose_quality": "estimated",
+      "analysis_status": "pending"
+    }
+  },
+  {
+    "name": "duplicate category request",
+    "schema": "ai/request.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "capture_id": "capture-1",
+      "image_ref": "fixture-image-1",
+      "category_ids": [
+        "blocked",
+        "blocked"
+      ]
+    }
+  },
+  {
+    "name": "score outside adapter bounds",
+    "schema": "ai/result.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "status": "completed",
+      "label": "suspected_hazard",
+      "scores": {
+        "blocked": 2
+      },
+      "image_quality": "adequate",
+      "model_id": "synthetic-model",
+      "runtime_version": "fixture-only",
+      "latency_ms": 25.0,
+      "reason": null
+    }
+  },
+  {
+    "name": "poor image claimed detected",
+    "schema": "ai/result.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "status": "completed",
+      "label": "suspected_hazard",
+      "scores": {
+        "blocked": 0.8
+      },
+      "image_quality": "inadequate",
+      "model_id": "synthetic-model",
+      "runtime_version": "fixture-only",
+      "latency_ms": 25.0,
+      "reason": null
+    }
+  },
+  {
+    "name": "completed without runtime identity",
+    "schema": "ai/result.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "status": "completed",
+      "label": "suspected_hazard",
+      "scores": {
+        "blocked": 0.8
+      },
+      "image_quality": "adequate",
+      "model_id": "synthetic-model",
+      "runtime_version": null,
+      "latency_ms": 25.0,
+      "reason": null
+    }
+  },
+  {
+    "name": "AI result includes motor authority",
+    "schema": "ai/result.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "status": "completed",
+      "label": "suspected_hazard",
+      "scores": {
+        "blocked": 0.8
+      },
+      "image_quality": "adequate",
+      "model_id": "synthetic-model",
+      "runtime_version": "fixture-only",
+      "latency_ms": 25.0,
+      "reason": null,
+      "arm_motors": true
+    }
+  },
+  {
+    "name": "timeout interpreted as no hazard",
+    "schema": "ai/result.schema.json",
+    "data": {
+      "schema_version": "0.1-draft",
+      "event_id": "event-1",
+      "status": "unknown",
+      "label": "no_hazard_detected",
+      "scores": {},
+      "image_quality": "unknown",
+      "model_id": null,
+      "runtime_version": null,
+      "latency_ms": 100.0,
+      "reason": "synthetic timeout"
+    }
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://resq-vision.invalid/contracts/ai/request.schema.json",
+  "title": "Inference request",
+  "description": "Proposed internal application model; not an approved wire protocol.",
+  "x-status": "proposed",
+  "x-owner": "ai/events",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1-draft"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "capture_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "image_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048
+    },
+    "category_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "capture_id",
+    "image_ref",
+    "category_ids"
+  ],
+  "additionalProperties": false
+}
