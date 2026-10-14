@@ -57,3 +57,5 @@ checklist remains unaligned; school approval remains open.
 The current-year extraction, page 18, also states a 30 October coordinator submission deadline;
 verify the original PDF and the school's internal date. The earlier caution about importing
 prior-year deadlines does not mean the current-year circular omits that date.
+
+Subsequent design change: [ADR 0005](../architecture/decisions/0005-lidar-only-distance-sensing.md) removes the separate ToF. Earlier proposal readbacks are historical; #6 must align current live wording and the designated tldraw diagram. No school approval is implied.

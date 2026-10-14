@@ -4,7 +4,7 @@ Status: planned module; no executable implementation or hardware results yet.
 
 ## Ownership
 
-Own rear encoder feedback, front steering, IMU, rotating ToF angle/time acquisition, contacts, local stops and final C3/laptop authority. Do not apply differential-drive kinematics or fixed side-ToF assumptions.
+Own rear encoder feedback, front steering, IMU, contacts, local stops and final C3/laptop authority. Do not apply differential-drive kinematics or obsolete ToF assumptions.
 
 Read [architecture](../../docs/architecture/system.md),
 [safety](../../docs/architecture/safety.md) and

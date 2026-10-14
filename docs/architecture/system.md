@@ -7,7 +7,7 @@ See [accepted ADRs](decisions/README.md) and [open implementation decisions](../
 | --- | --- |
 | One laptop beside the arena | PC Server, radio adapters, browser APIs, authority coordination, telemetry validation, localization, initial 2D mapping, navigation and persistent image/events |
 | AI worker on that same laptop | Bounded asynchronous advisory image analysis; intended Cloudflare Clef-Flash Q8_0 runtime still needs verification |
-| Rover motion ESP32 | Two rear encoder motors, front-wheel steering, IMU, rotating top ToF acquisition/rotation, front/rear contacts, local feedback/stops, command freshness and final command authority across laptop and C3 |
+| Rover motion ESP32 | Two rear encoder motors, front-wheel steering, IMU, front/rear contacts, local feedback/stops, command freshness and final command authority across laptop and C3 |
 | Separate ESP CAM S3 | WiFi image capture and transfer to laptop |
 | One 2D LiDAR | Planar scan acquisition; USB on bench, compatible wireless acquisition bridge during untethered driving |
 | C3 manual controller | Manual-driving intent directly to motion ESP32; exact board, controls and radio protocol unresolved |
@@ -23,7 +23,7 @@ flowchart LR
     S <-->|Local bounded IPC / API| A[AI worker on same laptop]
     S <-->|WiFi commands / telemetry| E[Motion ESP32]
     C[C3 manual controller] -->|Direct link: protocol TBD| E
-    T[Rotating top ToF, IMU, encoders, contacts] --> E
+    T[IMU, encoders, contacts] --> E
     E --> D[Rear drive and front steering]
     CAM[ESP CAM S3] <-->|WiFi capture / images| S
     L[2D LiDAR] --> W[Compatible wireless bridge: TBD]
@@ -42,6 +42,11 @@ Localization and path planning must use calibrated front-steering geometry, whee
 steering angle/quality and encoder/IMU input. Differential-drive yaw equations and
 turn-in-place actions are not valid defaults for this chassis.
 
-The single rotating ToF does not provide simultaneous left/right coverage. Record each
-sample's angle and acquisition time; treat stale or unsampled directions as unknown.
-Rotating ToF is separate from the 2D LiDAR; it does not prove drop detection or 3D mapping.
+The user removed the separate ToF sensor and rotation mechanism on 14 October 2026;
+see [ADR 0005](decisions/0005-lidar-only-distance-sensing.md). The 2D LiDAR is the
+planned distance/obstacle sensor. Coverage, scan freshness, mount geometry and stopping
+limits still require measurement; the design choice does not establish drop detection or 3D mapping.
+
+When the user refers to **תרשים מלבנים**, they mean the
+[editable tldraw board](https://www.tldraw.com/f/4aOaHZDyKxk2AseGkkgxy?d=v-358.-186.2651.1825.page).
+That board still needs alignment; exported assets are historical until reverified.

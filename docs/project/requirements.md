@@ -9,7 +9,7 @@ The motion model must represent front steering and two powered rear wheels.
 
 Initial mapping may use calibrated odometry and IMU with LiDAR. Full SLAM, A*,
 object localization and video are later features subject to evidence and explicit scope review.
-The robot cannot assume it can turn in place. Its rotating ToF has time-varying coverage.
+The robot cannot assume it can turn in place. LiDAR scan coverage and acquisition timing require validation.
 
 Analysis labels possible hazards, no hazard detected or unknown. It cannot establish
 human safety, grant motor authority or clear faults. Trials are not real rescue operations.
@@ -19,7 +19,7 @@ The current bill of materials is [hardware planning](../hardware/README.md), not
 
 | Status | What exists at migration |
 | --- | --- |
-| Approved direction | Laptop-hosted system, front steering, rotating ToF, direct C3 input |
+| Approved direction | Laptop-hosted system, front steering, LiDAR-only distance sensing, direct C3 input |
 | Proposed | Versioned message schemas, failure policies, transport/security/timing choices |
 | Implemented | Documentation, schema fixtures, repository checks and CI configuration |
 | Measured hardware / AI | No evidence in this repository; no migration hardware trials |
@@ -34,7 +34,7 @@ See [school requirements](../school/requirements.md) and [test plan](../developm
 | Requirement | Acceptance / evidence | Current status |
 | --- | --- | --- |
 | R1 Local motion safety | Independent contact and freshness stops under server/network/AI failure | Approved requirement; implementation pending |
-| R2 Front steering and rotating ToF | Calibrated rear-speed/steering model and angle/time-stamped samples; no simultaneous side coverage assumption | Approved direction; hardware/calibration open |
+| R2 Front steering and LiDAR sensing | Calibrated rear-speed/steering model and timestamped LiDAR scans with measured coverage | Approved direction; hardware/calibration open |
 | R3 One final owner | ESP32 gates direct C3 and laptop intent; explicit handover/expiry/re-arm | Approved requirement; protocol/tests pending |
 | R4 Initial 2D map | Unknown/free/occupied cells and measured pose/map comparison in controlled arena | Planned; implementation pending |
 | R5 Advisory camera events | Persist event/image, associate capture-time observation pose, bounded AI and unknown failures | Planned; model/runtime unresolved |

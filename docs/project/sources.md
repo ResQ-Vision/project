@@ -16,7 +16,9 @@ the working proposal. The table below and archived snapshot hashes describe the 
 read, not either document's current wording. The engineering checklist still requires alignment.
 
 1. Latest explicit user decisions establish project direction. In this migration the user
-   reconfirmed front steering, rotating top ToF and direct C3 → motion ESP32.
+   reconfirmed front steering and direct C3 → motion ESP32. A subsequent explicit decision
+   removed separate ToF in favor of LiDAR-only distance sensing; see ADR 0005. The user
+   designated the linked [tldraw board](https://www.tldraw.com/f/4aOaHZDyKxk2AseGkkgxy?d=v-358.-186.2651.1825.page) as תרשים מלבנים; corrections are pending.
 2. The [user-selected live Hebrew proposal](https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit)
    governs official school wording, not proof of implementation or technical compatibility.
 3. The [engineering checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit)

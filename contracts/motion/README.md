@@ -17,9 +17,9 @@ Only accepted fresh commands may renew receiver-local command age. Select authen
 packet sizes, rate and watchdog from measured hardware limits; checklist rates are examples.
 
 Telemetry needs acquisition clock/time, encoder counts, steering target and observed/estimated
-angle with quality, IMU, angle/time-stamped rotating ToF samples, contact state, motor/stop state,
+angle with quality, IMU, contact state, motor/stop state,
 acknowledged active owner and last accepted command. Specify validity/age/units per reading.
-There is no fixed left/right ToF pair; rotating samples need coverage/freshness semantics.
+There is no separate ToF; LiDAR coverage/freshness is handled by the acquisition contract.
 
 ## Authority at the actuator boundary
 
@@ -35,5 +35,5 @@ There is no fixed left/right ToF pair; rotating samples need coverage/freshness 
 ## Required integration evidence
 
 Test simultaneous C3/server intent; losing each link; stale/replayed commands; partial
-handover; firmware/server reboot; scanner/bus stalls; contacts and physical standstill.
+handover; firmware/server reboot; sensor/bus stalls; contacts and physical standstill.
 No machine motion schema is added merely to imply these decisions are settled.

@@ -10,7 +10,7 @@ are engineering proposals until reviewed and physically tested.
 - Motor drive remains disabled at boot/reset and until an explicit valid arm/start.
 - Malformed, stale, replayed, wrong-session or unauthorized commands never refresh freshness.
 - Front/rear contact trips stop locally. Independent command loss also stops locally.
-- A stop cannot be defeated by pending camera transfer, scanner rotation, I2C stall or inference.
+- A stop cannot be defeated by pending camera transfer, sensor acquisition, I2C stall or inference.
 - Laptop browser/autonomy and direct C3 commands cannot overlap in actuator authority.
 - Handover first stops/disarms, revokes the old owner and creates a fresh ownership session;
   prior commands cannot acquire authority again. Proposed epoch/lease models are in contracts/motion.
@@ -28,8 +28,8 @@ alone does not satisfy it. Derive timeout/speed from measured worst-case stoppin
 
 Measure wheelbase, rear track, steering limits, turning radius and swept footprint;
 validate reverse and turning stops as well as forward motion. Do not plan turn-in-place.
-Rotating ToF requires angle/time validation and cannot be treated as two simultaneous
-side sensors. A stalled scanner or stale sector needs an explicit conservative policy.
+LiDAR coverage, acquisition timing and stale-scan behavior require measured validation.
+The separate ToF and its rotation mechanism are removed; they cannot provide a fallback.
 LiDAR detects only obstacles intersecting its plane. Contacts stop after initial contact.
 There are no downward edge sensors in the baseline; do not claim cliff/drop detection.
 Use a flat arena with mechanical protection appropriate to the test.
