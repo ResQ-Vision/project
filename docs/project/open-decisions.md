@@ -34,11 +34,16 @@ still requires a deliberate document update. See [source audit](sources.md).
 
 | Issue | Task |
 | --- | --- |
-| [#2](https://github.com/yotam1001/project/issues/2) | Review motion hardware, front steering and rotating-ToF wiring before implementation |
-| [#3](https://github.com/yotam1001/project/issues/3) | Specify and review final ESP32 authority across direct C3 and laptop links |
-| [#4](https://github.com/yotam1001/project/issues/4) | Select and validate untethered LiDAR acquisition and timestamping |
-| [#5](https://github.com/yotam1001/project/issues/5) | Verify Clef-Flash Q8_0 image runtime and concurrent laptop resource budget |
-| [#6](https://github.com/yotam1001/project/issues/6) | Align the official proposal with current architecture and verify school acceptance requirements |
+| [#2](https://github.com/ResQ-Vision/project/issues/2) | Review motion hardware, front steering and rotating-ToF wiring before implementation |
+| [#3](https://github.com/ResQ-Vision/project/issues/3) | Specify and review final ESP32 authority across direct C3 and laptop links |
+| [#4](https://github.com/ResQ-Vision/project/issues/4) | Select and validate untethered LiDAR acquisition and timestamping |
+| [#5](https://github.com/ResQ-Vision/project/issues/5) | Verify Clef-Flash Q8_0 image runtime and concurrent laptop resource budget |
+| [#6](https://github.com/ResQ-Vision/project/issues/6) | Align the official proposal with current architecture and verify school acceptance requirements |
+| [#9](https://github.com/ResQ-Vision/project/issues/9) | First motion ESP bench slice; blocked by approved #2/#3 reviews |
+| [#10](https://github.com/ResQ-Vision/project/issues/10) | Target-laptop image-runtime smoke test; first slice of #5 |
+| [#11](https://github.com/ResQ-Vision/project/issues/11) | Read-only server status/event API review; enables server/web consumers |
 
-Begin with #2 hardware/interface review. Issues #3 and #4 depend on those hardware bounds.
-The migration branch is the review baseline until its PR merges; these tasks are not completed.
+PRs #7 and #8 are merged; latest `main` is the review baseline. No decision D1–D11
+is closed by the PM audit. D11 has the partial proposal progress recorded above.
+Begin engineering with #2; #3/#4 require its hardware bounds. Run #6 school follow-up,
+#10 AI compatibility and #11 read-only API review independently. See [roadmap](roadmap.md).
