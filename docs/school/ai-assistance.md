@@ -7,6 +7,7 @@ Do not publish private IDs, credentials or unrelated chat transcripts.
 | Date | Work / key prompt | AI contribution | Human review / validation | Evidence |
 | --- | --- | --- | --- | --- |
 | 2026-10-14 | Migrate all accessible ResQ-Vision context into stateless GitHub workflow | Source comparison, modular docs, draft schemas, fixtures, tests and CI | User confirmed rotating ToF, front steering and direct C3 path; migration PR awaits review | Migration report and validation record |
+| 2026-10-14 | Technical writing role; use Yotam Hebrew skill; user then asked to correct conflicting proposal wording directly | Codex read live proposal/checklist and repository evidence, drafted Hebrew explanation/book plan, and edited 23 proposal text passages plus ToF quantity | User authorized live edits; native structure/content readback completed. Student critique, rendered layout and supervisor review pending; no hardware/model trials | [Source review](source-review-2026-10-14.md), documentation PR and its software-check results |
 
 This row documents AI-generated repository work. It does not claim the students
 independently implemented it or reviewed code yet. Add their critique, changes and

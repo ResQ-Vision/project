@@ -8,6 +8,11 @@ Actual repository root is `/workspace/project`, beneath selected `/workspace`.
 
 ## Authority by responsibility
 
+Follow-up: [live source review and authorized proposal edits, 14 October](../school/source-review-2026-10-14.md).
+The specified proposal was edited after this migration audit; the table below and archived
+snapshot hashes describe the earlier read, not its current wording. The engineering
+checklist and alternate proposal copy still require alignment.
+
 1. Latest explicit user decisions establish project direction. In this migration the user
    reconfirmed front steering, rotating top ToF and direct C3 → motion ESP32.
 2. The [specified live Hebrew proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit)

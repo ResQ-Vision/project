@@ -24,3 +24,7 @@ isolate concurrent changes. Use
 
 Approval state: architecture is user-confirmed; draft schemas remain proposed.
 Implementation/evidence state: [validation](development/validation.md).
+
+Hebrew school documentation: [project explanation](school/project-description.md),
+[book outline and completion tracking](school/book-plan.md), and
+[live-proposal update and source review](school/source-review-2026-10-14.md).

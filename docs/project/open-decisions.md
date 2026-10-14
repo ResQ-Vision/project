@@ -21,6 +21,11 @@ Do not finalize timing constants or packet formats from checklist examples. Prop
 with rationale, hardware bounds and a test plan, then record reviewed approval.
 The migration creates draft application schemas only; it does not close these decisions.
 
+D11 progress, 14 October: the user authorized direct correction of the specified live
+proposal, and its text/tables were aligned with accepted architecture. See
+[source review](../school/source-review-2026-10-14.md). Checklist/alternate-copy alignment,
+illustration/layout review and school acceptance remain open; issue #6 is not completed.
+
 Confirmed: one laptop; rotating ToF; front steering; C3 direct to ESP32; no downward sensors.
 User decisions override conflicting proposal technical direction; official school wording
 still requires a deliberate document update. See [source audit](sources.md).
