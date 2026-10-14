@@ -1,42 +1,36 @@
-# Current project context: exploration rover
+# Current project context — ResQ-Vision
 
-Updated 7 October 2026 after reading the live [Hebrew Google Docs proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0). The live document is authoritative for proposal content; repository notes and exports are synchronized references. Read this file and engineering-plan.md before future project work, and fetch the latest repository and live document before editing.
+Last aligned with the [live Hebrew proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit) and the [build architecture checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit), both updated 12 October 2026. The repository's older October 7 Raspberry Pi plans are superseded.
 
-## Current goal and scope
+## Scope
 
-Pair project, 5 units, examination code 841589. The current document title is “רכב רובוטי לסריקה, מיפוי ותיעוד מפגעים באזורים מסוכנים”. It describes remote information collection for rescue and inspection, with an actual prototype demonstration restricted to a controlled test arena. The goal and problem statement have now been filled in the live document; do not restore earlier blank placeholders.
+Pair project; 5 units; examination code 841589; annual IoT theme. A controlled-arena exploration rover demonstrates autonomous obstacle-aware movement, estimated pose/path, initial 2D occupancy mapping, manual controls and camera events with advisory image assessment.
 
-Initial milestone: autonomous planar driving, obstacle avoidance, initial 2D mapping, estimated rover position/path, and browser operation from phone or laptop. Event images are associated with estimated map locations and reviewed through advisory AI. There is no cleaning in the active project. Full SLAM, complete exploration, 3D reconstruction and elevation mapping are not current commitments. Edge sensing provides local stopping, not a height map or proof of real-cave suitability.
+The project does **not** contain a Raspberry Pi or a separate home-PC inference machine. There is no active cleaning mechanism. Full SLAM, complete exploration, 3D or elevation mapping, real rescue operation and validated safety diagnosis are outside the initial demonstration.
 
-## Current hardware and ownership
+## Planned responsibilities
 
-- Motion ESP: motor feedback/control, encoder/IMU and side-distance measurements, immediate local stop, stale-command checks.
-- Onboard Raspberry Pi: USB 2D LiDAR, position estimation, mapping/navigation, receiving and storing camera imagery, events, web backend and asynchronous AI requests.
-- Separate ESP CAM S3: capture and WiFi image transfer to Pi. It is distinct from the motion ESP; the old generic camera-attached-to-Pi description is superseded.
-- Core sensor plan: one 2D LiDAR, two ToF sensors at left and right, one IMU, two encoder motors, two front/rear bumper sensors and four edge sensors near chassis corners. LiDAR, right-side ToF, bumper and edge sensors are now core planned components, not optional.
-- Operator laptop and phone: browsers for operation/testing. Laptop does not run rover mapping/navigation in the current plan.
-- Home PC: local Cloudflare Clef-Flash Q8_0 image inference. Hardware suitability has been checked by the user; model integration, latency and project-image performance are not yet measured.
-- Battery-voltage and motor-current monitoring remain optional.
+- **Motion ESP:** local motor control/feedback, encoders, IMU, left/right ToF, front/rear bumpers, command expiry and local stopping. Its motor safety must not rely on the laptop, AI or internet.
+- **Laptop beside arena:** wireless rover communication, LiDAR acquisition, pose estimation, mapping, navigation, images/events, web backend and a separately isolated local AI worker.
+- **Separate ESP CAM S3:** transfers still images over WiFi to the laptop.
+- **2D LiDAR:** USB-to-laptop during tethered bench tests; untethered operation requires selecting and validating a wireless acquisition bridge matched to the sensor's actual interface and bandwidth.
+- **C3-based manual controller:** additional planned manual source, subject to board/input/route selection. Browser, C3 and autonomy must have a single active control owner, explicit handover, expired commands and no surprise restart.
+- **Phone/laptop browser:** observes map, path, controls, images, sensor state and AI outcomes.
 
-## Data flow and AI
+Core proposed parts include two encoder-equipped DC motors, left/right ToF, IMU, 2D LiDAR, front/rear contact bumpers, battery/driver and ESP CAM S3. Four downward edge sensors appeared in the older snapshot but are **not listed in the latest proposal**; retain as a historical proposal/possible extension until explicitly approved. Optional motor-current and voltage telemetry are also not core commitments.
 
-Motion ESP and Pi: UART over USB serial. Suitable sensors: I2C and digital inputs. LiDAR to Pi: USB. ESP CAM S3 to Pi: WiFi. Browser to Pi: WiFi/WebSocket. Pi sends images/event data over authenticated HTTPS through the internet to the home-PC inference service and receives decisions. Networking is planned and still requires implementation and testing; local phone access alone is not the IoT internet-exchange requirement.
+## Interfaces and verification
 
-AI returns scores for predefined choices, not free-form explanations or verified human-safety probabilities. Initial categories: blocked passage, obstacle in path, narrow opening, inadequate image. UI outcomes: possible hazard, no hazard detected, unknown; pending and failed requests stay distinct. Navigation and local stopping do not wait for AI. See ai-model.md and proposal-ai-section.md.
+Motion commands/telemetry: WiFi during actual driving; USB UART for bench debugging. Camera: WiFi. Browser: WebSocket over WiFi. Laptop-hosted AI worker: bounded local IPC/API. The proposed fresh-packet UDP command design, security scheme, LiDAR bridge and timing limits need validation; no final protocol has been frozen. Laptop-local inference is **not** internet exchange for the IoT school requirement; an independent internet path remains to be defined and demonstrated.
 
-## Planned verification and open decisions
+Current proposed acceptance targets: five collision-free controlled-arena runs, command-loss stop within one second, and mean localization error at most 30 cm. Not achieved measurements. Dimensions, hardware, stop distance, calibrations, tests and reviewer/supervisor compliance remain open.
 
-Current document targets: five collision-free trials, stop within one second of command loss, mean position error at most 30 cm in a small arena. These are planned acceptance targets, not achieved results. Models, calibration, budget, test-arena dimensions, capture triggers and network deployment details still need implementation decisions.
+## AI behavior
 
-Supervisor acceptance of complete independently functioning school subsystems remains open; processor count alone does not establish compliance. Each needs input/display, appropriate sensors and outputs, and two accepted communication protocols. Both students must understand the whole project.
+Intended model: Cloudflare Clef-Flash Q8_0, running **on the navigation laptop**, separate from latency-sensitive control tasks. It scores predefined image questions. Do not treat model scores as calibrated hazard or human-safety probabilities. Events display pending, possible hazard, none detected or unknown, with failure and inadequate-image states. Compatibility, latency and accuracy still require tests.
 
-The live cover now includes school, student and supervisor names. Missing student IDs/coordinator details and the full proposal deadline still need checking against the template. Around the 15th means proposal submission only; no month/date confirmation is inferred.
+## School documents and provenance
 
-## School requirements and history
+The editable Google Doc is the source for proposal wording. The separate architecture/checklist document captures more recent implementation planning. Repository PDF/Word exports, image diagrams and the October 7 Markdown draft are stale; do not use them to reverse the October 12 decisions. Original ministry/school references, extracts and historical assets remain preserved.
 
-The original uploaded school references and extracted text remain unchanged. Current circular: תשפ״ז, especially pp. 15–25. Pair projects require communicating subsystems and at least one controller's internet data exchange. Proposal requires cover, abstract, need, explained block diagram, component list and one PDF; the examiner submission date is 30 October of the school year. Prototype, measurements, logs, photographs/video, project book and documented AI assistance are required later.
-
-The cleaning project is retained only in ../archive/cleaning-concept-2026-10-05/. Older dated reviews and diagrams are historical; consult the current live document before reusing them. The supplied Hebrew writing skill is in ../../skills/yotam-hebrew-writing/; its referenced style-evidence files were not supplied.
-
-## Visual and export synchronization, 7 October 2026
-The regenerated rover web app concept is embedded in the Google Doc with a Hebrew caption and example-data qualification. An old embedded diagram still referred to simulated cleaning; it was replaced with the current sensor/camera/home-PC architecture. Historical tldraw assets and the external board remain historical rather than silently altered. Word/PDF copies are exported directly from the live document.
+Both students must understand the integrated project. The school’s independent-subsystem, inputs/outputs, communication and internet requirements need explicit verification; a laptop does not automatically satisfy them. See [proposal work plan](proposal-plan.md) and [engineering plan](engineering-plan.md).

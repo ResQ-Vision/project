@@ -1,15 +1,16 @@
-# Proposal work plan — updated 7 October 2026
+# Current ResQ-Vision work plan
 
-1. Confirm revised exploration-rover scope with the supervisor; pair project, 5 units already confirmed.
-2. Define a controlled planar arena and the first milestone: autonomous movement, avoidance, and initial mapping. Cleaning is excluded; AI image assessment is an additional goal.
-3. Settle two independently functional computing subsystems. The user will ask about compliance next week; leave acceptance unknown for now. ESP and onboard Raspberry Pi are now the planned processors. Verify each independently functioning subsystem meets the complete school requirements; a camera alone is not a controller.
-4. Select motors/encoders, distance sensors, camera hardware, Raspberry Pi model, power supply, communication, operator laptop, and phone interface according to budget and available equipment.
-5. Research source-backed alternatives: teleoperated inspection, autonomous planar mapping, and existing exploration robots. No commercial survey has yet been verified.
-6. The live proposal selects 2D LiDAR, left/right ToF, IMU, bumpers, edge sensors and a separate ESP CAM S3. Finalize hardware models and basic algorithms. Define test metrics and error limits; leave full SLAM and real cave operation outside the first commitment.
-7. Specify hazard capture, event storage, and AI advisory output. Preferred hosting is on the user’s home PC. Cloudflare Clef-Flash Q8_0 is the intended model, and image-input support is documented. The user has already checked hardware suitability. Verify compatible runtime integration and project-specific latency during implementation.
-8. Complete cover details, explained block diagram, component list, and proposal PDF. Review revised scope and acceptance criteria with the supervisor.
+Updated against the live [proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit) and [staged implementation checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit), last modified 12 October 2026.
 
-The deadline around the 15th is for the proposal only; its full date is unconfirmed. The current circular's examiner-submission deadline is 30 October of the school year. The live Google Doc is authoritative. The repository text and native exports are synchronized references; do not overwrite the live document with older drafts.
+1. Confirm school requirements, independent subsystem compliance, proposal deadline and supervisor approval. A laptop alone does not guarantee compliance.
+2. Select exact motion ESP, C3 controller, DC motors/encoders, motor driver, two side ToF, IMU, two bumpers, ESP CAM S3, 2D LiDAR, battery and physical emergency stop. Finalize wiring, power, chassis and calibration.
+3. Choose WiFi control/telemetry transport and a compatible wireless LiDAR acquisition bridge. WiFi applies during driving; USB/UART is for tethered bench testing.
+4. Implement deterministic motion-ESP safety, feedback, command expiry and independent stop behavior. Measure physical stopping times/distances.
+5. Implement laptop-side wireless ingestion, control-source arbitration (browser/C3/autonomy), odometry, initial 2D mapping and obstacle-aware navigation.
+6. Implement WiFi camera capture, timed event records, phone web app, and laptop-local advisory AI in an isolated worker; test under combined processing load.
+7. Define and demonstrate separate school-required internet data exchange. Calls between local laptop processes do not meet this requirement.
+8. Run instrumented arena acceptance trials and produce the engineering project book with authentic evidence and AI assistance documentation.
 
-## Latest synchronization
-The live document now has goal/problem and cover names, camera and sensor allocation, HTTPS home-PC AI exchange, and planned numeric targets. These supersede older open placeholders and optional sensor labels. Web app concept must depict exploration, mapping, camera events and advisory AI review.
+Project: pair, 5 units, exam code 841589. Planned targets are five collision-free trials, <=1 s physical stop after command loss and <=30 cm mean localization error; none is a completed result.
+
+The previous cleaning concept is archival. The October 7 GitHub proposal exports and Raspberry Pi diagram are outdated snapshots; do not regenerate the current proposal from them. The latest native Google Doc is authoritative for proposal wording. Full SLAM, 3D mapping and operational rescue claims are not initial commitments.
