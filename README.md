@@ -48,3 +48,7 @@ The migration PR requires the user's review before merging.
 
 Original school documents and historical assets remain under `resources/`.
 They are evidence, not an alternative current specification.
+
+Official working proposal, selected by the user on 14 October 2026:
+[live Hebrew Google Doc](https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit).
+Use this document for proposal edits; earlier proposal URLs and exports are historical.

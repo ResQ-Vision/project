@@ -29,11 +29,13 @@ Their fields/structure are useful, not proof that the current proposal is approv
 
 ## Current proposal and conflicts
 
-[Specified live proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit)
-governs official wording. A [newer edited copy](https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit)
-contains mixed old/new descriptions. Neither is silently overwritten by this migration.
-Use [source audit](../project/sources.md) and [D11](../project/open-decisions.md) to resolve
-which live version is to be submitted and align it with user-confirmed architecture.
+[Official working proposal](https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit)
+governs official wording, as explicitly selected by the user on 14 October 2026.
+It has been corrected directly to match accepted architecture. The
+[previously linked document](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit)
+is historical and must not replace this working document.
+Use [source review](source-review-2026-10-14.md) and [D11](../project/open-decisions.md)
+for the remaining checklist, illustration/layout and school-acceptance review.
 
 Five collision-free trials, ≤1 s physical command-loss stop and ≤0.30 m mean position
 error are planned project targets from the proposal. No original school source reviewed
@@ -49,7 +51,8 @@ code/config versions, faults and corrections. The migration provides no physical
 
 The specified live proposal was updated with explicit user authorization to match accepted
 front steering, rotating ToF and direct C3 architecture. See [readback and remaining review](source-review-2026-10-14.md).
-The checklist and alternate copy are not aligned by this update; school approval remains open.
+The corrected working URL above supersedes the first document selection. The engineering
+checklist remains unaligned; school approval remains open.
 [Book planning and evidence tracking](book-plan.md) covers current-year sections 17–25.
 The current-year extraction, page 18, also states a 30 October coordinator submission deadline;
 verify the original PDF and the school's internal date. The earlier caution about importing
