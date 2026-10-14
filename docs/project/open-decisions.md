@@ -7,7 +7,7 @@ remain open; owners are roles, not inferred assignments of an active chat.
 | --- | --- | --- | --- |
 | D1 | Exact ESP/C3/camera/LiDAR/motors/driver/battery, availability, budget, pins and power sheet | Motion + integration | Wiring and builds |
 | D2 | Front steering geometry, actuator/feedback, limits, turning radius and rear-speed calibration | Motion + localization | Control and pose |
-| D3 | Rotating ToF mechanism, measured/estimated angle, wiring, rate/coverage and stale-sector policy | Motion + integration | Scanner and obstacle claims |
+| D3 | Separate ToF/rotation mechanism removed by user; LiDAR coverage/timing validation remains under D6/D10 | Integration | ToF selection is no longer a blocker |
 | D4 | Direct C3 radio, identities, inputs/deadman, final ESP owner/lease/epoch/re-arm protocol | Motion + C3 + server | Integrated driving |
 | D5 | WiFi/bench framing/authentication, replay/session behavior, watchdog/leases, physical emergency stop and braking | Motion + server | Safe floor trials |
 | D6 | LiDAR sensor/bridge/electrical compatibility, bandwidth, timing and reliability | Server acquisition | Untethered mapping |
@@ -27,7 +27,7 @@ That document's text/tables were corrected directly; proposal selection is resol
 See [source review](../school/source-review-2026-10-14.md). Checklist alignment,
 illustration/layout review and school acceptance remain open; issue #6 is not completed.
 
-Confirmed: one laptop; rotating ToF; front steering; C3 direct to ESP32; no downward sensors.
+Confirmed: one laptop; front steering; C3 direct to ESP32; LiDAR-only distance sensing; no separate ToF or downward sensors. See [ADR 0005](../architecture/decisions/0005-lidar-only-distance-sensing.md).
 User decisions override conflicting historical proposal direction. The working proposal's
 text is aligned; remaining official-document review is recorded above. See [source audit](sources.md).
 
@@ -35,7 +35,7 @@ text is aligned; remaining official-document review is recorded above. See [sour
 
 | Issue | Task |
 | --- | --- |
-| [#2](https://github.com/ResQ-Vision/project/issues/2) | Review motion hardware, front steering and rotating-ToF wiring before implementation |
+| [#2](https://github.com/ResQ-Vision/project/issues/2) | Review motion hardware, front steering and wiring before implementation |
 | [#3](https://github.com/ResQ-Vision/project/issues/3) | Specify and review final ESP32 authority across direct C3 and laptop links |
 | [#4](https://github.com/ResQ-Vision/project/issues/4) | Select and validate untethered LiDAR acquisition and timestamping |
 | [#5](https://github.com/ResQ-Vision/project/issues/5) | Verify Clef-Flash Q8_0 image runtime and concurrent laptop resource budget |

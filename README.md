@@ -8,7 +8,7 @@ repository, its assigned issue, and the linked role documents.
 
 Current direction, confirmed by the user on 14 October 2026:
 - One laptop beside the arena runs the PC Server, navigation, mapping and a separate local AI worker.
-- Motion ESP32 controls two rear encoder motors, front steering, IMU, one rotating top ToF,
+- Motion ESP32 controls two rear encoder motors, front steering, IMU,
   front/rear contact sensors and independent local stops.
 - A C3 manual controller sends commands directly to the motion ESP32.
 - Separate ESP CAM S3 sends images to the laptop over WiFi.

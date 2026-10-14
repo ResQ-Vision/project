@@ -110,38 +110,6 @@
     }
   },
   {
-    "name": "measured angle missing",
-    "schema": "lidar/rotating-tof.schema.json",
-    "data": {
-      "schema_version": "0.1-draft",
-      "sample_id": "tof-1",
-      "frame_id": "tof_rotating_frame",
-      "acquired_at": {
-        "clock_id": "synthetic-camera-boot-1",
-        "monotonic_ns": 1000000
-      },
-      "angle_rad": null,
-      "angle_quality": "measured",
-      "range_m": 0.7
-    }
-  },
-  {
-    "name": "unknown angle reported as measured zero",
-    "schema": "lidar/rotating-tof.schema.json",
-    "data": {
-      "schema_version": "0.1-draft",
-      "sample_id": "tof-2",
-      "frame_id": "tof_rotating_frame",
-      "acquired_at": {
-        "clock_id": "synthetic-camera-boot-1",
-        "monotonic_ns": 1000000
-      },
-      "angle_rad": 0,
-      "angle_quality": "unknown",
-      "range_m": null
-    }
-  },
-  {
     "name": "unknown pose reported as origin",
     "schema": "events/event.schema.json",
     "data": {

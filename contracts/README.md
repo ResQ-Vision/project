@@ -9,7 +9,7 @@ telemetry, ownership and API framing remain requirements in focused prose.
 | --- | --- | --- |
 | Motion, telemetry and final ownership | [Motion](motion/README.md) | Motion + C3 + server; approve D2–D5 before wire schema |
 | Camera requests/results | [Camera](camera/README.md) | Camera + events; capture timing/transport/limits D9 |
-| LiDAR and rotating-ToF timing | [Acquisition](lidar/README.md) | Acquisition + motion; hardware/frame/clock decisions D3/D6 |
+| LiDAR acquisition timing | [Acquisition](lidar/README.md) | Acquisition + motion; hardware/frame/clock decision D6 |
 | HTTP/WebSocket semantics | [Server API](server-api/README.md) | Server + web; endpoints/auth/owner acknowledgement D4/D5 |
 | Recorded image/events | [Events](events/README.md) | Events; pose association/storage policy D9 |
 | Local AI requests/results | [AI](ai/README.md) | AI + events; actual model/runtime/API D7/D9 |

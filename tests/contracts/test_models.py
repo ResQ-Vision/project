@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 class ProposedContractTests(unittest.TestCase):
     def test_schemas_are_valid_and_explicitly_proposed(self):
         paths = list((ROOT / 'contracts').rglob('*.schema.json'))
-        self.assertEqual(len(paths), 7)
+        self.assertEqual(len(paths), 6)
         for path in paths:
             with self.subTest(schema=path.name):
                 schema = json.loads(path.read_text())

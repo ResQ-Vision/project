@@ -1,6 +1,6 @@
 # ADR 0002: Front steering and rotating top ToF
 
-Status: Accepted direction. Date: 14 October 2026.
+Status: Partially superseded by [ADR 0005](0005-lidar-only-distance-sensing.md): the separate ToF and rotation mechanism are removed. Front steering/rear encoder motors remain accepted. Date: 14 October 2026.
 Source: writing chat 12 October; explicit answer during migration:
 “keep rotating tof, front sterring direct c3 to esp 32, delte all of the things that conflict this”.
 

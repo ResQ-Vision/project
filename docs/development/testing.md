@@ -24,7 +24,7 @@ instruments, battery, arena/floor/load, speed, sensor state and raw evidence per
 | --- | --- | --- |
 | Local stop | Wheels raised; contacts, valid-command loss, malformed/replay input, reset, blocking bus/scanner work | Motor disable/physical response independent of laptop/AI |
 | Ownership | Simultaneous laptop/C3, source loss, lost handover, reboots/reconnect | One acknowledged ESP owner; no automatic motion restart |
-| Steering/scanner | Calibrate angle/limits/turning radius, ToF angle/time/coverage, rear encoder signs | No differential-drive or simultaneous side-coverage assumptions |
+| Steering/LiDAR | Calibrate steering limits/turning radius, LiDAR mount/time/coverage, rear encoder signs | Front-steering model and measured LiDAR coverage; no ToF fallback |
 | Acquisition | LiDAR/camera invalid/stale/disconnect, radio bandwidth, clock offsets | Autonomy stops on LiDAR loss; uncertain capture/pose stays unknown |
 | Stop geometry | Forward/reverse/turning at defined speed/load; command-loss trigger to standstill | Proposal target ≤1 s plus recorded worst stopping distance |
 | Pose/map | Survey checkpoints and arena walls; compare capture-time estimate | Target mean Euclidean error ≤0.30 m; worst error/count and map comparison |

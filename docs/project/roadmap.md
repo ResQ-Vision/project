@@ -14,6 +14,8 @@ tests (12 valid and 16 invalid fixtures). No bench, full-system or model benchma
 The recorded live-proposal correction is partial progress on #6; this audit did not reread the live document.
 No GitHub milestones exist; the stages below are development gates, not scheduled commitments.
 
+Current approved change: [ADR 0005](../architecture/decisions/0005-lidar-only-distance-sensing.md) removes the separate ToF and its rotation mechanism. Distance sensing now uses LiDAR; its bridge/coverage/timing validation remains open. Active contracts now contain six schemas and 24 fixtures; the original audit counts above are historical.
+
 ## Dates and submission
 
 The school-specific proposal date around 15 October 2026 and progress-book date around
@@ -28,11 +30,11 @@ No hardware milestone date is assigned without parts/capacity evidence.
 | Stage | Current state / work | Exit evidence | Dependencies |
 | --- | --- | --- | --- |
 | Foundation | Documentation and draft-contract CI merged | Reproduced repository/fixture checks | Complete for this limited scope |
-| 0 | Open: hardware/power, steering/scanner and authority review | Approved wiring/power and interface sheets | #2, #3; school acceptance #6 |
+| 0 | Open: hardware/power, steering/LiDAR mounting and authority review | Approved wiring/power and interface sheets | #2, #3; school acceptance #6 |
 | 1 | Not started: motion ESP independent-stop bench slice | Raw wheels-raised contact/reset/command-loss/stall results | #9 after #2 and #3 |
 | 2 | Not started: laptop, untethered LiDAR and camera bench | Validated timestamped scans/images/telemetry; bounded load | #4, hardware-specific contracts/toolchains |
 | 3 | Not started: direct C3 + browser manual integration | One ESP owner; measured forward/reverse/turning stops | Stages 1–2, approved #3 protocol |
-| 4 | Not started: front-steering localization and initial occupancy map | Surveyed pose errors, scanner angles and map comparison | Calibrated chassis, timing and acquisition |
+| 4 | Not started: front-steering localization and initial occupancy map | Surveyed pose errors, LiDAR mount/coverage and map comparison | Calibrated chassis, timing and acquisition |
 | 5 | Not started: bounded autonomous obstacle response | Five defined collision-free trials and fault evidence | Validated stops/pose/map; D10 test definitions |
 | 6 | Not started: persisted events and advisory local AI | Correct association, unknown failures, labeled-image and load metrics | #5, #10, D9 and reviewed data interfaces |
 | 7 | Open: school acceptance and final integration | Reproducible full-system records, student bring-up and engineering/AI logs | Baseline tests, approved subsystem split and Internet exchange |
@@ -44,7 +46,7 @@ API review may start before physical mapping. Schema checks do not pass hardware
 
 1. #6: confirm immediate submission date, official version, illustration/layout review,
    paired subsystem acceptance and actual controller Internet exchange. Keep #6 open.
-2. #2: record actual components, pins/power, steering/scanner mechanics and independent
+2. #2: record actual components, pins/power, steering/LiDAR mounting mechanics and independent
    disable behavior. #3 may draft now but cannot finalize rates/watchdogs without hardware bounds.
 3. #3 → #9: review authority/freshness/re-arm, then build and measure the first local-stop slice.
 4. #4: validate a bridge against the actual LiDAR; a USB bench link is not an untethered solution.
@@ -57,8 +59,8 @@ and read-only API review #11. LiDAR candidate research can proceed, but selectio
 needs the actual sensor. Use separate branches/worktrees and one coordinated contract PR.
 C3/server motion consumers depend on #3; server/web read-only consumers depend on #11.
 
-Integration risks: incompatible direct-C3/laptop authority; blocking scanner/bus work delaying
-local stops; front-steering geometry mistaken for differential drive; rotating-ToF stale coverage;
+Integration risks: incompatible direct-C3/laptop authority; blocking sensor/bus work delaying
+local stops; front-steering geometry mistaken for differential drive; LiDAR stale/limited coverage;
 USB/radio and clock mismatch; image/pose association errors; AI load starving server/control;
 and school Internet requirements confused with same-WLAN or local AI traffic.
 
