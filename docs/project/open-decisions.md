@@ -15,20 +15,21 @@ remain open; owners are roles, not inferred assignments of an active chat.
 | D8 | School approval: paired independent subsystems, controller Internet exchange, exact deadlines and assessment | Students + supervisor | School acceptance |
 | D9 | Capture trigger/timing uncertainty, storage/retention, categories and measured model thresholds | Events + AI | Useful advisory events |
 | D10 | Arena geometry/speed/load, stop timing reference, pose metric/sample count, map-quality criteria | Test + students | Acceptance evidence |
-| D11 | Resolve two live proposal versions and engineering checklist wording against accepted ADRs | School writing + user | Current official submission |
+| D11 | Align engineering checklist and review working-proposal illustrations/layout against accepted ADRs; working URL selected | School writing + user | Current official submission |
 
 Do not finalize timing constants or packet formats from checklist examples. Propose them
 with rationale, hardware bounds and a test plan, then record reviewed approval.
 The migration creates draft application schemas only; it does not close these decisions.
 
-D11 progress, 14 October: the user authorized direct correction of the specified live
-proposal, and its text/tables were aligned with accepted architecture. See
-[source review](../school/source-review-2026-10-14.md). Checklist/alternate-copy alignment,
+D11 progress, 14 October: the user corrected the target to
+[the official working proposal](https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit).
+That document's text/tables were corrected directly; proposal selection is resolved.
+See [source review](../school/source-review-2026-10-14.md). Checklist alignment,
 illustration/layout review and school acceptance remain open; issue #6 is not completed.
 
 Confirmed: one laptop; rotating ToF; front steering; C3 direct to ESP32; no downward sensors.
-User decisions override conflicting proposal technical direction; official school wording
-still requires a deliberate document update. See [source audit](sources.md).
+User decisions override conflicting historical proposal direction. The working proposal's
+text is aligned; remaining official-document review is recorded above. See [source audit](sources.md).
 
 ## GitHub work queue
 

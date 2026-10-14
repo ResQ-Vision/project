@@ -9,13 +9,15 @@ Actual repository root is `/workspace/project`, beneath selected `/workspace`.
 ## Authority by responsibility
 
 Follow-up: [live source review and authorized proposal edits, 14 October](../school/source-review-2026-10-14.md).
-The specified proposal was edited after this migration audit; the table below and archived
-snapshot hashes describe the earlier read, not its current wording. The engineering
-checklist and alternate proposal copy still require alignment.
+The user subsequently corrected the official working document to
+[this proposal](https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit).
+It was read and corrected in place. The earlier document is a historical source, not
+the working proposal. The table below and archived snapshot hashes describe the migration
+read, not either document's current wording. The engineering checklist still requires alignment.
 
 1. Latest explicit user decisions establish project direction. In this migration the user
    reconfirmed front steering, rotating top ToF and direct C3 → motion ESP32.
-2. The [specified live Hebrew proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit)
+2. The [user-selected live Hebrew proposal](https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit)
    governs official school wording, not proof of implementation or technical compatibility.
 3. The [engineering checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit)
    is implementation planning, subject to subsequent approved decisions.
@@ -27,6 +29,9 @@ checklist and alternate proposal copy still require alignment.
    evidence. Dates alone do not turn them into approved or tested requirements.
 
 ## Sources read and observed differences
+
+Historical observations from the migration audit follow. They do not designate today's
+working proposal or describe the corrected live text.
 
 | Source | Modification observed | Use / contradictions |
 | --- | --- | --- |
@@ -45,8 +50,9 @@ Active repository docs now use [system.md](../architecture/system.md) and approv
 Fixed side-ToF, differential-drive/turn-in-place, server-only C3 authority, Pi/home-host,
 downward-edge and serial-only-driving assertions are removed from active architecture.
 Original historical files are retained unchanged or archived; they may still contain those words.
-The official docs are not edited: D11 records the remaining school-document contradiction
-and choice of which proposal version to submit. No competing active master context is added.
+The migration itself did not edit official documents. Subsequent user-authorized edits
+aligned the working proposal, and the user selected its URL above. D11 retains checklist,
+illustration/layout and school-acceptance review; proposal selection is resolved.
 
 Model identity/runtime/API/performance claims remain unverified research leads.
 Checklist timing/rate numbers are proposals, not approved measured safety thresholds.
