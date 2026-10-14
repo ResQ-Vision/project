@@ -44,3 +44,13 @@ here establishes them as universal grading thresholds. Define the actual test pr
 Use [AI assistance log](ai-assistance.md), [evidence template](evidence-template.md) and
 [test procedures](../development/testing.md). Retain original measurements, logs/images,
 code/config versions, faults and corrections. The migration provides no physical results.
+
+## Documentation follow-up, 14 October 2026
+
+The specified live proposal was updated with explicit user authorization to match accepted
+front steering, rotating ToF and direct C3 architecture. See [readback and remaining review](source-review-2026-10-14.md).
+The checklist and alternate copy are not aligned by this update; school approval remains open.
+[Book planning and evidence tracking](book-plan.md) covers current-year sections 17–25.
+The current-year extraction, page 18, also states a 30 October coordinator submission deadline;
+verify the original PDF and the school's internal date. The earlier caution about importing
+prior-year deadlines does not mean the current-year circular omits that date.
