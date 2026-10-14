@@ -1,0 +1,79 @@
+{
+  "reviewed_on": "2026-10-14",
+  "baseline_commit": "7224443a6ea9e6dfed1ed7f16bf8c659134734d6",
+  "repository_url": "https://github.com/ResQ-Vision/project",
+  "template_sha256": "21290b5aa97737062f7387af973f4971874f12309b39228fa34d557017417ee5",
+  "example": {
+    "local_path": "/Users/yotammoshe/Downloads/ספר פרויקט.pdf",
+    "sha256": "1f774ccf8572c49bcf1529fb1b3c1058dd1e2b4323324c79b0a99ed3ded41a95",
+    "pages": 61,
+    "role": "prior-year design direction only; no factual hardware reuse"
+  },
+  "canonical_sources": [
+    {
+      "path": "README.md",
+      "sha256": "9541d1abcb36d9e8a559b4ffedf80dc19652abdd2d1a6fc21e01a8f4fd23fe1e"
+    },
+    {
+      "path": "docs/architecture/system.md",
+      "sha256": "7de293f8697493c6c0848148d5a0457f72b62c51b320380ceba1ee91ebcad499"
+    },
+    {
+      "path": "docs/architecture/safety.md",
+      "sha256": "6679c15d62a361b0557b67021dd75794df0e9d1710f3b52b826d2c18af5110ab"
+    },
+    {
+      "path": "docs/architecture/transport.md",
+      "sha256": "140b6840504af50b5d7c00682e3e44aa71dba9256a1e87ff16400d26ffa10d89"
+    },
+    {
+      "path": "docs/hardware/README.md",
+      "sha256": "612a2ee97ae1917efb77462887e51da9d0bfe4d1d3d33002e19340b80ff84914"
+    },
+    {
+      "path": "docs/project/open-decisions.md",
+      "sha256": "c9a25829e8ebcfa403c8e944540fbe7fab8e9b6ff971786e71e068b9fe86da5b"
+    },
+    {
+      "path": "docs/project/roadmap.md",
+      "sha256": "803657f62874432e4b96524a4ff1d9bc982d726d2ad9bb55a85baacc710d7b58"
+    },
+    {
+      "path": "docs/school/requirements.md",
+      "sha256": "513429d6300f00bc1c184088ef317da19f82e4a67ef9805824b11ccc0bb12aa9"
+    },
+    {
+      "path": "docs/school/project-description.md",
+      "sha256": "b790172c253b6b7404fd132b53e4b2abaec604d63c3551075795dcc6c3f8e145"
+    },
+    {
+      "path": "docs/school/ai-assistance.md",
+      "sha256": "914f9fa12777a112cadc391b9222d54a762d9bd7085d217d816493d54c99598b"
+    },
+    {
+      "path": "docs/development/validation.md",
+      "sha256": "33dff3d9f5053ec8fef10d655021aff6a16e5badd7ca2f438f89d3367bbc541a"
+    },
+    {
+      "path": "contracts/README.md",
+      "sha256": "2db7006e96b43a8bdba2f15f637a366a8f9eb6e3fd12bdba2a8f233322c686b7"
+    },
+    {
+      "path": "skills/yotam-hebrew-writing/SKILL.md",
+      "sha256": "ab6ef8cffc08062342625e6210484256bdc23e0e1a5b0dbf17aeb62e75319646"
+    },
+    {
+      "path": "skills/yotam-hebrew-writing/README.md",
+      "sha256": "2336ef2c4ba6d3c569165b57304290b904a061d0a7031837596839cd5f3374bf"
+    }
+  ],
+  "external_progress": [
+    {
+      "url": "https://github.com/ResQ-Vision/project/pull/13",
+      "state_at_review": "OPEN",
+      "integrated_in_baseline": false,
+      "note": "Official-proposal link correction is being handled separately; do not overwrite peer source documentation."
+    }
+  ],
+  "style_limit": "Core Yotam skill read from fetched GitHub main; the two referenced sample files are not supplied."
+}
