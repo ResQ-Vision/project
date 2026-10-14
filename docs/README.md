@@ -28,3 +28,7 @@ Implementation/evidence state: [validation](development/validation.md).
 Hebrew school documentation: [project explanation](school/project-description.md),
 [book outline and completion tracking](school/book-plan.md), and
 [live-proposal update and source review](school/source-review-2026-10-14.md).
+
+The [living project book](school/project-book/README.md) includes the editable Hebrew
+manuscript, template-derived Word export, source snapshot and update/verification workflow.
+It records progress and missing evidence; it does not replace canonical engineering documents.
