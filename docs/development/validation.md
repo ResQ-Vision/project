@@ -9,8 +9,9 @@ was exercised. Proposed schemas and synthetic fixtures validate application data
 | Command / check | Result |
 | --- | --- |
 | Virtualenv + `python -m pip install -r requirements-dev.txt` | Installed in migration checkout and fresh worktree |
-| `python scripts/check_repository.py` | Passed: 58 Markdown paths, 138 local links before work-queue links; 4 school originals, 56 manifest entries, 3 snapshots, 7 proposed schemas |
+| `python scripts/check_repository.py` | Passed: 58 Markdown paths, 139 local links; 4 school originals, 56 manifest entries, 3 snapshots, 7 proposed schemas |
 | `python -m unittest discover -s tests -v` | 2 tests passed; 7 schema definitions and 28 fixture cases (12 valid, 16 invalid) |
+| `python -m pip check` | No broken requirements found |
 | `git diff --check` | Passed |
 | School circular page-marker review | Confirmed paired-controller Internet/subsystem wording at pages 15/22 and AI evidence at pages 25–26 |
 | Original/archive manifest hashes | Preserved files and five archived summaries match original bytes |

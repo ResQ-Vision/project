@@ -45,6 +45,7 @@ Five old context files moved unchanged into a dated archive; README/context entr
 and resource status pages were edited. School originals, existing archives and binary
 diagrams/exports remain at their paths with original bytes. Text snapshots of three
 actually accessed Drive docs preserve audit provenance without replacing live documents.
+Git diff totals: 74 files created, five existing files edited and five context files moved.
 The full old-to-new mapping, actions and original hashes are in [manifest](migration-manifest.json).
 `git diff --stat` and PR file list enumerate newly created/edited/moved files.
 
