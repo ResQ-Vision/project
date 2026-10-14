@@ -1,43 +1,35 @@
-# Exploration rover — working project
+# ResQ-Vision — exploration rover (planning project)
 
-A pair project, 5 units, in high-school Electronics and Computers Engineering. Current technical direction: autonomous driving, initial two-dimensional mapping, and image capture for advisory AI analysis. The live proposal now defines scanning, mapping and documenting possible hazards for rescue/inspection, demonstrated in a controlled test arena.
+A two-student, five-unit high-school Electronics and Computers Engineering project. The planned prototype autonomously navigates a controlled arena, avoids obstacles, creates an initial planar map, and associates camera images with estimated observation positions. Image analysis is advisory, not a safety certification.
 
-## Current scope
+## Current architecture (updated from live proposal, 12 October 2026)
 
-- Autonomous driving, obstacle avoidance, and first-stage mapping are the initial milestone.
-- Current plan: ESP controls motors and local stopping; onboard Raspberry Pi handles camera capture, pose estimation, mapping, navigation, event storage, and the web interface. A laptop is used for operation, development and testing; the home PC hosts AI. The Raspberry Pi model and measured processing rate remain to be selected.
-- A phone interface displays the map, rover state, captured images, and hazard flags.
-- Mapping is planar for now: no 3D reconstruction, elevation mapping, or measurement of vertical drops. One USB 2D LiDAR is planned for range mapping, with left/right ToF, IMU, bumper/edge sensors and a separate ESP CAM S3 camera.
-- When a suspected hazard is identified, save imagery and request an AI assessment. Preferred deployment: a locally hosted image-capable model on the user’s home PC, kept running when needed. The intended model is Cloudflare Clef-Flash, Q8_0, identified from its published model documentation. The user has checked home-PC hardware suitability; runtime integration, latency and project-image evaluation remain future work. See [AI model notes](resources/context/ai-model.md).
-- AI can flag possible hazards or return uncertainty; it cannot certify a cave or route as safe for people.
-- Cleaning hardware is outside the active scope. The previous cleaning concept is preserved in the archive.
+- **Motion ESP on rover:** motor-driver outputs, two encoder motors, IMU, left/right ToF, front/rear contact bumpers, wheel feedback and local stop on invalid or expired commands.
+- **Navigation laptop beside the arena:** receives telemetry, LiDAR scans and ESP CAM S3 images; handles localization, initial 2D occupancy mapping, navigation, event storage and the browser backend.
+- **ESP CAM S3:** separate image-capture module sending images to the laptop over WiFi.
+- **2D LiDAR:** scans the arena plane. A compatible wireless acquisition bridge for untethered driving remains to be selected and tested; USB to laptop is for bench testing.
+- **Manual C3 controller:** an additional proposed manual command source beside the browser, with explicit handover and one active controller at a time.
+- **AI:** Cloudflare Clef-Flash Q8_0 is the intended advisory image-decision model, hosted in a separate worker on the **same navigation laptop**. Runtime compatibility and concurrent workload remain unmeasured.
+- **Communication:** ESP telemetry and motion commands use WiFi when driving; USB serial is for tethered laboratory debugging. Browser access is via WiFi and WebSocket. Actual wireless message format, authentication and timing remain design/test work.
 
-## Editable proposal
+**There is no Raspberry Pi or separate home-PC inference host in the current architecture.** Previous documents and diagrams showing either are outdated. Local laptop AI calls alone do not meet the school's separate internet data-exchange requirement.
 
-The latest Hebrew proposal is an editable [Google Doc](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0). It follows the original school template, uses a redesigned RTL layout and block diagram, and contains the current team goal and problem statement. Repository Word/PDF exports are references; the native Google Doc is the editable source.
+## Project limits
 
-## Start here
+Initial goals: safe manual driving, obstacle avoidance, wheel odometry, an initial 2D map and map-linked camera events. Full SLAM, 3D mapping, complete autonomous coverage, actual hazardous-site operation, and verified AI hazard detection are not yet delivered or committed. The older cleaning-robot concept is archived only.
 
-- [Current project context and requirements](resources/context/README.md)
-- [Engineering scope and algorithm plan](resources/context/engineering-plan.md)
-- [Proposal work plan](resources/context/proposal-plan.md)
-- [Synchronized proposal text](resources/context/proposal-working-draft.md)
-- [Current proposal PDF export](resources/proposal/robot-project-proposal-draft.pdf)
-- [Current Word proposal export](resources/proposal/robot-project-proposal-draft.docx)
-- [Current architecture diagram and historical tldraw assets](resources/diagrams/README.md)
-- [Generated web app concept](resources/design/webapp-rover-concept.png)
-- [User supplied Hebrew writing skill](skills/yotam-hebrew-writing/README.md)
+The proposal's figures of five collision-free trials, stop within one second of command loss, and mean location error at most 30 cm are **targets**, not measured results. Exact hardware, wiring, radio links, power budget, braking and supervisor approval remain open.
 
-This is a planning repository, not implemented robot firmware. Hardware models, budget, acceptance thresholds, AI runtime integration and supervisor approval are pending. ESP and Raspberry Pi are the planned processing units. School acceptance still requires independently functioning subsystems and each subsystem’s complete input, display, sensors/actuators and communication requirements.
+## Authoritative and working sources
 
-## Sources and history
+- [Live Hebrew proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit) — authoritative for proposal wording, updated 12 October 2026.
+- [ResQ-Vision build architecture and staged checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit) — implementation baseline, including updated wireless-plan note.
+- [Current context](resources/context/README.md)
+- [Engineering plan](resources/context/engineering-plan.md)
+- [AI model notes](resources/context/ai-model.md)
+- [Proposal folder and export status](resources/proposal/README.md)
+- [Diagrams and historical assets](resources/diagrams/README.md)
+- [Original school sources and manifest](resources/sources.json)
+- [Historical cleaning concept](resources/archive/cleaning-concept-2026-10-05/README.md)
 
-Original school references remain unchanged in `resources/originals/`; searchable extracts are in `resources/extracted-text/`. The [source manifest](resources/sources.json) records their checksums. The current-year circular is תשפ״ז; the shorter criteria document is from תשפ״ו. The [earlier cleaning concept](resources/archive/cleaning-concept-2026-10-05/README.md) is historical and is not the current project scope.
-
-The around-the-15th deadline refers to the proposal only; its full date remains unconfirmed. The circular specifies submission to the examiner by 30 October of the school year.
-
-## Access and document updates
-
-Open this repository on GitHub, download ZIP, or clone it on another computer. Edit the linked native Google Doc, then export it as Word/PDF to refresh the reference files. The Markdown is a synchronized text snapshot. The legacy generator is disabled to prevent stale architecture from replacing live edits.
-
-To regenerate the current architecture diagram, install the dependencies in `resources/proposal/requirements.txt` and run `python resources/diagrams/build_current_diagram.py`. The script reuses the handwriting font embedded in the preserved tldraw SVG. The external tldraw board and historical exports remain preserved separately.
+This GitHub repository presently contains planning materials and source references, not verified working robot firmware. The October 7 Word/PDF exports and block diagram show an older architecture: consult the newer native Google Doc and build specification.
