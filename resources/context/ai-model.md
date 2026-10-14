@@ -1,21 +1,23 @@
-# Intended AI model — Cloudflare Clef-Flash, Q8_0
+# Planned laptop-local advisory AI — Cloudflare Clef-Flash Q8_0
 
-Identified after the user’s spoken clarification on 6 October 2026. Intended deployment: locally on the user’s home PC; not installed or benchmarked yet. ESP/Raspberry Pi subsystem compliance remains unknown pending the user’s check next week.
+Sources: [current Hebrew proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit) and [build checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit), updated 12 October 2026.
 
-## Verified model behavior
+## Deployment and behavior
 
-[Cloudflare’s model card](https://huggingface.co/Cloudflare/clef-flash) describes a 9B multimodal decision model supporting image/video inputs and a Jev/SystemOne-compatible interface. It scores predefined choices and returns probabilities rather than generating free-form explanations. This supports designing questions about visible blockage, narrow passages, and image adequacy. It is not documented as a cave-hazard detector; performance on our scenes must be evaluated.
+The intended Cloudflare Clef-Flash Q8_0 decision model will run in an isolated process on the **same laptop** that hosts navigation, mapping, event capture and the web server. There is no Raspberry Pi and no separate home-PC inference service. Model calls must never hold up motor control, command expiry or local stopping.
 
-## Quantized local distribution
+The [model documentation](https://huggingface.co/Cloudflare/clef-flash) describes multimodal image/video decisions expressed as scores for predefined choices, not arbitrary generated explanations. [GGUF distribution documentation](https://huggingface.co/bartowski/Cloudflare_clef-flash-GGUF) identifies a Q8_0 model and a separate multimodal projector. A suitable runtime and its API still need to be installed, verified and benchmarked on the selected laptop. Compatibility and performance are not demonstrated by the model-card description.
 
-[The GGUF publisher’s model card](https://huggingface.co/bartowski/Cloudflare_clef-flash-GGUF) lists `Cloudflare_clef-flash-Q8_0.gguf` at approximately 9.68 GB, plus a separate multimodal projector for image input. It documents a compatible llama.cpp runtime and the decision-specific `/v1/systemone` endpoint. These are distribution requirements, not proof of successful operation on the user’s PC. File size is not total runtime memory: allow for the projector, input processing, context, and runtime allocations.
+## Planned use
 
-## Project integration and pending checks
+The ESP CAM S3 sends selected images to the laptop by WiFi. The laptop records an event ID, image, capture timestamp, approximate robot observation pose and trigger reason before asynchronously requesting model assessment. Initial questions concern visible blockage, obstacles, narrow openings and image adequacy.
 
-Use selected recorded frames as input and associate results with the event’s estimated map location. Define possible-hazard/no-hazard-detected/unknown options and separately assess image adequacy. Model probabilities need calibration on labelled test scenes; they are not demonstrated human-safety probabilities. Insufficient imagery, failure, or low-confidence results remain unknown. No output certifies structural stability, air quality, or cave safety.
+Return model/runtime versions, scores and latency. UI labels distinguish possible hazard, no hazard detected and unknown; pending, timeout, failed requests or inadequate images cannot be silently interpreted as safe. Scores are not verified human-safety probabilities or validated hazard-detection metrics.
 
-The user reports that home-PC hardware suitability has already been checked; accept this for planning. Confirm runtime integration and measure project-specific latency and false/missed hazard rates during implementation. Keep AI requests asynchronous so driving and local stopping remain independent. This note records a model choice, not a deployed service.
+Test with labelled arena images. Measure false alarms, missed findings and latency while navigation and browser services are also running. Choose confidence thresholds only from actual evaluation. No AI output may authorize or disable motion safety.
 
-The current plan has Raspberry Pi capture/store imagery and request local home-PC inference using images received from the separate ESP CAM S3 camera. The model does not run on the ESP or Pi; navigation and mapping run on Pi. The laptop is for operation and testing.
+## Network boundary
 
-Current live proposal plans authenticated HTTPS internet exchange from Pi to the home PC, with predefined blockage/obstacle/narrow-opening/image-adequacy questions. This remains planned integration, not a configured service.
+AI communication is local to the laptop through bounded IPC/API. It is **not** the school-required internet data exchange. That requirement needs a separate independently verified network use case.
+
+See the implementation checklist for open decisions, dependencies and acceptance tests.
