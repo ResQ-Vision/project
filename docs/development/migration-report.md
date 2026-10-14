@@ -81,5 +81,8 @@ pins/power and local-stop design in a reviewed hardware/interface sheet. Then im
 an ESP bench slice with motors disabled at boot, contact/command-loss stop and measured
 evidence before integrating wireless floor driving.
 
+Tracked as [hardware review #2](https://github.com/yotam1001/project/issues/2);
+related interface, LiDAR, AI and school tasks are [listed in open decisions](../project/open-decisions.md).
+
 Migration PR is for review; do not merge without user approval. Existing/future chats
 must adopt current repository startup rules; historical messages cannot be rewritten.

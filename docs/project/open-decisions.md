@@ -24,3 +24,16 @@ The migration creates draft application schemas only; it does not close these de
 Confirmed: one laptop; rotating ToF; front steering; C3 direct to ESP32; no downward sensors.
 User decisions override conflicting proposal technical direction; official school wording
 still requires a deliberate document update. See [source audit](sources.md).
+
+## GitHub work queue
+
+| Issue | Task |
+| --- | --- |
+| [#2](https://github.com/yotam1001/project/issues/2) | Review motion hardware, front steering and rotating-ToF wiring before implementation |
+| [#3](https://github.com/yotam1001/project/issues/3) | Specify and review final ESP32 authority across direct C3 and laptop links |
+| [#4](https://github.com/yotam1001/project/issues/4) | Select and validate untethered LiDAR acquisition and timestamping |
+| [#5](https://github.com/yotam1001/project/issues/5) | Verify Clef-Flash Q8_0 image runtime and concurrent laptop resource budget |
+| [#6](https://github.com/yotam1001/project/issues/6) | Align the official proposal with current architecture and verify school acceptance requirements |
+
+Begin with #2 hardware/interface review. Issues #3 and #4 depend on those hardware bounds.
+The migration branch is the review baseline until its PR merges; these tasks are not completed.
