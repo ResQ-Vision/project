@@ -1,0 +1,210 @@
+﻿Architecture update, 11 October 2026: laptop remains beside the arena. Laptop runs navigation, mapping, camera/event storage and web backend; the same laptop runs server and local AI. Final ESP commands/telemetry and camera transfer use WiFi. LiDAR requires a separately selected wireless acquisition bridge compatible with its exact output: preferred draft is documented UART LiDAR plus a separate WiFi MCU; a USB-only LiDAR requires verified USB-host hardware/driver or a network-capable alternative. Direct USB/serial descriptions below apply to tethered bench debugging. Proposed wireless command design uses bounded fresh UDP packets, session/sequence validation, authenticated peers and local command expiry; bridge bandwidth/timing and authentication remain to be verified. Laptop processing alone does not establish school independent-subsystem compliance.
+
+
+ResQ-Vision: build architecture and staged checklist
+Build specification • 10 October 2026 • Yotam Moshe and Ilay Winter
+Source: הצעת פרויקט: רכב רובוטי לניווט, מיפוי וניתוח תמונות, modified 7 October 2026.
+https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit?usp=drivesdk
+This document translates the proposal into an implementation baseline. “Source” means explicitly stated in the proposal; “Recommended” means a new design choice to validate. Exact part numbers, pin assignments and measured stopping limits must be closed at Stage 0 before wiring or powered motion. The proposal’s illustrations are conceptual, not verified wiring diagrams.
+
+
+1. Scope and ownership
+Source: A two-wheel robot prototype operates in a controlled test arena, produces an initial 2D map and trajectory, supports manual and autonomous movement, and records images linked to estimated positions. Full SLAM is not an initial commitment; A* and short video clips are later extensions. Image classification is advisory and does not establish human safety.
+Yotam Moshe: ESP firmware, motors, encoders and local sensors.
+Ilay Winter: navigation laptop, camera integration, mapping and laptop-local analysis worker.
+Both: interface, integration, calibration and acceptance tests. Each must be able to explain and test the other’s subsystem.
+Recommended first milestone: reliable manual driving with all local stops, followed by obstacle-aware movement and odometry-based mapping. Internet and AI availability must never gate local safety or the motion-control loop.
+
+
+2. Physical architecture and connection map
+Source connection map:
+Phone / laptop browser ⇄ WiFi + WebSocket ⇄ navigation laptop
+navigation laptop ⇄ USB serial (UART through USB) ⇄ drive ESP
+2D LiDAR → USB → navigation laptop
+Separate ESP CAM S3 ⇄ WiFi ⇄ navigation laptop (capture command / image transfer)
+Drive ESP ← left and right wheel encoders; IMU; left and right ToF; front and rear bumpers
+Drive ESP → motor driver → left and right DC motors
+Laptop server ⇄ bounded local IPC/API ⇄ AI worker on the same laptop
+One laptop beside the arena runs server, navigation, mapping, event storage, web backend, operator console and local model inference in an isolated worker. C3 adds a manual-driving source; board/inputs/route and wireless measured performance remain to be settled.
+
+
+Recommended electrical implementation:
+• Encoders: interrupt-capable GPIO or hardware pulse counters; support direction using the selected encoder’s channels. Verify output voltage and pulses per revolution.
+• IMU and both side ToF sensors: I2C where supported. If the ToF units share a fixed default address, reserve separate XSHUT/address-control pins or an I2C multiplexer. Do not wire duplicate addresses without a startup plan.
+• Front/rear bumpers: separate ESP digital inputs. Diagnose disconnections where feasible; normally closed circuits are preferred if supported.
+• ESP → driver: direction and PWM channels plus a hardware enable with a pull-down so reset or unpowered GPIO disables propulsion. Select the driver against motor stall current and braking capability.
+• USB: reserve independent laptop ports or a powered hub for LiDAR and ESP. Use persistent device identifiers rather than /dev/ttyUSB0 ordering.
+• Mount IMU rigidly; measure LiDAR, camera and sensor offsets relative to the robot frame. Keep the LiDAR scan plane clear of the chassis.
+
+
+Recommended power topology:
+Battery → fuse and main isolator → protected distribution. One branch supplies the motor driver; regulated branches supply LiDAR, ESP, camera and sensors at their specified voltages. Laptop power is separate unless onboard placement is explicitly chosen and budgeted. Size converters for startup and peak load, verify logic compatibility, use a deliberate common signal ground, and check for USB back-powering. Keep motor wiring away from encoder/I2C wiring; add appropriate decoupling.
+Add a physical emergency stop that removes motor power or uses a verified hardware inhibit independently of laptop/ESP software. Keeping logic powered can preserve logs, but is optional. Select braking/coasting behavior deliberately: cutting power may coast. The source lists no physical emergency-stop mechanism; this is an added requirement for testing.
+
+
+3. Software responsibilities and data flow
+ESP firmware:
+• Highest-priority bounded-time safety task samples bumpers, command age and critical sensor health; immediately overrides motion on a trip.
+• Encoder counters and a fixed-period PI/PID task control each wheel. Apply speed and acceleration limits and clamp integral accumulation when disabled or saturated.
+• Sensor task reads IMU and side ToF without blocking the safety task; each reading carries age and validity.
+• Serial task validates complete frames, command session/sequence and limits; publishes telemetry and stop causes. Hardware watchdog resets into motors-disabled state.
+
+
+navigation laptop services:
+• Serial bridge: sole writer to ESP; commands and telemetry decoding.
+• State/command supervisor: sole authority selecting manual versus autonomous requests; rejects conflicting control owners and expires stale requests. Healthy serial traffic alone must not keep motion authorized.
+• Localization: fuse wheel odometry and IMU yaw-rate measurements; provide pose with quality/uncertainty. Initial mapping uses this estimate; drift is expected without scan matching.
+• LiDAR driver and obstacle monitor: validate scan age and coverage; inspect the swept robot footprint, including turns, with a clearance margin.
+• Occupancy mapper: transform scans into a fixed-origin map; ray-trace free cells, mark endpoints occupied, retain unobserved cells as unknown.
+• Navigator: initially stop/turn/react to obstacles in a bounded arena. Add A* only after a useful map and localization pass their gates; inflate obstacles by robot footprint and margin, and do not treat unknown space as confirmed free.
+• Web service: map, path, pose, mode, sensor ages, stop cause, camera/event views and manual controls.
+• Event recorder and asynchronous AI worker: persist event/image first, then queue inference. No AI operation runs in the motion-critical path.
+
+
+Laptop-local AI worker:
+Authenticate requests, enforce bounded image size and timeout, invoke the verified model runtime, and return a versioned schema. Keep raw model output behind an adapter. AI outputs cannot arm motors, clear a stop or issue velocity commands.
+
+
+Recommended local software packaging: separate motion supervisor from image inference/transfer workers; bound queues and log storage. Use service restart policies, but every restart requires explicit re-arm before motion. ROS 2 is optional, not a proposal requirement.
+
+
+4. Interface contracts and initial timing
+All values here are recommended starting settings, not source commitments or measured limits. Use configuration files and revise after hardware tests.
+
+
+ESP ⇄ laptop serial:
+Start at 115200 baud, 8-N-1 if both selected boards support it. Use a framed, versioned protocol such as COBS-delimited binary with length and CRC. Bound packet sizes and avoid blocking safety/control while decoding.
+Command at 20 Hz: protocol_version, session_id, sequence, mode, arm/disarm, left_target_rad_s, right_target_rad_s. The laptop converts requested body linear/angular speed using calibrated wheel radius and track width. Reject malformed, replayed/out-of-order, wrong-session and out-of-range commands; invalid packets never refresh the watchdog. STOP is idempotent and overrides all movement.
+Telemetry at 20 Hz: ESP monotonic timestamp, sequence, cumulative left/right encoder ticks, gyro/acceleration, left/right ToF distance with validity and age, bumper bits, motor state, stop reason and last accepted command sequence. Publish immediate stop events in addition to telemetry.
+Wheel control: start at 100 Hz; safety polling target ≤10 ms. Expire valid motion commands after 300 ms on the ESP’s own monotonic receive clock. This is a tighter engineering target than the proposal’s ≤1 s command-loss stopping goal; verify the total physical stop, not only software detection.
+Long serial stalls, I2C timeouts or disabled watchdogs must not defeat this expiration. Bind motion to a newly negotiated session after reboot/reconnect.
+
+
+laptop freshness rules:
+Send fresh autonomous velocities only when the current LiDAR, pose and local sensor health satisfy the chosen limits. Initial scan-age threshold: max(300 ms, two nominal scan periods), subject to a measured safe stopping bound. Do not substitute this threshold for inspecting actual scan frequency, field of view and validity.
+For manual control, require a held deadman input and renewed requests at 20 Hz. A stale controlling-client lease (>300 ms initially) causes the laptop to command STOP/disarm; a laptop failure is covered by the ESP timeout. Adopt an initial policy that LiDAR loss inhibits both autonomous and manual powered driving. The source specifies autonomous stopping only; allowing manual degraded movement would need a separate explicit design and test.
+
+
+Camera and event contract:
+Recommended adapter: authenticated local capture endpoint, capture_id, image bytes and capture metadata. Pick HTTP snapshot transfer first; continuous streaming is optional. WiFi transport is source-defined; this API is a recommendation.
+Event: event_id, map_id, capture_id, reason, requested_at, captured_at or bounded capture-time estimate, pose_at_capture, pose_quality, image_path/hash, analysis_status, model_version and latency. Retain pose history and match the image to capture time, not arrival time. If clock synchronization/capture timing is uncertain, stop before capture or mark the position uncertain. Never plot a remote object at the robot’s location as if its location were measured: label this point “observation location.” Object localization requires additional geometry.
+Use ESP/laptop clock-offset estimation for telemetry and laptop monotonic time for control. UTC timestamps are for human-readable logs, not watchdogs.
+
+
+AI request/response:
+Request: schema_version, event_id, image, capture context and fixed category questions. Response: event_id, model/runtime versions, category scores, image-quality result and latency. UI states: pending → completed or unknown; completed labels: suspected hazard / no hazard detected / unknown. Unavailable service, poor image quality, invalid response or insufficient confidence produces unknown. Thresholds come from labeled arena images, not assumed calibrated probabilities. Use bounded retries with event_id deduplication; delayed results only update the matching event.
+
+
+Network recommendation:
+Use a dedicated local WLAN for laptop, motion ESP, C3 manual controller, camera and LiDAR acquisition bridge. Laptop hosts server, mapping, navigation and AI; isolate AI in a bounded worker with local IPC/API so inference cannot block control. Authenticate control sources and explicitly arbitrate browser/C3/autonomy ownership. Separately select and demonstrate the school-required Internet data exchange; laptop-local AI calls are not Internet exchange. Offline status must reflect which external service is unavailable.
+
+
+5. Safety stops and recovery
+Recommended motion states: BOOT/DISARMED → READY → MANUAL or AUTO; user pause returns to READY with motors disabled; any critical trip enters FAULT_STOP. Physical emergency stop overrides every state. Boot, reset, reconnection and fault clearance never resume movement automatically. Fault recovery requires cause cleared, sensors healthy, explicit acknowledgement and a separate arm/start action.
+
+
+Stop matrix:
+• Front or rear bumper: ESP immediately disables drive, latches cause. No automatic reverse recovery; inspect and reposition safely.
+• ESP command timeout / serial disconnect / laptop crash: ESP stops and latches; reconnect requires a fresh session and re-arm.
+• ESP reset/watchdog: hardware enable remains off; report reset cause after boot.
+• Stale/missing LiDAR or unusable pose: laptop stops movement and disarms; ESP timeout provides fallback if the laptop hangs. Source explicitly requires autonomous stop on LiDAR loss.
+• Front obstacle or insufficient side clearance: laptop requests slowdown/stop or a validated avoidance action. ESP also rejects motion on critical side-ToF fault under the initial policy. These are obstacle responses, distinct from a latched collision fault.
+• Controlling browser/WiFi loss: laptop expires the operator lease and stops; ESP handles loss of laptop commands. WiFi camera loss alone does not imply drive-link loss.
+• Camera loss or local AI-worker failure: show camera/AI unavailable and retain events; no AI-dependent motor action. Mapping can continue when the motion sensors and operator lease remain healthy.
+• Physical emergency stop: hardware removes propulsion enable/power; release alone does not re-arm. Test stopping/coasting under actual load.
+• Battery undervoltage / overcurrent: use selected battery/driver hardware protection. Firmware current/voltage monitoring is an optional source extension; it cannot be claimed as implemented protection without added sensors and tests.
+
+
+Stopping geometry:
+Required sensor look-ahead ≥ v × total detection/control delay + measured braking distance + margin. If modeling constant deceleration, braking distance is v²/(2a), using a measured worst-case lower bound for a. Validate forward, reverse and turning motion on the actual floor/load.
+LiDAR only detects objects intersecting its plane. Side ToF does not restore front coverage for low/overhanging obstacles; bumpers act only after contact. Constrain the first arena to detectable obstacles or add dedicated front coverage before expanding the environment.
+
+
+6. Open decisions, ambiguities and apparent conflicts
+D1 — Exact hardware and pin plan (both; blocks wiring). Source provides counts but no ESP/laptop models, LiDAR model, camera board/sensor, encoder resolution, motor stall current, battery specification. Deliver a BOM, datasheet links, connector/pin matrix, I2C addresses, power budget and sensor mounting drawing. Reserve pins before purchasing/connecting.
+D2 — Front ToF versus right ToF (Yotam; resolve at Stage 0). The prose explicitly moves the former front sensor to the right. Baseline is exactly two side ToF sensors, one left and one right; front range comes from LiDAR. Conceptual graphics are not authority for a third/front ToF. Verify any existing diagram or parts plan against the updated text.
+D3 — UART through USB (both; blocks integration). The logical path is clear, but the physical USB-UART bridge/native USB implementation, power ownership, packet format and firmware restart behavior are unspecified. Select the board and protocol; do not silently replace USB with raw GPIO UART.
+D4 — Mapping accuracy without SLAM (Ilay; blocks autonomous mapping acceptance). Encoder/IMU integration drifts; LiDAR alone does not correct pose unless scan matching is implemented. Begin with a measured small arena and fixed start pose. If mean error exceeds 30 cm, improve calibration, shorten runs or explicitly introduce scan matching/SLAM. Do not describe the baseline map as globally consistent SLAM.
+D5 — Safety timing and recovery (Yotam + both; blocks floor driving). Source states command-loss stop within 1 s but omits watchdog definition, braking, startup state, latching, re-arm and physical emergency stop. Implement Section 5 and measure total stop time/distance.
+D6 — WiFi, local AI isolation and separate Internet exchange (Ilay). Define local WLAN/authentication, bounded server-to-AI IPC/API and behavior under worker failure. Separately choose and demonstrate the required Internet data exchange; it is not supplied by same-laptop inference.
+D7 — AI identity/runtime/API (Ilay; blocks model integration, not motion). Source names “Clef Flash Q8_0,” about 9B parameters, ~9.68 GB GGUF, mmproj and llama.cpp route “/v1/systemone.” These are proposal claims, not independently verified here. Pin the official model ID/repository, license, weight and projector checksums, supported runtime/version, actual endpoint and request/response example. Confirm image support and score semantics with one real image. Treat the endpoint as unverified; do not build the robot API around it. Laptop capacity under combined server/navigation/inference load and runtime compatibility still require measurement.
+D8 — Event position and triggers (Ilay + both; blocks meaningful event map). Define which sensor condition or user action triggers capture, debounce repeated captures and cap the queue. Distinguish capture-time robot pose from the hazard’s physical position. Camera-to-LiDAR association is a later feature.
+D9 — Manual control arbitration (both; blocks integrated driving). An added C3-based controller supplies another manual-driving option. Confirm board, inputs, placement and command route. Give browser, C3 and autonomy one explicit active owner; require command expiry, explicit handover and no automatic restart on link loss. Test simultaneous requests, stale commands and source loss.
+D10 — Acceptance definitions (both; close before final trials). Source goals are five collision-free runs, command-loss stop ≤1 s, and mean position error ≤30 cm in a small arena. Define arena dimensions, obstacle set, speed/load, surveyed reference points, error metric and sample count. Record worst-case position error too; map quality needs its own geometric comparison. No other numerical rate or threshold in this document is an existing proposal commitment.
+
+
+7. Staged implementation checklist and exit gates
+Stage 0 — Freeze interfaces and parts • both • all later stages depend on this
+☐ Yotam: BOM, GPIO/encoder map, driver/braking choice, I2C address plan, bumper polarity and mounting.
+☐ Ilay: laptop/LiDAR/camera compatibility, stable USB IDs, WLAN, local AI boundary and separate Internet route and model verification plan.
+☐ Both: power/fuse/converter budget, physical stop design, calibrated frame conventions (x forward, y left, yaw counterclockwise), robot dimensions, safe initial speed and interface schema.
+Exit: one reviewed wiring/power sheet and versioned interface specification; D1–D3, D5 and D9 resolved sufficiently for bench work.
+
+
+Stage 1 — ESP safety and propulsion bench • Yotam; Ilay supplies serial test client
+☐ Start with wheels raised and a current-limited supply; verify motors are off at boot/reset.
+☐ Read each sensor and encoder independently, including disconnect/invalid cases.
+☐ Calibrate encoder signs; tune wheel PI/PID and acceleration limits; verify stop/brake behavior.
+☐ Test every bumper input, STOP, malformed frames, repeated frames, command timeout, laptop unplug and ESP reset.
+Exit: logged local stop causes; no motion on boot/reconnect; software timing and measured stop response fit the provisional safety budget. Both demonstrate emergency stop.
+
+
+Stage 2 — laptop, LiDAR and camera bench • Ilay; Yotam reviews telemetry
+☐ Implement serial bridge/supervisor and record raw telemetry/scans with timestamps.
+☐ Verify LiDAR field of view, mounting occlusion, scan rate and invalid scans.
+☐ Capture and persist camera snapshots with IDs; test dark/blurred images and WiFi loss.
+☐ Run interface showing mode, sensor age and latched stop cause; verify that heavy image transfers do not delay control.
+Exit: timestamped playback dataset and component-health display; LiDAR unplug leads to disarm; camera loss is visible; storage/queue limits established. Stages 1 and 2 can overlap after Stage 0.
+
+
+Stage 3 — Manual floor driving and safety integration • both
+☐ Implement held deadman, single-client control ownership, mode handoff and lease expiration.
+☐ Test forward/reverse/turning at low speed; measure stop distance under load.
+☐ Test front/rear contact, physical stop, browser loss, serial loss and laptop process crash.
+☐ Position sensors/set maximum speed from measured stopping geometry.
+Exit: all stop/recovery cases pass in manual mode; no powered movement resumes without re-arm. Do not proceed to autonomous movement with unresolved stop failures.
+
+
+Stage 4 — Localization and initial 2D map • Ilay leads; Yotam calibrates motion
+☐ Measure wheel radius/track width, encoder scale and IMU bias; verify frame/sign conventions.
+☐ Compare straight paths, turns and loops against surveyed reference points.
+☐ Build free/occupied/unknown grid and overlay trajectory; compare measured arena walls with the map.
+☐ Test capture-time pose association and label uncertain/event observation positions.
+Exit: documented localization error and map usefulness. Source target: mean position error ≤30 cm in the defined small arena. If it fails, resolve D4 before navigation expansion.
+
+
+Stage 5 — Bounded autonomous navigation • both; Ilay plans, Yotam verifies safety
+☐ Implement obstacle-aware stop/turn behavior and side-clearance checks with freshness limits.
+☐ Use robot footprint/margins, cap speed and prevent navigation through unknown/invalid space.
+☐ Inject stale/missing scans, sensor faults and control overload; verify no stale command keeps moving.
+☐ Run corridor, front blockage, left/right clearance and open-space scenarios.
+Exit: five full predefined runs with no collision; physical command-loss stop ≤1 s; full stop-distance evidence and no unexplained safety bypass. Keep the physical stop available throughout.
+
+
+Stage 6 — Event analysis and operator workflow • Ilay leads; both label/test images
+☐ Close D6–D8; demonstrate actual image inference with pinned model/runtime.
+☐ Queue bounded local AI-worker requests, validate outputs, deduplicate retries and persist model/version/latency.
+☐ Test pending/completed/unknown UI and image-quality/confidence rules using labeled arena images.
+☐ Measure correct detections, missed hazards, false alarms and processing latency; test AI-worker and independent Internet-service failure while driving/mapping remain responsive.
+Exit: each result maps to the correct event; outages/poor evidence produce unknown; analysis cannot affect motion authorization. No requirement to analyze every camera frame.
+
+
+Stage 7 — Acceptance and handover • both
+☐ Freeze code/config versions; run the documented arena protocol with timestamps and fault injections.
+☐ Package BOM, wiring, pin table, interface schemas, calibration values, map/screenshots, test logs and measured timing/error results.
+☐ Each partner brings up and troubleshoots the full system from the written instructions.
+☐ Only after the baseline passes: evaluate A*, scan matching/full SLAM, short video, current monitoring or extra obstacle coverage as separately scoped extensions.
+Exit: reproducible demonstration and a report clearly separating implemented capabilities, measured results and remaining limitations.
+
+
+8. Test evidence to record
+For each run: code/config versions, battery state, floor/load, speed limit, arena layout, start pose, sensor health and run ID.
+For each injected fault: trigger timestamp, detection timestamp, driver-disable timestamp, physical standstill time/distance, stop cause and re-arm outcome. The source’s one-second target is evaluated from command loss to physical standstill; document how command-loss time was defined.
+For localization: surveyed checkpoint positions, estimated positions, Euclidean errors, mean/worst error and number of observations; also compare map wall geometry.
+For AI: labeled image ID, expected category/quality, output scores/label, model/runtime versions, latency and missed/false detections. Separate confidence scores from validated detection performance.
+Retain raw sensor logs and representative images so either partner can reproduce a failure. Checklist exit gates are completion criteria, not a claim that these tests have already passed.
+
+
+
+
+Current confirmed deployment, 12 October 2026: one laptop runs server, AI, mapping and navigation; C3 adds manual driving alongside browser control. Exact C3 board/input/route are open. Source handover is explicit with one active owner and command expiry; no automatic fallback that resumes motion. Flat bounded arena tests use retained LiDAR, side ToF, encoders, IMU and bumpers.

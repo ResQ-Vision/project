@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://resq-vision.invalid/contracts/lidar/rotating-tof.schema.json",
+  "title": "Single rotating ToF observation",
+  "description": "Proposed internal application model; not an approved wire protocol.",
+  "x-status": "proposed",
+  "x-owner": "motion/acquisition",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1-draft"
+    },
+    "sample_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "frame_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "acquired_at": {
+      "type": "object",
+      "properties": {
+        "clock_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "monotonic_ns": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "clock_id",
+        "monotonic_ns"
+      ],
+      "additionalProperties": false
+    },
+    "angle_rad": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "angle_quality": {
+      "enum": [
+        "measured",
+        "estimated",
+        "unknown"
+      ]
+    },
+    "range_m": {
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "sample_id",
+    "frame_id",
+    "acquired_at",
+    "angle_rad",
+    "angle_quality",
+    "range_m"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "angle_quality": {
+            "const": "unknown"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "angle_rad": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "angle_rad": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  ]
+}

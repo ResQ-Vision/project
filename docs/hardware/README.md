@@ -1,0 +1,29 @@
+# Hardware planning and measurement
+
+Status: component roles are confirmed; exact models/availability/pinouts are unresolved.
+
+| Component | Planned quantity | Selection evidence required |
+| --- | --- | --- |
+| Motion ESP32 | 1 | GPIO/encoder peripherals, WiFi coexistence, USB/UART and real-time timing |
+| Rear DC motors with encoders | 2 | Rated/stall current, encoder scale, driver sizing |
+| Front steerable wheels and mechanism | 2 wheels + mechanism | Linkage, actuator, limits, wheelbase, angle feedback/calibration |
+| Rotating top ToF | 1 + rotation mechanism | Sensor range/rate, angle observation, sweep rate, wiring/slip-ring/rotation method |
+| IMU | 1 | Bias/noise calibration, mount transform and bus |
+| Contact sensors | Front and rear | Polarity, wiring failure behavior, local-stop measurements |
+| ESP CAM S3 | 1 | Exact board/sensor, image format, power and WiFi transfer |
+| 2D LiDAR | 1 | Electrical/data interface, field of view, scan rate, wireless bridge compatibility |
+| C3 controller | 1 | Board, input controls, power, direct radio path and deadman design |
+| Motor driver / battery / regulators | To select | Current/voltage budget, fuse, enable default and brake/coast behavior |
+| Physical emergency stop | Proposed | Hardware design and measured stop independent of software |
+| Laptop beside arena | 1 | OS/toolchains, wireless connectivity and concurrent AI/control resource budget |
+
+No fixed side-ToF pair or downward edge sensors belong to the baseline. No cliff detection
+is claimed. Original diagrams are historical and cannot establish the purchase/wiring plan.
+
+Deliver a reviewed BOM with datasheet links, connector/pin matrix, bus addresses,
+power budget, mounting drawing and calibrated chassis geometry before wiring integration.
+Do not infer purchase, tested compatibility or safe ratings from a conceptual illustration.
+Record measured scanner angles and timestamp quality; commanded angle alone may differ
+from physical orientation. Continuous 360° wiring/mechanics must be resolved explicitly.
+
+Use [safety gates](../architecture/safety.md) and [open decisions](../project/open-decisions.md).

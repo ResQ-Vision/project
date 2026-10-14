@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://resq-vision.invalid/contracts/camera/capture-request.schema.json",
+  "title": "Capture intent",
+  "description": "Proposed internal application model; not an approved wire protocol.",
+  "x-status": "proposed",
+  "x-owner": "camera/events",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1-draft"
+    },
+    "capture_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    }
+  },
+  "required": [
+    "schema_version",
+    "capture_id",
+    "event_id"
+  ],
+  "additionalProperties": false
+}

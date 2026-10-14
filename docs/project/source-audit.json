@@ -1,0 +1,128 @@
+{
+  "retrieved_on": "2026-10-14",
+  "baseline_commit": "a64031c",
+  "live_sources": [
+    {
+      "id": "1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0",
+      "url": "https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit",
+      "created": "2026-10-06T13:36:20.432Z",
+      "modified": "2026-10-12T11:55:00.288Z",
+      "snapshot": "resources/archive/source-snapshots-2026-10-14/proposal.txt",
+      "role": "Official proposal wording",
+      "sha256": "f4116a795e313969580921853811573d3cf0f6d98f60dfe3a23168e629f12e29"
+    },
+    {
+      "id": "1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A",
+      "url": "https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit",
+      "created": "2026-10-10T15:29:45.648Z",
+      "modified": "2026-10-12T11:55:00.916Z",
+      "snapshot": "resources/archive/source-snapshots-2026-10-14/checklist.txt",
+      "role": "Engineering planning baseline",
+      "sha256": "b425063028bef9f42d36b8ea085a62c9dc4eee727b9cf6e2ca09ed6cad4d86d2"
+    },
+    {
+      "id": "1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU",
+      "url": "https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit",
+      "created": "2026-10-07T06:41:10.887Z",
+      "modified": "2026-10-14T05:46:12.676Z",
+      "snapshot": "resources/archive/source-snapshots-2026-10-14/proposal-copy.txt",
+      "role": "Newer edited copy; mixed technical content",
+      "sha256": "db2aaca80cfc96aa1b76451520d6a2bc4b1a380122384ef10735e07167c89ac4"
+    }
+  ],
+  "chats": [
+    {
+      "id": "01a10bea-6f73-743b-866f-90a5b65f004b",
+      "title": "Exploration rover: research and questions",
+      "host": "durable",
+      "turns_read": 28,
+      "complete": true,
+      "scope": "Core project history"
+    },
+    {
+      "id": "01a12b10-5741-71e9-9448-90aee6160066",
+      "title": "ResQ-Vision: planning",
+      "host": "durable",
+      "turns_read": 10,
+      "complete": true,
+      "scope": "Core project history"
+    },
+    {
+      "id": "01a114e3-3cc3-73e3-b185-4f9bd658c069",
+      "title": "Exploration rover: writing and documents",
+      "host": "durable",
+      "turns_read": 12,
+      "complete": true,
+      "scope": "Core project history"
+    },
+    {
+      "id": "01a10bd8-fd3c-7622-9399-2e848a311063",
+      "title": "Remember project context",
+      "host": "durable",
+      "turns_read": 5,
+      "complete": true,
+      "scope": "Core project history"
+    },
+    {
+      "id": "01a11157-684b-716c-bbc2-1df60bac806c",
+      "title": "Assess project scope and algorithms",
+      "host": "durable",
+      "turns_read": 17,
+      "complete": true,
+      "scope": "Core project history"
+    },
+    {
+      "id": "6acea178-d3e4-83eb-93c9-aadaa3aa9383",
+      "title": "Project migration prompts",
+      "host": null,
+      "turns_read": 5,
+      "complete": true,
+      "scope": "Migration prompt context"
+    },
+    {
+      "id": "01a1266e-8b11-7024-bf51-378f269ea06f",
+      "title": "Create robotics system architecture",
+      "host": "durable",
+      "turns_read": 2,
+      "complete": true,
+      "scope": "Historical architecture/diagram"
+    },
+    {
+      "id": "01a1107d-9a76-74cc-a7ee-97d60450c05f",
+      "title": "Create robot system diagram",
+      "host": "durable",
+      "turns_read": 11,
+      "complete": true,
+      "scope": "Historical architecture/diagram"
+    },
+    {
+      "id": "01a1107a-e545-75d9-a015-7cb6fdf35075",
+      "title": "Create RoboCleaner roadmap board",
+      "host": "durable",
+      "turns_read": 1,
+      "complete": true,
+      "scope": "Historical architecture/diagram"
+    },
+    {
+      "id": "01a114fb-79cf-7742-8533-99b7d9c42523",
+      "title": "Create sensor block diagram",
+      "host": "local",
+      "turns_read": 3,
+      "complete": true,
+      "scope": "Inspected and excluded: smart-glasses example, not ResQ-Vision authority"
+    }
+  ],
+  "limits": [
+    "Current list_threads returns at most 50 recent unpinned chats plus pinned entries; older nonarchived chats beyond this result cannot be enumerated by available tools.",
+    "Archived Codex threads on local and durable hosts were enumerated; archived ChatGPT conversations unavailable from cloud caller.",
+    "Core project histories were paginated to completion. Historical diagram chats were paginated and remain supporting evidence only.",
+    "No tool is available here to broadcast permanent instructions into existing chats; GitHub AGENTS.md and startup prompt provide durable adoption.",
+    "GitHub CLI API access returned Forbidden; connected GitHub issue search succeeded and found no open issues/PRs at audit."
+  ],
+  "confirmation": {
+    "date": "2026-10-14",
+    "scope": "All ResQ-Vision chats",
+    "architecture": "Keep rotating top ToF, front steering, direct C3-to-ESP32; remove conflicting active documentation."
+  },
+  "latest_request": "ResQ-Vision — Migrate the Current Project into a Codex-Ready Repository (uploaded 2026-10-14); replaces the earlier migration brief."
+}

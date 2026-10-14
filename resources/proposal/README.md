@@ -1,9 +1,10 @@
-# Proposal — current editable source and older exports
+# Historical proposal exports
 
-The [live Hebrew ResQ-Vision proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit) is authoritative and was modified on 12 October 2026. It uses a **laptop beside the arena** for mapping/navigation, web backend, image/event storage and local Clef-Flash Q8_0 inference. Motion ESP and separate ESP CAM S3 communicate with it by WiFi; a C3 controller adds a possible manual source; untethered LiDAR requires a compatible wireless acquisition bridge.
+Word/PDF exports, previews and generator in this folder are historical snapshots.
+They must not overwrite the live proposal or establish current sensor/host selection.
+Preserved filenames avoid unnecessary binary relocation and retain provenance.
 
-**Warning: the Word/PDF exports in this folder are older October 7 snapshots. They depict Raspberry Pi and separate home-PC inference, both superseded. Do not cite those exports as the current architecture, and do not use legacy generation scripts to overwrite the live proposal.** Re-export directly from the Google Doc when an updated copy is needed.
-
-The [current build architecture and staged checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit) expands transport/safety decisions and unresolved items. The [old block diagram](../diagrams/current-proposal-block-diagram.png), historical tldraw board/exports and [web app concept](../design/webapp-rover-concept.png) are preserved for reference only. Historical images do not prove implemented behavior, sensor selection or software functionality.
-
-The supplied [Hebrew writing guidance](../../skills/yotam-hebrew-writing/README.md) remains available. School compliance, hardware details, IoT internet exchange and measured performance require verification.
+Use [school requirements and live proposal links](../../docs/school/requirements.md)
+and [current architecture](../../docs/architecture/system.md).
+The generator is retained for historical reproducibility only; it does not generate
+the approved current architecture. Do not run it as a submission updater.
