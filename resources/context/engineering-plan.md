@@ -1,59 +1,61 @@
-# Engineering plan — exploration rover
+# Engineering plan — current laptop-hosted architecture
 
-## Working objective
+Sources: [Hebrew proposal](https://docs.google.com/document/d/1fzNJpmtbakEgXjv7uT-z_8NCtRAehNbJFDoFE5lqjn0/edit) and [implementation checklist](https://docs.google.com/document/d/1hNu4UcTtAlyoXaPMbntPuTFcWa2hmmdRNgN7wtSWM7A/edit), updated 12 October 2026. This is a plan, not evidence of built hardware.
 
-Demonstrate autonomous movement, obstacle avoidance, estimated position, and an initial 2D map in a small, flat, controlled arena representing narrow passages. Display progress on a phone. Add image capture, recording, and advisory AI hazard flags after the driving and mapping baseline works.
+## Stage goals
 
-The prototype does not certify structural stability, air quality, human passage safety, or rescue suitability. No 3D reconstruction or vertical terrain/drop analysis is in the current milestone.
+Demonstrate safe manual motion, local stops, autonomous obstacle reaction, odometry, an initial planar occupancy map and a phone-accessible dashboard. Add event capture and advisory image assessment without blocking motion. Use a measured, flat, bounded test arena. Full SLAM, autonomous coverage, 3D sensing and real hazardous-area operation are not initial commitments.
 
-## Proposed computation and communication
+## Computing and physical responsibilities
 
-- ESP motion controller: encoder acquisition, PI/PID wheel-speed control, immediate stop checks, and command timeout.
-- Onboard Raspberry Pi: camera capture, time alignment, pose estimation, map updates, navigation decisions, event storage, web backend and asynchronous AI requests. This is the current plan; exact Pi model and processing performance are unverified.
-- Camera: one separate ESP CAM S3 unit sending images over WiFi to Raspberry Pi.
-- Laptop: operator browser, development and testing.
-- Home PC: local Clef-Flash Q8_0 image inference. The user has checked hardware suitability.
-- Phone: map, pose/path, status, captured events, AI decision probabilities/uncertainty, start/stop and manual control.
-- ESP–Pi uses UART over USB serial in the initial plan; suitable ESP sensors use I2C. Phone/laptop–Pi uses Wi-Fi and WebSocket. The current proposal plans authenticated HTTPS internet exchange between Pi and the home-PC AI service; deployment details remain to be implemented. Local stop behavior must not depend on Raspberry Pi, the laptop or AI. Use timestamps, sequence numbers, bounded queues, command expiry, and a heartbeat. Stop motion on lost/stale commands or invalid critical sensing.
-- At least one controller exchanges status/data with an internet service for the IoT requirement. Phone access over a local network alone is not proof of internet communication.
+- Motion ESP: encoder acquisition, wheel-speed PI/PID (candidate), IMU/side-ToF/contact-sensor input, local stop, command watchdog, motor-driver output. Safety checks must remain responsive when any other component fails.
+- Navigation laptop placed beside arena: sensor reception, time/pose estimation, 2D mapping, navigation, web service, stored image events and isolated local inference worker. No onboard Raspberry Pi and no separate inference desktop.
+- ESP CAM S3: independent camera firmware sending images to the laptop by WiFi.
+- 2D LiDAR: scan data to laptop through USB in bench setup; during driving a **yet-to-be-chosen wireless acquisition bridge** compatible with the actual sensor is required. An MCU with UART LiDAR is a draft option; do not assume a USB-only LiDAR can attach to an ordinary MCU without USB host support.
+- A C3-based controller adds another manual input source; exact input hardware and command route are undecided. One active authority for browser/C3/autonomy, explicit transitions and stop on stale input.
 
-## Candidate algorithms — recommendations, not finalized decisions
+## Communications
 
-1. Finite-state machine: idle, manual, autonomous, obstacle stop/avoidance, recovery, and fault.
-2. PI/PID wheel-speed feedback from encoders; differential-drive kinematics to execute velocity commands.
-3. Differential-drive odometry for planar position and heading; optionally gyro fusion after measuring drift.
-4. Median or low-pass sensor filtering, with explicit treatment of invalid readings and data age.
-5. Reactive obstacle avoidance as the first autonomous behavior, with an independently enforced local stop distance.
-6. Occupancy grid: transform horizontal range observations using the estimated pose; mark observed free/occupied cells and retain unknown cells. A monocular image alone does not provide reliable metric range. The current plan uses USB 2D LiDAR for planar range mapping, supplemented by left/right ToF for side clearance.
-7. A* path planning only after a usable map exists. Exploration/coverage planning is a separate later decision; obstacle avoidance alone does not ensure coverage.
-8. Progress and timeout checks to detect stalls or repeated blocked behavior.
+- ESP <-> laptop: WiFi for actual rover motion. USB UART is for tethered bench debugging, programming and recovery.
+- ESP CAM S3 -> laptop: WiFi imagery and capture requests.
+- LiDAR -> laptop: USB in the lab; verified wireless acquisition adapter during motion (device choice, power, bandwidth and latency pending).
+- Phone/browser <-> laptop: WiFi/WebSocket.
+- Laptop process <-> laptop inference worker: bounded local IPC/API, independently restartable.
+- Separate school internet exchange: still requires an identified external endpoint/protocol and measured test; local AI does not qualify.
 
-First maps will drift. Evaluate against a known arena before committing to full SLAM. Full SLAM, complete coverage, autonomous return, and real-cave operation are extensions, not initial deliverables.
+Proposed wireless control design uses bounded fresh UDP commands, protocol/session/sequence checks, authenticated endpoints and local command expiry. This is **not yet an implemented or approved final protocol**. Do not silently reuse the previous USB-serial-only production contract. Define the transport-independent messages once; test both WiFi and bench adapters against them.
 
-## Camera hazard assessment goal
+## Candidate algorithms and boundaries
 
-Define observable hazard categories with the supervisor: for example a blocked passage, a narrow opening, or a visually suspicious obstacle. Trigger capture from sensor events, operator marking, or a later validated visual detector; the trigger itself is not yet implemented. Retain a short clip or still, timestamp, estimated location, trigger reason, and model/version.
+1. Finite state machine for disarmed, ready, manual, autonomous, obstacle handling and latched fault; explicit re-arm.
+2. Wheel-speed PI/PID with encoder feedback, calibrated differential-drive odometry and IMU assistance.
+3. Filter noisy readings, label ages/invalidity, monitor LiDAR freshness and robot clearance.
+4. Initial reactive avoidance plus conservative ESP-local protection; bumper contact stops are not pre-contact avoidance.
+5. Occupancy grid transformed from 2D LiDAR scans using estimated pose; distinguish unknown/free/occupied.
+6. A* only after a usable map and pose measurements; scan matching/full SLAM are possible later additions.
 
-Preferred AI deployment is local inference on the user’s home PC, kept running when needed. The inference host is separate from the onboard Raspberry Pi and operator laptop; select an authenticated network connection and evaluate image-analysis latency during integration. The intended model is Cloudflare Clef-Flash, Q8_0, with image-input and structured decision support verified in published documentation. Runtime compatibility and PC performance still need testing; see ai-model.md. No runtime, downloads, or network service have been configured.
+The exact ESP model, pins, encoder resolution, motor driver, battery, sensor models, scan bridge, power budget, timeout and safe speed require decisions before powered driving.
 
-Send selected imagery to the chosen AI service. Store its advisory choices, model probabilities, input context, and request outcome. Clef-Flash does not generate free-form explanations; visible evidence annotations require a separate, explicitly designed method. Treat probabilities as model scores until calibration is evaluated. Display possible hazard, no hazard detected, or unknown. On timeout, missing imagery, or model failure, show unknown/pending. Navigation and local stop behavior do not wait for AI. Evaluate missed hazards and false alarms on controlled labelled scenes. The intended model is now identified; local execution is still untested.
+## Camera and AI
 
-## Build milestones and validation
+Associate recorded still images with event ID, capture time, estimated observation pose, trigger reason and confidence/quality. Inference uses intended Cloudflare Clef-Flash Q8_0 on the **same laptop**, in a separate worker with bounded queue and timeout. Output is scored predefined choices about visual obstructions, narrow openings or insufficient imagery. Pending/failure/low confidence must be displayed distinctly. Scores are not validated safety probabilities; AI never controls emergency stopping or navigation authorization.
 
-1. Bench-test each intended student subsystem independently and settle school requirements.
-2. Manual drive with local stopping, stable power, and measured encoder behavior.
-3. Repeatable straight movement and turns; measure distance/heading error.
-4. Autonomous obstacle avoidance; test different obstacle positions and communication loss.
-5. Initial occupancy map and phone display; compare obstacle positions with measured arena ground truth.
-6. Event capture, playback, and advisory AI assessment; test ambiguous scenes and service failure.
-7. Integrated repeatable demonstration, physical measurements, photos/video, and project book.
+Test model/runtime support and performance while the laptop simultaneously runs mapping and the web service. No successful benchmark has been recorded.
 
-Define numeric targets after hardware selection: collision count, stop distance, pose/map error, trial duration, connection-loss stop delay, capture completeness, and hazard-detection errors. The live proposal now sets planned targets of five collision-free trials, stopping within one second of command loss, and mean position error at most 30 cm in a small arena. No experimental results have been demonstrated.
+## Safety and acceptance
 
-Controller compliance remains unknown pending the user’s supervisor check next week.
+Physical emergency motor disable, hardware watchdog, command loss, invalid sensors, motor enable behavior, WiFi loss and post-fault re-arm need explicit implementation and bench verification. A proposed stop policy is documented in the linked implementation checklist; proposed timing numbers there are recommendations, not measured results.
 
-## Diagram and component consistency
+The live proposal's **planned** targets remain five collision-free trials, a stop within 1 second after command loss and mean pose error <=30 cm in a small arena. Define test methodology, worst-case distance, arena dimensions and error metrics before claiming achievement. A physical emergency stop is an engineering recommendation and still needs implementation.
 
-Current live proposal: one motion ESP, onboard Raspberry Pi, separate ESP CAM S3, one core USB 2D LiDAR, two side ToF sensors (left/right), two encoder motors, one IMU, two front/rear bumpers and four corner edge sensors. Motor-current and battery-voltage monitoring remain optional. The user-selected tldraw diagram is historical if its export predates this allocation; do not silently treat its older optional labels as current. Edge sensing is a stopping measure, not elevation mapping. School compliance remains open.
+## Milestones
 
-The app shows initial 2D occupancy map/path, camera imagery, map-linked events, advisory model scores and pending/unknown status, start/stop and manual controls. The AI model does not steer the rover. Concept images use example data, not live telemetry.
+1. Confirm school subsystem compliance and select hardware, wiring, safety arrangement, WiFi protocol and LiDAR bridge.
+2. Bench-test ESP motor/encoder, stops, sensors and command expiry.
+3. Demonstrate manual motion via laptop and C3 control-owner arbitration.
+4. Validate wireless LiDAR/camera telemetry and pose/calibration.
+5. Implement occupancy mapping and controlled obstacle-aware autonomous operation.
+6. Build responsive map/events dashboard and asynchronous local AI assessment.
+7. Perform integrated repeatable measured acceptance tests and finish documented evidence.
+
+Preserve early work in the archive; the 7 October Raspberry Pi diagram and proposal exports are no longer current.
