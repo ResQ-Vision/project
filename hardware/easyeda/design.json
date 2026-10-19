@@ -1,0 +1,845 @@
+{
+  "status": "provisional-candidates",
+  "base_commit": "4b7f085",
+  "sheets": [
+    {
+      "title": "01 Power and unresolved safety",
+      "components": [
+        {
+          "ref": "J1",
+          "model": "BENCH input - current limited 12V",
+          "x": 280,
+          "y": 180,
+          "left": [
+            [
+              "+12V",
+              "+12V",
+              "BENCH_12V"
+            ],
+            [
+              "0V",
+              "0V",
+              "GND"
+            ]
+          ],
+          "right": [],
+          "color": "#A16207",
+          "width": 260
+        },
+        {
+          "ref": "U2",
+          "model": "Pololu D24V50F5 (2851)",
+          "x": 280,
+          "y": 390,
+          "left": [
+            [
+              "VIN",
+              "VIN",
+              "BENCH_12V"
+            ],
+            [
+              "GND",
+              "GND",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "VOUT",
+              "VOUT",
+              "5V_LOGIC"
+            ]
+          ],
+          "color": "#A16207",
+          "width": 260
+        },
+        {
+          "ref": "B1",
+          "model": "Candidate: protected 3S pack / TBD",
+          "x": 280,
+          "y": 630,
+          "left": [
+            [
+              "PACK+",
+              "PACK+",
+              null
+            ],
+            [
+              "PACK-",
+              "PACK-",
+              null
+            ]
+          ],
+          "right": [],
+          "color": "#A16207",
+          "width": 260
+        },
+        {
+          "ref": "X1",
+          "model": "UNRESOLVED safety power stage",
+          "x": 1030,
+          "y": 180,
+          "left": [
+            [
+              "12V IN",
+              "12V IN",
+              "BENCH_12V"
+            ],
+            [
+              "5V IN",
+              "5V IN",
+              "5V_LOGIC"
+            ],
+            [
+              "RETURN",
+              "RETURN",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "MOTOR OUT",
+              "MOTOR OUT",
+              "VMOTOR_SW"
+            ],
+            [
+              "SERVO OUT",
+              "SERVO OUT",
+              "5V_ACT"
+            ]
+          ],
+          "color": "#B91C1C",
+          "width": 280
+        },
+        {
+          "ref": "S0",
+          "model": "Physical E-stop / device TBD",
+          "x": 1030,
+          "y": 470,
+          "left": [
+            [
+              "CONTACT A",
+              "CONTACT A",
+              null
+            ],
+            [
+              "CONTACT B",
+              "CONTACT B",
+              null
+            ]
+          ],
+          "right": [],
+          "color": "#B91C1C",
+          "width": 260
+        }
+      ],
+      "notes": [
+        "X1 is a functional placeholder: no internal circuit or approved power-inhibit implementation exists.",
+        "Battery is deliberately unconnected. A 3S pack reaches 12.6V; motor limits, BMS, charger and fusing need review.",
+        "VMOTOR_SW and 5V_ACT require independent hardware inhibition, disabled boot and explicit re-arm.",
+        "Common GND is a signal reference; route motor/servo returns separately from logic. Wire sizes and protection TBD.",
+        "5V_LOGIC powers modules only; never connect 12V to ESP headers. Disconnect external 5V before USB power."
+      ]
+    },
+    {
+      "title": "02 Motion controller and drive",
+      "components": [
+        {
+          "ref": "U1",
+          "model": "ESP32-DevKitC V4 / WROOM-32E",
+          "x": 280,
+          "y": 180,
+          "left": [
+            [
+              "5V",
+              "J2.19",
+              "5V_LOGIC"
+            ],
+            [
+              "3V3 OUT",
+              "J2.1",
+              "3V3_LOGIC"
+            ],
+            [
+              "GND",
+              "J3.1",
+              "GND"
+            ],
+            [
+              "IO34",
+              "J2.5",
+              "ENC_L_A"
+            ],
+            [
+              "IO35",
+              "J2.6",
+              "ENC_L_B"
+            ],
+            [
+              "IO36 VP",
+              "J2.3",
+              "ENC_R_A"
+            ],
+            [
+              "IO39 VN",
+              "J2.4",
+              "ENC_R_B"
+            ],
+            [
+              "IO32",
+              "J2.7",
+              "CONTACT_FRONT"
+            ],
+            [
+              "IO33",
+              "J2.8",
+              "CONTACT_REAR"
+            ]
+          ],
+          "right": [
+            [
+              "IO25 PWM-L",
+              "J2.9",
+              "PWM_L"
+            ],
+            [
+              "IO26 DIR-L",
+              "J2.10",
+              "DIR_L"
+            ],
+            [
+              "IO27 PWM-R",
+              "J2.11",
+              "PWM_R"
+            ],
+            [
+              "IO14 DIR-R",
+              "J2.12",
+              "DIR_R"
+            ],
+            [
+              "IO13 STEER",
+              "J2.15",
+              "STEER_3V3"
+            ],
+            [
+              "IO21 SDA",
+              "J3.6",
+              "IMU_SDA"
+            ],
+            [
+              "IO22 SCL",
+              "J3.3",
+              "IMU_SCL"
+            ]
+          ],
+          "color": "#C2410C",
+          "width": 290
+        },
+        {
+          "ref": "U3",
+          "model": "Cytron MDD10A / dual H-bridge",
+          "x": 1030,
+          "y": 180,
+          "left": [
+            [
+              "PWR+",
+              "PWR+",
+              "VMOTOR_SW"
+            ],
+            [
+              "PWR-",
+              "PWR-",
+              "GND"
+            ],
+            [
+              "PWM1",
+              "4",
+              "PWM_L"
+            ],
+            [
+              "DIR1",
+              "5",
+              "DIR_L"
+            ],
+            [
+              "PWM2",
+              "2",
+              "PWM_R"
+            ],
+            [
+              "DIR2",
+              "3",
+              "DIR_R"
+            ],
+            [
+              "CTRL GND",
+              "1",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "M1A",
+              "M1A",
+              "MOTOR_L_A"
+            ],
+            [
+              "M1B",
+              "M1B",
+              "MOTOR_L_B"
+            ],
+            [
+              "M2A",
+              "M2A",
+              "MOTOR_R_A"
+            ],
+            [
+              "M2B",
+              "M2B",
+              "MOTOR_R_B"
+            ]
+          ],
+          "color": "#C2410C",
+          "width": 280
+        },
+        {
+          "ref": "RP1",
+          "model": "4 x 10k pull-downs (proposal)",
+          "x": 1030,
+          "y": 590,
+          "left": [
+            [
+              "PWM_L",
+              "PWM_L",
+              "PWM_L"
+            ],
+            [
+              "DIR_L",
+              "DIR_L",
+              "DIR_L"
+            ],
+            [
+              "PWM_R",
+              "PWM_R",
+              "PWM_R"
+            ],
+            [
+              "DIR_R",
+              "DIR_R",
+              "DIR_R"
+            ]
+          ],
+          "right": [
+            [
+              "COMMON",
+              "COMMON",
+              "GND"
+            ]
+          ],
+          "color": "#C2410C",
+          "width": 280
+        }
+      ],
+      "notes": [
+        "Header IDs are J2/J3 positions on Espressif DevKitC V4, not bare-chip pin numbers. Other boards differ.",
+        "GPIO34/35/36/39 are inputs only; encoder inputs are translated to 3.3V on sheet 03.",
+        "MDD10A controls use sign-magnitude PWM/DIR. No separate driver ENABLE pin is assumed.",
+        "RP1 means four independent resistors to GND; it does not implement the unresolved X1 safety power stage.",
+        "ESP-local contact/command-loss stops and one final C3/laptop owner remain requirements, not tested firmware."
+      ]
+    },
+    {
+      "title": "03 Rear motors and encoder translation",
+      "components": [
+        {
+          "ref": "M1",
+          "model": "Pololu 4865 / left rear motor",
+          "x": 280,
+          "y": 180,
+          "left": [
+            [
+              "Red motor",
+              "Red motor",
+              "MOTOR_L_A"
+            ],
+            [
+              "Black motor",
+              "Black motor",
+              "MOTOR_L_B"
+            ],
+            [
+              "Blue encoder VCC",
+              "Blue encoder VCC",
+              "5V_LOGIC"
+            ],
+            [
+              "Green encoder GND",
+              "Green encoder GND",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "Yellow encoder A",
+              "Yellow encoder A",
+              "ENC_L_A_5V"
+            ],
+            [
+              "White encoder B",
+              "White encoder B",
+              "ENC_L_B_5V"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 290
+        },
+        {
+          "ref": "M2",
+          "model": "Pololu 4865 / right rear motor",
+          "x": 280,
+          "y": 510,
+          "left": [
+            [
+              "Red motor",
+              "Red motor",
+              "MOTOR_R_A"
+            ],
+            [
+              "Black motor",
+              "Black motor",
+              "MOTOR_R_B"
+            ],
+            [
+              "Blue encoder VCC",
+              "Blue encoder VCC",
+              "5V_LOGIC"
+            ],
+            [
+              "Green encoder GND",
+              "Green encoder GND",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "Yellow encoder A",
+              "Yellow encoder A",
+              "ENC_R_A_5V"
+            ],
+            [
+              "White encoder B",
+              "White encoder B",
+              "ENC_R_B_5V"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 290
+        },
+        {
+          "ref": "U4",
+          "model": "SN74LVC125A / SOIC-14 adapter",
+          "x": 1030,
+          "y": 180,
+          "left": [
+            [
+              "1A",
+              "2",
+              "ENC_L_A_5V"
+            ],
+            [
+              "2A",
+              "5",
+              "ENC_L_B_5V"
+            ],
+            [
+              "3A",
+              "9",
+              "ENC_R_A_5V"
+            ],
+            [
+              "4A",
+              "12",
+              "ENC_R_B_5V"
+            ],
+            [
+              "VCC",
+              "14",
+              "3V3_LOGIC"
+            ],
+            [
+              "GND",
+              "7",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "1Y",
+              "3",
+              "ENC_L_A"
+            ],
+            [
+              "2Y",
+              "6",
+              "ENC_L_B"
+            ],
+            [
+              "3Y",
+              "8",
+              "ENC_R_A"
+            ],
+            [
+              "4Y",
+              "11",
+              "ENC_R_B"
+            ],
+            [
+              "/1OE",
+              "1",
+              "GND"
+            ],
+            [
+              "/2OE",
+              "4",
+              "GND"
+            ],
+            [
+              "/3OE",
+              "10",
+              "GND"
+            ],
+            [
+              "/4OE",
+              "13",
+              "GND"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 280
+        },
+        {
+          "ref": "C1",
+          "model": "100nF ceramic / close to U4",
+          "x": 1030,
+          "y": 620,
+          "left": [
+            [
+              "1",
+              "1",
+              "3V3_LOGIC"
+            ]
+          ],
+          "right": [
+            [
+              "2",
+              "2",
+              "GND"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 280
+        }
+      ],
+      "notes": [
+        "Pololu 4865 encoder requires 3.5-20V and outputs 0..VCC: use 5V supply and U4 translation, never direct to ESP.",
+        "U4 is 5V-input tolerant at 3.3V supply. Use a breakout/adapter; pin numbers refer to TI SOIC-14.",
+        "Motor candidate: 12V MP, 47:1 nominal, 48 CPR on motor shaft, 1.8A extrapolated stall each.",
+        "Wheel diameter, direction signs, quadrature counting and speed/current limits need physical calibration.",
+        "Motor supply and encoder supply are different nets. Keep encoder cable away from motor switching wiring."
+      ]
+    },
+    {
+      "title": "04 IMU contacts and front steering",
+      "components": [
+        {
+          "ref": "U5",
+          "model": "Adafruit LSM6DSOX breakout",
+          "x": 280,
+          "y": 180,
+          "left": [
+            [
+              "VIN",
+              "VIN",
+              "3V3_LOGIC"
+            ],
+            [
+              "GND",
+              "GND",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "SDA",
+              "SDA",
+              "IMU_SDA"
+            ],
+            [
+              "SCL",
+              "SCL",
+              "IMU_SCL"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 280
+        },
+        {
+          "ref": "S1",
+          "model": "Front NC contact / model TBD",
+          "x": 280,
+          "y": 420,
+          "left": [
+            [
+              "COM",
+              "COM",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "NC",
+              "NC",
+              "CONTACT_FRONT"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 280
+        },
+        {
+          "ref": "S2",
+          "model": "Rear NC contact / model TBD",
+          "x": 280,
+          "y": 620,
+          "left": [
+            [
+              "COM",
+              "COM",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "NC",
+              "NC",
+              "CONTACT_REAR"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 280
+        },
+        {
+          "ref": "U6",
+          "model": "SN74AHCT1G125 / SOT-23 adapter",
+          "x": 1030,
+          "y": 180,
+          "left": [
+            [
+              "A",
+              "2",
+              "STEER_3V3"
+            ],
+            [
+              "/OE",
+              "1",
+              "GND"
+            ],
+            [
+              "VCC",
+              "5",
+              "5V_ACT"
+            ],
+            [
+              "GND",
+              "3",
+              "GND"
+            ]
+          ],
+          "right": [
+            [
+              "Y",
+              "4",
+              "STEER_5V"
+            ]
+          ],
+          "color": "#C2410C",
+          "width": 280
+        },
+        {
+          "ref": "SV1",
+          "model": "Hitec HS-422 / candidate servo",
+          "x": 1030,
+          "y": 460,
+          "left": [
+            [
+              "V+",
+              "V+",
+              "5V_ACT"
+            ],
+            [
+              "GND",
+              "GND",
+              "GND"
+            ],
+            [
+              "SIGNAL",
+              "SIGNAL",
+              "STEER_5V"
+            ]
+          ],
+          "right": [],
+          "color": "#C2410C",
+          "width": 280
+        },
+        {
+          "ref": "C2",
+          "model": "100nF ceramic / close to U6",
+          "x": 1030,
+          "y": 690,
+          "left": [
+            [
+              "1",
+              "1",
+              "5V_ACT"
+            ]
+          ],
+          "right": [
+            [
+              "2",
+              "2",
+              "GND"
+            ]
+          ],
+          "color": "#C2410C",
+          "width": 280
+        }
+      ],
+      "notes": [
+        "IMU candidate uses 3.3V VIN and onboard I2C pull-ups; default address 0x6A. Other IMUs may differ.",
+        "CONTACT_FRONT/REAR each need an external 10k pull-up to 3V3_LOGIC (R1/R2 in pin matrix and sheet 05).",
+        "NC contact proposal: open contact/cable reads HIGH and requests a local stop; a short-to-GND is undetected.",
+        "U6 shifts steering PWM from 3.3V to 5V. HS-422 takes 4.8-6.0V; 800mA stall is a vendor figure.",
+        "Servo torque, linkage/limits, startup movement and feedback are unverified. No turn-in-place or cliff sensing."
+      ]
+    },
+    {
+      "title": "05 Contact bias camera and radio boundaries",
+      "components": [
+        {
+          "ref": "R1",
+          "model": "10k / front contact pull-up",
+          "x": 280,
+          "y": 180,
+          "left": [
+            [
+              "1",
+              "1",
+              "3V3_LOGIC"
+            ]
+          ],
+          "right": [
+            [
+              "2",
+              "2",
+              "CONTACT_FRONT"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 280
+        },
+        {
+          "ref": "R2",
+          "model": "10k / rear contact pull-up",
+          "x": 280,
+          "y": 350,
+          "left": [
+            [
+              "1",
+              "1",
+              "3V3_LOGIC"
+            ]
+          ],
+          "right": [
+            [
+              "2",
+              "2",
+              "CONTACT_REAR"
+            ]
+          ],
+          "color": "#0369A1",
+          "width": 280
+        },
+        {
+          "ref": "U7",
+          "model": "Waveshare ESP32-S3-CAM-OV5640",
+          "x": 280,
+          "y": 550,
+          "left": [
+            [
+              "USB-C 5V",
+              "USB-C 5V",
+              "5V_LOGIC"
+            ],
+            [
+              "USB-C GND",
+              "USB-C GND",
+              "GND"
+            ]
+          ],
+          "right": [],
+          "color": "#7E22CE",
+          "width": 300
+        },
+        {
+          "ref": "U8",
+          "model": "ESP32-C3-DevKitM-1 / handheld",
+          "x": 1030,
+          "y": 180,
+          "left": [
+            [
+              "Micro-USB 5V",
+              "Micro-USB 5V",
+              "C3_USB_5V"
+            ],
+            [
+              "Micro-USB GND",
+              "Micro-USB GND",
+              "C3_GND"
+            ]
+          ],
+          "right": [],
+          "color": "#7E22CE",
+          "width": 280
+        },
+        {
+          "ref": "L1",
+          "model": "SLAMTEC RPLIDAR A1 dev kit",
+          "x": 1030,
+          "y": 430,
+          "left": [
+            [
+              "KIT USB 5V",
+              "KIT USB 5V",
+              "LIDAR_USB_5V"
+            ],
+            [
+              "KIT USB GND",
+              "KIT USB GND",
+              "LIDAR_USB_GND"
+            ]
+          ],
+          "right": [],
+          "color": "#0369A1",
+          "width": 280
+        }
+      ],
+      "notes": [
+        "Wireless links are text only, not copper: C3 -> Motion ESP32 directly; motion/camera <-> one laptop by Wi-Fi.",
+        "C3 input controls/deadman and radio protocol remain TBD. Its USB power domain is separate from the rover.",
+        "LiDAR bench path: supplied USB adapter -> laptop USB data + power. Raw sensor connector is not assigned.",
+        "Untethered LiDAR acquisition bridge is UNRESOLVED; no Pi, assumed UART bridge, or separate ToF is added.",
+        "Camera power-only USB cable from 5V_LOGIC; avoid a second USB power source. Laptop AI is advisory only."
+      ]
+    }
+  ]
+}

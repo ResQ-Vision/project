@@ -26,3 +26,10 @@ Validate LiDAR mount transform, scan coverage and acquisition timestamp quality 
 the selected sensor. The removed ToF rotation mechanism needs no wiring or calibration.
 
 Use [safety gates](../architecture/safety.md) and [open decisions](../project/open-decisions.md).
+
+## Provisional electrical chart
+
+The [EasyEDA chart and candidate BOM](electrical-chart.md) provide an editable
+module interconnect with likely parts authorized for temporary planning on
+19 October 2026. Exact class hardware, safety power stage and LiDAR bridge still
+need confirmation; this does not close the hardware review.
