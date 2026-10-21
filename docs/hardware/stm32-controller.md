@@ -52,3 +52,9 @@ ratings as V1.2 facts. Existing ESP32 EasyEDA files are superseded reference art
 
 Track focused work in #2, #3 and #9. No firmware, bench trial, physical stopping,
 model benchmark, PCB/ERC or complete system validation is established by this context update.
+
+## Electrical drawing
+
+The [revision B drawing](stm32-electrical-chart.md) presents this hardware context
+as a two-sheet EasyEDA/PDF review package. Its logical terminal names are not
+physical V1.2 pin assignments; the electrical and safety questions above stay open.
