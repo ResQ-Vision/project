@@ -1,7 +1,7 @@
 # Motion, telemetry and ownership requirements
 
 Status: proposed interface requirements; confirmed architectural behavior is in ADRs.
-Owners: motion ESP32, C3 and server. Next review: D2–D5 in docs/project/open-decisions.md.
+Owners: motion STM32 controller, C3 and server. Next review: D2–D5 in docs/project/open-decisions.md.
 No final field names, packets, transport or timing thresholds are defined here.
 
 ## Motion intent and telemetry
@@ -23,8 +23,8 @@ There is no separate ToF; LiDAR coverage/freshness is handled by the acquisition
 
 ## Authority at the actuator boundary
 
-- PC Server selects browser versus autonomous intent; C3 sends directly to motion ESP32.
-- Motion ESP32 enforces one final owner across laptop and C3. Display only acknowledged ownership.
+- PC Server selects browser versus autonomous intent; C3 sends directly to motion STM32 controller.
+- Motion STM32 controller enforces one final owner across laptop and C3. Display only acknowledged ownership.
 - Explicit source selection/handovers stop motion, revoke old intent and establish a new
   ownership/session boundary. Choose the exact epoch/lease/acknowledgement design in review.
 - Out-of-order/replayed/wrong-session/unauthorized messages cannot move or renew freshness.

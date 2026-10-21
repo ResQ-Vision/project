@@ -1,5 +1,6 @@
 # ADR 0005: LiDAR-only distance sensing
 
+Controller/link references below are partially superseded by [ADR 0006](0006-stm32-motion-controller.md), 21 October 2026: use Hiwonder V1.2 STM32; local safety and laptop-bypassing manual-path requirements remain.
 Status: Accepted direction. Date: 14 October 2026.
 Approval source: direct user request in the project-manager chat: the ToF will no
 longer be used because LiDAR is preferred and considered enough for the planned design.

@@ -23,7 +23,7 @@ instruments, battery, arena/floor/load, speed, sensor state and raw evidence per
 | Test | Procedure / evidence | Gate |
 | --- | --- | --- |
 | Local stop | Wheels raised; contacts, valid-command loss, malformed/replay input, reset, blocking bus/scanner work | Motor disable/physical response independent of laptop/AI |
-| Ownership | Simultaneous laptop/C3, source loss, lost handover, reboots/reconnect | One acknowledged ESP owner; no automatic motion restart |
+| Ownership | Simultaneous laptop/C3, source loss, lost handover, reboots/reconnect | One acknowledged STM32 owner; no automatic motion restart |
 | Steering/LiDAR | Calibrate steering limits/turning radius, LiDAR mount/time/coverage, rear encoder signs | Front-steering model and measured LiDAR coverage; no ToF fallback |
 | Acquisition | LiDAR/camera invalid/stale/disconnect, radio bandwidth, clock offsets | Autonomy stops on LiDAR loss; uncertain capture/pose stays unknown |
 | Stop geometry | Forward/reverse/turning at defined speed/load; command-loss trigger to standstill | Proposal target ≤1 s plus recorded worst stopping distance |
@@ -34,3 +34,7 @@ instruments, battery, arena/floor/load, speed, sensor state and raw evidence per
 
 Use [evidence template](../school/evidence-template.md). Targets are not completed results.
 Unit/schema tests cannot verify local watchdog timing, physical braking or image-model accuracy.
+
+The four electrical-chart regressions preserve the superseded ESP32 candidate artifact.
+They do not validate Hiwonder V1.2 wiring, motor-driver capacity or servo power.
+New STM32 firmware build/flash/restore and board-specific tests are required with implementation.

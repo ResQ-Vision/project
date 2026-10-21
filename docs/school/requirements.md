@@ -59,3 +59,5 @@ verify the original PDF and the school's internal date. The earlier caution abou
 prior-year deadlines does not mean the current-year circular omits that date.
 
 Subsequent design change: [ADR 0005](../architecture/decisions/0005-lidar-only-distance-sensing.md) removes the separate ToF. Earlier proposal readbacks are historical; #6 must align current live wording and the designated tldraw diagram. No school approval is implied.
+
+21 October: [ADR 0006](../architecture/decisions/0006-stm32-motion-controller.md) replaces the motion ESP32 with Hiwonder V1.2 STM32. Live proposal/checklist, book PR #14 and designated tldraw board require alignment through #6; this update does not claim those edits or school approval.

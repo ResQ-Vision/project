@@ -1,6 +1,14 @@
-# Provisional EasyEDA electrical chart
+# Superseded ESP32 EasyEDA electrical reference
 
-Status: **candidate module interconnect for review**, 19 October 2026. The user
+**Superseded on 21 October 2026 by [ADR 0006](../architecture/decisions/0006-stm32-motion-controller.md).**
+The following 19 October ESP32 candidate chart is preserved for history only. It is not
+wiring guidance for Hiwonder V1.2 STM32, LD-1501MG or the owner's actual rear motors/battery.
+No GPIO, power allocation or external driver/IMU choice below transfers automatically.
+Use [current board context](stm32-controller.md). A new V1.2 chart remains follow-up work;
+its absence must not be interpreted as approved wiring. Historical JSON/SVG/CSV bytes
+and regression tests remain unchanged and do not validate the selected STM32 board.
+
+Historical status: **candidate module interconnect for review**, 19 October 2026. The user
 requested likely parts now and will supply exact class models later. These are
 substitutable candidates, not evidence of the parts owned, an approved BOM, a
 finished safety circuit or permission to assemble/power the rover.

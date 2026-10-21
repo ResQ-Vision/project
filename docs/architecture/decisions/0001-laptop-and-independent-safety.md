@@ -1,5 +1,6 @@
 # ADR 0001: Laptop deployment and independent safety
 
+Controller/link references below are partially superseded by [ADR 0006](0006-stm32-motion-controller.md), 21 October 2026: use Hiwonder V1.2 STM32; local safety and laptop-bypassing manual-path requirements remain.
 Status: Accepted direction. Date: 14 October 2026.
 Source: migration brief; planning chat 12 October; user confirmation in this migration.
 
