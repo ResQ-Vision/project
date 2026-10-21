@@ -7,10 +7,10 @@ proposal: Yotam leads motion/sensors; Ilay leads laptop/camera/mapping/AI; both 
 | Role | Owns | Handoff / dependency |
 | --- | --- | --- |
 | Integration and architecture | docs/project, ADRs, issue dependencies | Approved requirements/contracts; review cross-module changes |
-| Motion / hardware safety | firmware/motion-esp, wiring/calibration evidence | Rear feedback + front steering + local stops; command/telemetry fixtures |
+| Motion / hardware safety | firmware/motion-stm32, wiring/calibration evidence | Rear feedback + front steering + local stops; command/telemetry fixtures |
 | Manual controller | firmware/manual-c3 | Direct C3 intent/authority integration; same freshness/safety gate as laptop |
 | Camera | firmware/esp-cam | Capture IDs, timing/quality and bounded images; fixtures to server |
-| Server communications/control | server communication/control/telemetry/API | Validate both adapters, coordinate server intent, observe final ESP authority |
+| Server communications/control | server communication/control/telemetry/API | Validate both adapters, coordinate server intent, observe final STM32 authority |
 | Localization / mapping | server localization/mapping | Front-steering model, timestamped pose/scan quality, unknown/free/occupied map |
 | Navigation | server navigation | Conservative swept-footprint decisions; depends on validated stops/pose/map |
 | Events and AI | server events, ai | Persist image/event first; bounded inference, unknown outcomes, no drive authority |

@@ -1,0 +1,103 @@
+sheet,reference,candidate_model,pin_id,function,net,status
+1,J1,BENCH input - current limited 12V,+12V,+12V,BENCH_12V,provisional
+1,J1,BENCH input - current limited 12V,0V,0V,GND,provisional
+1,U2,Pololu D24V50F5 (2851),VIN,VIN,BENCH_12V,provisional
+1,U2,Pololu D24V50F5 (2851),GND,GND,GND,provisional
+1,U2,Pololu D24V50F5 (2851),VOUT,VOUT,5V_LOGIC,provisional
+1,B1,Candidate: protected 3S pack / TBD,PACK+,PACK+,OPEN,provisional
+1,B1,Candidate: protected 3S pack / TBD,PACK-,PACK-,OPEN,provisional
+1,X1,UNRESOLVED safety power stage,12V IN,12V IN,BENCH_12V,provisional
+1,X1,UNRESOLVED safety power stage,5V IN,5V IN,5V_LOGIC,provisional
+1,X1,UNRESOLVED safety power stage,RETURN,RETURN,GND,provisional
+1,X1,UNRESOLVED safety power stage,MOTOR OUT,MOTOR OUT,VMOTOR_SW,provisional
+1,X1,UNRESOLVED safety power stage,SERVO OUT,SERVO OUT,5V_ACT,provisional
+1,S0,Physical E-stop / device TBD,CONTACT A,CONTACT A,OPEN,provisional
+1,S0,Physical E-stop / device TBD,CONTACT B,CONTACT B,OPEN,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.19,5V,5V_LOGIC,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.1,3V3 OUT,3V3_LOGIC,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J3.1,GND,GND,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.5,IO34,ENC_L_A,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.6,IO35,ENC_L_B,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.3,IO36 VP,ENC_R_A,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.4,IO39 VN,ENC_R_B,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.7,IO32,CONTACT_FRONT,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.8,IO33,CONTACT_REAR,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.9,IO25 PWM-L,PWM_L,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.10,IO26 DIR-L,DIR_L,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.11,IO27 PWM-R,PWM_R,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.12,IO14 DIR-R,DIR_R,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J2.15,IO13 STEER,STEER_3V3,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J3.6,IO21 SDA,IMU_SDA,provisional
+2,U1,ESP32-DevKitC V4 / WROOM-32E,J3.3,IO22 SCL,IMU_SCL,provisional
+2,U3,Cytron MDD10A / dual H-bridge,PWR+,PWR+,VMOTOR_SW,provisional
+2,U3,Cytron MDD10A / dual H-bridge,PWR-,PWR-,GND,provisional
+2,U3,Cytron MDD10A / dual H-bridge,4,PWM1,PWM_L,provisional
+2,U3,Cytron MDD10A / dual H-bridge,5,DIR1,DIR_L,provisional
+2,U3,Cytron MDD10A / dual H-bridge,2,PWM2,PWM_R,provisional
+2,U3,Cytron MDD10A / dual H-bridge,3,DIR2,DIR_R,provisional
+2,U3,Cytron MDD10A / dual H-bridge,1,CTRL GND,GND,provisional
+2,U3,Cytron MDD10A / dual H-bridge,M1A,M1A,MOTOR_L_A,provisional
+2,U3,Cytron MDD10A / dual H-bridge,M1B,M1B,MOTOR_L_B,provisional
+2,U3,Cytron MDD10A / dual H-bridge,M2A,M2A,MOTOR_R_A,provisional
+2,U3,Cytron MDD10A / dual H-bridge,M2B,M2B,MOTOR_R_B,provisional
+2,RP1,4 x 10k pull-downs (proposal),PWM_L,PWM_L,PWM_L,provisional
+2,RP1,4 x 10k pull-downs (proposal),DIR_L,DIR_L,DIR_L,provisional
+2,RP1,4 x 10k pull-downs (proposal),PWM_R,PWM_R,PWM_R,provisional
+2,RP1,4 x 10k pull-downs (proposal),DIR_R,DIR_R,DIR_R,provisional
+2,RP1,4 x 10k pull-downs (proposal),COMMON,COMMON,GND,provisional
+3,M1,Pololu 4865 / left rear motor,Red motor,Red motor,MOTOR_L_A,provisional
+3,M1,Pololu 4865 / left rear motor,Black motor,Black motor,MOTOR_L_B,provisional
+3,M1,Pololu 4865 / left rear motor,Blue encoder VCC,Blue encoder VCC,5V_LOGIC,provisional
+3,M1,Pololu 4865 / left rear motor,Green encoder GND,Green encoder GND,GND,provisional
+3,M1,Pololu 4865 / left rear motor,Yellow encoder A,Yellow encoder A,ENC_L_A_5V,provisional
+3,M1,Pololu 4865 / left rear motor,White encoder B,White encoder B,ENC_L_B_5V,provisional
+3,M2,Pololu 4865 / right rear motor,Red motor,Red motor,MOTOR_R_A,provisional
+3,M2,Pololu 4865 / right rear motor,Black motor,Black motor,MOTOR_R_B,provisional
+3,M2,Pololu 4865 / right rear motor,Blue encoder VCC,Blue encoder VCC,5V_LOGIC,provisional
+3,M2,Pololu 4865 / right rear motor,Green encoder GND,Green encoder GND,GND,provisional
+3,M2,Pololu 4865 / right rear motor,Yellow encoder A,Yellow encoder A,ENC_R_A_5V,provisional
+3,M2,Pololu 4865 / right rear motor,White encoder B,White encoder B,ENC_R_B_5V,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,2,1A,ENC_L_A_5V,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,5,2A,ENC_L_B_5V,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,9,3A,ENC_R_A_5V,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,12,4A,ENC_R_B_5V,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,14,VCC,3V3_LOGIC,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,7,GND,GND,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,3,1Y,ENC_L_A,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,6,2Y,ENC_L_B,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,8,3Y,ENC_R_A,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,11,4Y,ENC_R_B,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,1,/1OE,GND,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,4,/2OE,GND,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,10,/3OE,GND,provisional
+3,U4,SN74LVC125A / SOIC-14 adapter,13,/4OE,GND,provisional
+3,C1,100nF ceramic / close to U4,1,1,3V3_LOGIC,provisional
+3,C1,100nF ceramic / close to U4,2,2,GND,provisional
+4,U5,Adafruit LSM6DSOX breakout,VIN,VIN,3V3_LOGIC,provisional
+4,U5,Adafruit LSM6DSOX breakout,GND,GND,GND,provisional
+4,U5,Adafruit LSM6DSOX breakout,SDA,SDA,IMU_SDA,provisional
+4,U5,Adafruit LSM6DSOX breakout,SCL,SCL,IMU_SCL,provisional
+4,S1,Front NC contact / model TBD,COM,COM,GND,provisional
+4,S1,Front NC contact / model TBD,NC,NC,CONTACT_FRONT,provisional
+4,S2,Rear NC contact / model TBD,COM,COM,GND,provisional
+4,S2,Rear NC contact / model TBD,NC,NC,CONTACT_REAR,provisional
+4,U6,SN74AHCT1G125 / SOT-23 adapter,2,A,STEER_3V3,provisional
+4,U6,SN74AHCT1G125 / SOT-23 adapter,1,/OE,GND,provisional
+4,U6,SN74AHCT1G125 / SOT-23 adapter,5,VCC,5V_ACT,provisional
+4,U6,SN74AHCT1G125 / SOT-23 adapter,3,GND,GND,provisional
+4,U6,SN74AHCT1G125 / SOT-23 adapter,4,Y,STEER_5V,provisional
+4,SV1,Hitec HS-422 / candidate servo,V+,V+,5V_ACT,provisional
+4,SV1,Hitec HS-422 / candidate servo,GND,GND,GND,provisional
+4,SV1,Hitec HS-422 / candidate servo,SIGNAL,SIGNAL,STEER_5V,provisional
+4,C2,100nF ceramic / close to U6,1,1,5V_ACT,provisional
+4,C2,100nF ceramic / close to U6,2,2,GND,provisional
+5,R1,10k / front contact pull-up,1,1,3V3_LOGIC,provisional
+5,R1,10k / front contact pull-up,2,2,CONTACT_FRONT,provisional
+5,R2,10k / rear contact pull-up,1,1,3V3_LOGIC,provisional
+5,R2,10k / rear contact pull-up,2,2,CONTACT_REAR,provisional
+5,U7,Waveshare ESP32-S3-CAM-OV5640,USB-C 5V,USB-C 5V,5V_LOGIC,provisional
+5,U7,Waveshare ESP32-S3-CAM-OV5640,USB-C GND,USB-C GND,GND,provisional
+5,U8,ESP32-C3-DevKitM-1 / handheld,Micro-USB 5V,Micro-USB 5V,C3_USB_5V,provisional
+5,U8,ESP32-C3-DevKitM-1 / handheld,Micro-USB GND,Micro-USB GND,C3_GND,provisional
+5,L1,SLAMTEC RPLIDAR A1 dev kit,KIT USB 5V,KIT USB 5V,LIDAR_USB_5V,provisional
+5,L1,SLAMTEC RPLIDAR A1 dev kit,KIT USB GND,KIT USB GND,LIDAR_USB_GND,provisional

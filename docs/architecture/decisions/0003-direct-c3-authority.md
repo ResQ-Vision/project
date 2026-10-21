@@ -1,5 +1,6 @@
 # ADR 0003: Direct C3 manual path
 
+Controller/link references below are partially superseded by [ADR 0006](0006-stm32-motion-controller.md), 21 October 2026: use Hiwonder V1.2 STM32; local safety and laptop-bypassing manual-path requirements remain.
 Status: Accepted direction. Date: 14 October 2026.
 Source: research chat 12 October (“it should connect to the esp 32 directly”);
 reconfirmed explicitly in the migration.

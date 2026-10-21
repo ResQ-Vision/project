@@ -6,13 +6,17 @@ initial 2D mapping, image capture and advisory hazard analysis.
 **Start at [docs/README.md](docs/README.md).** A new coding chat needs only this
 repository, its assigned issue, and the linked role documents.
 
-Current direction, confirmed by the user on 14 October 2026:
+Current direction, updated by the user on 21 October 2026:
 - One laptop beside the arena runs the PC Server, navigation, mapping and a separate local AI worker.
-- Motion ESP32 controls two rear encoder motors, front steering, IMU,
+- Hiwonder ROS Robot Controller V1.2 (STM32F407VET6) replaces the motion ESP32 and controls two rear encoder motors, front steering, IMU,
   front/rear contact sensors and independent local stops.
-- A C3 manual controller sends commands directly to the motion ESP32.
+- A C3 manual controller sends commands directly to the motion STM32 controller.
 - Separate ESP CAM S3 sends images to the laptop over WiFi.
 - One 2D LiDAR uses USB on the bench; a compatible wireless bridge is unresolved for driving.
+
+The owner accepts the available battery as sufficient; no further battery-selection request is open.
+Motion wireless/C3 transport, V1.2 firmware access and electrical integration still need validation.
+See [STM32 board context](docs/hardware/stm32-controller.md).
 
 The architecture is approved direction. All message schemas are **proposed**, and
 the robot modules contain ownership/build guidance, not working firmware or services.

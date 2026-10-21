@@ -1,0 +1,380 @@
+{
+  "base": "897c03e",
+  "decision": "ADR 0006",
+  "revision": "B",
+  "status": "design-review",
+  "physical_pinout_approved": false,
+  "sheet_count": 2,
+  "battery": "existing / owner accepted",
+  "components": [
+    {
+      "ref": "B1",
+      "model": "Existing owner-provided battery",
+      "pins": [
+        [
+          "BAT_PLUS",
+          "+",
+          368,
+          240,
+          "right"
+        ],
+        [
+          "BAT_MINUS",
+          "-",
+          368,
+          268,
+          "right"
+        ]
+      ]
+    },
+    {
+      "ref": "M_L",
+      "model": "Likely JGB37-520R30-12",
+      "pins": [
+        [
+          "M_L_M+",
+          "M+",
+          368,
+          458,
+          "right"
+        ],
+        [
+          "M_L_M-",
+          "M-",
+          368,
+          483,
+          "right"
+        ],
+        [
+          "M_L_VCC",
+          "VCC",
+          368,
+          508,
+          "right"
+        ],
+        [
+          "M_L_GND",
+          "GND",
+          368,
+          533,
+          "right"
+        ],
+        [
+          "M_L_A",
+          "A",
+          368,
+          558,
+          "right"
+        ],
+        [
+          "M_L_B",
+          "B",
+          368,
+          583,
+          "right"
+        ]
+      ]
+    },
+    {
+      "ref": "M_R",
+      "model": "Likely JGB37-520R30-12",
+      "pins": [
+        [
+          "M_R_M+",
+          "M+",
+          368,
+          722,
+          "right"
+        ],
+        [
+          "M_R_M-",
+          "M-",
+          368,
+          747,
+          "right"
+        ],
+        [
+          "M_R_VCC",
+          "VCC",
+          368,
+          772,
+          "right"
+        ],
+        [
+          "M_R_GND",
+          "GND",
+          368,
+          797,
+          "right"
+        ],
+        [
+          "M_R_A",
+          "A",
+          368,
+          822,
+          "right"
+        ],
+        [
+          "M_R_B",
+          "B",
+          368,
+          847,
+          "right"
+        ]
+      ]
+    },
+    {
+      "ref": "U1",
+      "model": "Hiwonder ROS Robot Controller V1.2 / STM32F407VET6",
+      "pins": [
+        [
+          "POWER_IN",
+          "power +",
+          582,
+          326,
+          "left"
+        ],
+        [
+          "POWER_RETURN",
+          "return",
+          582,
+          354,
+          "left"
+        ],
+        [
+          "BOARD_M_L_M+",
+          "M+",
+          582,
+          458,
+          "left"
+        ],
+        [
+          "BOARD_M_L_M-",
+          "M-",
+          582,
+          483,
+          "left"
+        ],
+        [
+          "BOARD_M_L_VCC",
+          "VCC",
+          582,
+          508,
+          "left"
+        ],
+        [
+          "BOARD_M_L_GND",
+          "GND",
+          582,
+          533,
+          "left"
+        ],
+        [
+          "BOARD_M_L_A",
+          "A",
+          582,
+          558,
+          "left"
+        ],
+        [
+          "BOARD_M_L_B",
+          "B",
+          582,
+          583,
+          "left"
+        ],
+        [
+          "BOARD_M_R_M+",
+          "M+",
+          582,
+          722,
+          "left"
+        ],
+        [
+          "BOARD_M_R_M-",
+          "M-",
+          582,
+          747,
+          "left"
+        ],
+        [
+          "BOARD_M_R_VCC",
+          "VCC",
+          582,
+          772,
+          "left"
+        ],
+        [
+          "BOARD_M_R_GND",
+          "GND",
+          582,
+          797,
+          "left"
+        ],
+        [
+          "BOARD_M_R_A",
+          "A",
+          582,
+          822,
+          "left"
+        ],
+        [
+          "BOARD_M_R_B",
+          "B",
+          582,
+          847,
+          "left"
+        ],
+        [
+          "SERVO_SIGNAL",
+          "signal",
+          1048,
+          437,
+          "right"
+        ],
+        [
+          "SERVO_SUPPLY",
+          "supply",
+          1048,
+          469,
+          "right"
+        ],
+        [
+          "SERVO_RETURN",
+          "return",
+          1048,
+          501,
+          "right"
+        ],
+        [
+          "FRONT_CONTACT_A",
+          "front A",
+          1048,
+          650,
+          "right"
+        ],
+        [
+          "FRONT_CONTACT_B",
+          "front B",
+          1048,
+          675,
+          "right"
+        ],
+        [
+          "REAR_CONTACT_A",
+          "rear A",
+          1048,
+          780,
+          "right"
+        ],
+        [
+          "REAR_CONTACT_B",
+          "rear B",
+          1048,
+          805,
+          "right"
+        ]
+      ]
+    },
+    {
+      "ref": "SV1",
+      "model": "LD-1501MG",
+      "pins": [
+        [
+          "SIGNAL_WHITE",
+          "signal",
+          1247,
+          437,
+          "left"
+        ],
+        [
+          "POWER_RED",
+          "supply",
+          1247,
+          469,
+          "left"
+        ],
+        [
+          "RETURN_BLACK",
+          "return",
+          1247,
+          501,
+          "left"
+        ]
+      ]
+    },
+    {
+      "ref": "S_F",
+      "model": "Contact sensor / electrical polarity TBD",
+      "pins": [
+        [
+          "S_F_A",
+          "A",
+          1247,
+          650,
+          "left"
+        ],
+        [
+          "S_F_B",
+          "B",
+          1247,
+          675,
+          "left"
+        ]
+      ]
+    },
+    {
+      "ref": "S_R",
+      "model": "Contact sensor / electrical polarity TBD",
+      "pins": [
+        [
+          "S_R_A",
+          "A",
+          1247,
+          780,
+          "left"
+        ],
+        [
+          "S_R_B",
+          "B",
+          1247,
+          805,
+          "left"
+        ]
+      ]
+    },
+    {
+      "ref": "U1_REF",
+      "model": "Hiwonder V1.2 reference",
+      "pins": []
+    },
+    {
+      "ref": "C3",
+      "model": "C3 handheld / exact board TBD",
+      "pins": []
+    },
+    {
+      "ref": "PC1",
+      "model": "One laptop / PC Server + advisory AI",
+      "pins": []
+    },
+    {
+      "ref": "CAM1",
+      "model": "ESP CAM S3 / exact board TBD",
+      "pins": []
+    },
+    {
+      "ref": "L1",
+      "model": "2D LiDAR / exact model TBD",
+      "pins": []
+    }
+  ],
+  "open_checks": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ]
+}

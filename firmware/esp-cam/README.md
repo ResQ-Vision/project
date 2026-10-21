@@ -4,7 +4,7 @@ Status: planned module; no executable implementation or hardware results yet.
 
 ## Ownership
 
-Own bounded capture requests, capture IDs, image transfer and capture-time quality. Send images to PC Server over WiFi; local safety remains with motion ESP32.
+Own bounded capture requests, capture IDs, image transfer and capture-time quality. Send images to PC Server over WiFi; local safety remains with motion STM32 controller.
 
 Read [architecture](../../docs/architecture/system.md),
 [safety](../../docs/architecture/safety.md) and

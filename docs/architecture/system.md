@@ -1,16 +1,18 @@
 # Current architecture
 
-Status: user-confirmed direction on 14 October 2026; implementation remains planned.
+Status: controller updated by the owner on 21 October 2026; implementation remains planned.
+[ADR 0006](decisions/0006-stm32-motion-controller.md) replaces the motion ESP32.
+The separate ESP CAM S3 camera and C3 manual-controller role are retained; their removal was not requested.
 See [accepted ADRs](decisions/README.md) and [open implementation decisions](../project/open-decisions.md).
 
 | Component | Responsibilities |
 | --- | --- |
 | One laptop beside the arena | PC Server, radio adapters, browser APIs, authority coordination, telemetry validation, localization, initial 2D mapping, navigation and persistent image/events |
 | AI worker on that same laptop | Bounded asynchronous advisory image analysis; intended Cloudflare Clef-Flash Q8_0 runtime still needs verification |
-| Rover motion ESP32 | Two rear encoder motors, front-wheel steering, IMU, front/rear contacts, local feedback/stops, command freshness and final command authority across laptop and C3 |
+| Hiwonder ROS Robot Controller V1.2 / STM32F407VET6 | Two rear encoder motors, front-wheel steering, IMU, front/rear contacts, local feedback/stops, command freshness and final command authority across laptop and C3 |
 | Separate ESP CAM S3 | WiFi image capture and transfer to laptop |
 | One 2D LiDAR | Planar scan acquisition; USB on bench, compatible wireless acquisition bridge during untethered driving |
-| C3 manual controller | Manual-driving intent directly to motion ESP32; exact board, controls and radio protocol unresolved |
+| C3 manual controller | Manual-driving intent directly to motion STM32 controller; C3 board/controls and compatible radio/bridge to STM32 unresolved |
 | Phone / browser | Laptop-hosted interface for mode, map/path, status, capture/events and manual intent |
 
 The PC Server is software on the laptop, not another physical computer.
@@ -21,7 +23,7 @@ block control or issue motor commands. There is no Raspberry Pi or separate home
 flowchart LR
     B[Browser] <-->|HTTP / WebSocket| S[PC Server on laptop]
     S <-->|Local bounded IPC / API| A[AI worker on same laptop]
-    S <-->|WiFi commands / telemetry| E[Motion ESP32]
+    S <-->|Untethered link TBD / USB serial on bench| E[Hiwonder V1.2 / STM32F407]
     C[C3 manual controller] -->|Direct link: protocol TBD| E
     T[IMU, encoders, contacts] --> E
     E --> D[Rear drive and front steering]
@@ -30,11 +32,11 @@ flowchart LR
     W --> S
 ```
 
-USB/UART between ESP and laptop and direct LiDAR USB are tethered bench paths only.
+USB/UART between STM32 board and laptop and direct LiDAR USB are tethered bench paths only.
 See [transport boundaries](transport.md). A separate Internet exchange still needs to
 be selected and demonstrated for school IoT compliance.
 
-The server arbitrates browser/autonomy intent; because C3 bypasses it, the motion ESP32
+The server arbitrates browser/autonomy intent; because C3 bypasses it, the motion STM32 controller
 must enforce one active authority at the final actuator boundary and report ownership.
 No fallback, reboot or reconnection may silently resume movement.
 

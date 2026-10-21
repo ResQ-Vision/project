@@ -1,6 +1,6 @@
 # Safety boundary and verification gates
 
-Approved requirements: ESP-local stopping independent of laptop/network/AI; one active
+Approved requirements: STM32-local stopping independent of laptop/network/AI; one active
 command authority; command expiry; explicit transitions; AI cannot authorize movement.
 Recovery state machine, emergency-stop hardware and exact sensor-fault policies below
 are engineering proposals until reviewed and physically tested.

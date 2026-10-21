@@ -16,7 +16,7 @@ the working proposal. The table below and archived snapshot hashes describe the 
 read, not either document's current wording. The engineering checklist still requires alignment.
 
 1. Latest explicit user decisions establish project direction. In this migration the user
-   reconfirmed front steering and direct C3 → motion ESP32. A subsequent explicit decision
+   reconfirmed front steering and direct C3 → motion STM32 controller. A subsequent explicit decision
    removed separate ToF in favor of LiDAR-only distance sensing; see ADR 0005. The user
    designated the linked [tldraw board](https://www.tldraw.com/f/4aOaHZDyKxk2AseGkkgxy?d=v-358.-186.2651.1825.page) as תרשים מלבנים; corrections are pending.
 2. The [user-selected live Hebrew proposal](https://docs.google.com/document/d/1_ZeKJPhYXvrlZp5wWuPeibg2ie_6kLH27qAnhqbATOU/edit)
@@ -82,3 +82,14 @@ From 21 October 2026, detailed error history belongs in GitHub Issues labeled `e
 fix and verification. Chat claims and closed status do not establish a verified fix.
 Agents read matching history on demand; this is not an additional mandatory context dump.
 Historical error backfill is not complete.
+
+## Latest controller and hardware context — 21 October 2026
+
+The owner explicitly replaced the motion ESP32 with Hiwonder ROS Robot Controller V1.2;
+photos establish STM32F407VET6 and board revision. The owner read LD-1501MG on the
+steering servo; rear motors are likely JGB37-520R30-12 from partial label/photo and matching
+vendor chassis documentation. The owner accepts the available battery as sufficient.
+[ADR 0006](../architecture/decisions/0006-stm32-motion-controller.md) and
+[board context](../hardware/stm32-controller.md) govern current implementation planning.
+Earlier ESP32 wiring, exports, live proposal readbacks and school text are historical
+until aligned; no new live-document/diagram update or physical test is claimed here.

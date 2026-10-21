@@ -7,7 +7,7 @@ Then select a role below. Read archived sources only when resolving provenance q
 | Role | Read next | Owned module | Shared interfaces |
 | --- | --- | --- | --- |
 | Integration / planning | [Roadmap](project/roadmap.md), [open decisions](project/open-decisions.md) | docs/project, docs/architecture | [All contracts](../contracts/README.md) |
-| Motion and safety | [Hardware](hardware/README.md), [safety](architecture/safety.md) | [motion ESP](../firmware/motion-esp/README.md) | motion commands, telemetry, arbitration |
+| Motion and safety | [Hardware](hardware/README.md), [safety](architecture/safety.md) | [motion STM32](../firmware/motion-stm32/README.md) | motion commands, telemetry, arbitration |
 | C3 controller | [Arbitration](../contracts/motion/README.md) | [manual C3](../firmware/manual-c3/README.md) | direct manual commands, authority |
 | Camera | [Events](../contracts/events/README.md) | [ESP CAM](../firmware/esp-cam/README.md) | capture request/response |
 | Server / links | [Transport](architecture/transport.md), [API](../contracts/server-api/README.md) | [server](../server/README.md) | telemetry, camera, LiDAR, authority, events |

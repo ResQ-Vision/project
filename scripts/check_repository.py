@@ -13,7 +13,7 @@ REQUIRED = [
     'AGENTS.md', 'README.md', 'docs/README.md', 'docs/project/requirements.md',
     'docs/architecture/system.md', 'docs/development/startup.md',
     'docs/development/worktrees.md', 'docs/development/testing.md',
-    'contracts/README.md', 'firmware/motion-esp/README.md',
+    'contracts/README.md', 'firmware/motion-stm32/README.md',
     'firmware/esp-cam/README.md', 'firmware/manual-c3/README.md',
     'server/README.md', 'ai/README.md', 'web/README.md',
     'docs/development/error-documentation.md', 'docs/errors/README.md',

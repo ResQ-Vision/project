@@ -1,7 +1,7 @@
 # Shared coding instructions
 
 ResQ-Vision is a controlled-arena exploration rover with a laptop-hosted PC Server,
-a separate AI worker on that laptop, and ESP-local motion safety. Start at docs/README.md.
+a separate AI worker on that laptop, and STM32-local motion safety. Start at docs/README.md.
 
 1. Fetch the latest repository state before work. Read `README.md`, `docs/README.md`,
    `docs/development/startup.md`, relevant open issues/PRs and only the documents for your role.
@@ -29,7 +29,7 @@ a separate AI worker on that laptop, and ESP-local motion safety. Start at docs/
     recorded in an ADR and reviewed PR. Routine fixes within approved scope can proceed.
 12. Preserve original school sources and Git history. Historical generators/exports must not
     overwrite live Google Docs. Keep school prose separate from code/contracts.
-13. AI analysis is advisory and isolated from motor authorization. The motion ESP32 must stop
+13. AI analysis is advisory and isolated from motor authorization. The motion STM32 controller must stop
     independently of server, network and AI. Follow `docs/architecture/safety.md`.
 14. This migration PR must not be merged without user review. A clean checkout must remain usable
     without chat history; do not place required startup state only in local files.

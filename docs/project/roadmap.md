@@ -16,6 +16,14 @@ No GitHub milestones exist; the stages below are development gates, not schedule
 
 Current approved change: [ADR 0005](../architecture/decisions/0005-lidar-only-distance-sensing.md) removes the separate ToF and its rotation mechanism. Distance sensing now uses LiDAR; its bridge/coverage/timing validation remains open. Active contracts now contain six schemas and 24 fixtures; the original audit counts above are historical.
 
+Current controller decision, 21 October: [ADR 0006](../architecture/decisions/0006-stm32-motion-controller.md)
+replaces motion ESP32 with Hiwonder V1.2 STM32F407. Battery sufficiency is owner-accepted.
+Prioritize V1.2 source/schematic/factory-image access and build/flash/restore, actual
+motor/servo/driver compatibility, then wireless/C3 authority and local-stop bench evidence.
+The ESP32 EasyEDA chart is superseded reference material, not the STM32 wiring plan.
+The retained camera/C3 roles do not establish their transport to this board. No implementation
+milestone is passed by this documentation change.
+
 ## Dates and submission
 
 The school-specific proposal date around 15 October 2026 and progress-book date around
@@ -31,9 +39,9 @@ No hardware milestone date is assigned without parts/capacity evidence.
 | --- | --- | --- | --- |
 | Foundation | Documentation and draft-contract CI merged | Reproduced repository/fixture checks | Complete for this limited scope |
 | 0 | Open: hardware/power, steering/LiDAR mounting and authority review | Approved wiring/power and interface sheets | #2, #3; school acceptance #6 |
-| 1 | Not started: motion ESP independent-stop bench slice | Raw wheels-raised contact/reset/command-loss/stall results | #9 after #2 and #3 |
+| 1 | Not started: motion STM32 independent-stop bench slice | Raw wheels-raised contact/reset/command-loss/stall results | #9 after #2 and #3 |
 | 2 | Not started: laptop, untethered LiDAR and camera bench | Validated timestamped scans/images/telemetry; bounded load | #4, hardware-specific contracts/toolchains |
-| 3 | Not started: direct C3 + browser manual integration | One ESP owner; measured forward/reverse/turning stops | Stages 1–2, approved #3 protocol |
+| 3 | Not started: direct C3 + browser manual integration | One STM32 owner; measured forward/reverse/turning stops | Stages 1–2, approved #3 protocol |
 | 4 | Not started: front-steering localization and initial occupancy map | Surveyed pose errors, LiDAR mount/coverage and map comparison | Calibrated chassis, timing and acquisition |
 | 5 | Not started: bounded autonomous obstacle response | Five defined collision-free trials and fault evidence | Validated stops/pose/map; D10 test definitions |
 | 6 | Not started: persisted events and advisory local AI | Correct association, unknown failures, labeled-image and load metrics | #5, #10, D9 and reviewed data interfaces |
