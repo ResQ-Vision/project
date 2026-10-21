@@ -8,7 +8,7 @@ intent. WebSocket or equivalent live channel must carry telemetry, mode/owner ac
 sensor age/quality, pose/map revisions, stop cause and event/analysis changes.
 
 Manual controls submit intent to server under explicit selected ownership and command
-expiry; the server forwards only fresh eligible intent to motion ESP32. Direct C3 ownership
+expiry; the server forwards only fresh eligible intent to motion STM32 controller. Direct C3 ownership
 must be visible and cannot be overridden merely by an active browser connection.
 Map/pose revision IDs, units/frame, clock context and uncertainty must be defined in the API PR.
 

@@ -35,7 +35,7 @@ See [school requirements](../school/requirements.md) and [test plan](../developm
 | --- | --- | --- |
 | R1 Local motion safety | Independent contact and freshness stops under server/network/AI failure | Approved requirement; implementation pending |
 | R2 Front steering and LiDAR sensing | Calibrated rear-speed/steering model and timestamped LiDAR scans with measured coverage | Approved direction; hardware/calibration open |
-| R3 One final owner | ESP32 gates direct C3 and laptop intent; explicit handover/expiry/re-arm | Approved requirement; protocol/tests pending |
+| R3 One final owner | STM32 gates direct C3 and laptop intent; explicit handover/expiry/re-arm | Approved requirement; protocol/tests pending |
 | R4 Initial 2D map | Unknown/free/occupied cells and measured pose/map comparison in controlled arena | Planned; implementation pending |
 | R5 Advisory camera events | Persist event/image, associate capture-time observation pose, bounded AI and unknown failures | Planned; model/runtime unresolved |
 | R6 School compliance | Working prototype, approved subsystem split, external controller Internet exchange and authentic work/AI evidence | Requirements identified; supervisor confirmation pending |
