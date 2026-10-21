@@ -45,6 +45,7 @@ The migration PR requires the user's review before merging.
 - [School requirements](docs/school/requirements.md) and [source hierarchy](docs/project/sources.md)
 - [Migration report](docs/development/migration-report.md), [manifest](docs/development/migration-manifest.json)
 - [Validation record](docs/development/validation.md)
+- [Error-recording workflow](docs/development/error-documentation.md); [search index](docs/errors/README.md) for relevant diagnosis only
 
 Original school documents and historical assets remain under `resources/`.
 They are evidence, not an alternative current specification.

@@ -16,6 +16,8 @@ REQUIRED = [
     'contracts/README.md', 'firmware/motion-esp/README.md',
     'firmware/esp-cam/README.md', 'firmware/manual-c3/README.md',
     'server/README.md', 'ai/README.md', 'web/README.md',
+    'docs/development/error-documentation.md', 'docs/errors/README.md',
+    '.github/ISSUE_TEMPLATE/error-session.md',
 ]
 
 
