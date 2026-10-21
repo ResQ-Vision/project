@@ -74,3 +74,41 @@ regressions, native EasyEDA readback and visual review of both rendered PDF page
 No ERC/SPICE, firmware build or physical tests are claimed.
 
 Errors encountered: [redraw session #22](https://github.com/ResQ-Vision/project/issues/22).
+
+## Conventional EasyEDA schematic (revision C)
+
+For the usual schematic editor, open
+[`resq-vision-stm32-schematic.json`](../../hardware/easyeda-stm32/resq-vision-stm32-schematic.json)
+through **File → Open → EasyEDA…**, select the JSON, then **Import** in EasyEDA Standard.
+This file import was verified in the live editor; the source dialog duplicated an
+existing project during this session, so use the file-import route for this addition.
+This separate one-sheet project uses editable module symbols, terminal pins,
+green electrical wires and blue net labels. The two presentation sheets above
+remain available for sharing. A [vector preview](../../hardware/easyeda-stm32/03-conventional-schematic.svg)
+and [interface manifest](../../hardware/easyeda-stm32/schematic-manifest.json) accompany it.
+
+The schematic includes the 2D LiDAR, ESP CAM S3, onboard IMU, both rear encoders,
+and front and rear contacts, alongside the retained battery, STM32 controller,
+steering servo, C3 controller and laptop. IMU circuitry stays inside the board;
+its chip/bus are unverified. No separate ToF or downward sensors are added.
+
+The green nets describe **logical cable functions**, not verified physical V1.2
+contacts. Motor/encoder harnesses each have six distinct functions; servo signal,
+supply and return remain separate. LiDAR data/power, camera power, contact bias/GPIO
+and C3 interfaces remain visibly **OPEN** where implementation is unresolved.
+LiDAR's data terminal denotes an interface requirement, not a claimed one-wire
+connection, UART, USB pinout or bridge selection. Dashed lines only express camera
+and LiDAR acquisition paths to the laptop and create no electrical net.
+
+Regenerate this additional project with `python3 hardware/easyeda-stm32/build_schematic.py`.
+The generator has no third-party dependencies and leaves historical ESP32 files
+and the revision B PDF unchanged. See Issues [#2](https://github.com/ResQ-Vision/project/issues/2),
+[#3](https://github.com/ResQ-Vision/project/issues/3), [#4](https://github.com/ResQ-Vision/project/issues/4)
+and [#9](https://github.com/ResQ-Vision/project/issues/9) before implementing physical wiring.
+
+Revision C verification: all 13 repository unit tests and the repository checker
+passed. Three additional conventional net/sensor checks also passed against
+source read back from the final EasyEDA import. The native editor view was
+visually inspected and [captured](../../hardware/easyeda-stm32/easyeda-schematic-editor.png).
+No ERC, SPICE, firmware or physical hardware test was performed for this drawing.
+Errors encountered and fixes: [session record #22](https://github.com/ResQ-Vision/project/issues/22).
