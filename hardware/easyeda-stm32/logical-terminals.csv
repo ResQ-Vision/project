@@ -1,0 +1,43 @@
+reference,model,logical_terminal,function,physical_pin
+B1,Existing owner-provided battery,BAT_PLUS,+,unassigned / verify V1.2
+B1,Existing owner-provided battery,BAT_MINUS,-,unassigned / verify V1.2
+M_L,Likely JGB37-520R30-12,M_L_M+,M+,unassigned / verify V1.2
+M_L,Likely JGB37-520R30-12,M_L_M-,M-,unassigned / verify V1.2
+M_L,Likely JGB37-520R30-12,M_L_VCC,VCC,unassigned / verify V1.2
+M_L,Likely JGB37-520R30-12,M_L_GND,GND,unassigned / verify V1.2
+M_L,Likely JGB37-520R30-12,M_L_A,A,unassigned / verify V1.2
+M_L,Likely JGB37-520R30-12,M_L_B,B,unassigned / verify V1.2
+M_R,Likely JGB37-520R30-12,M_R_M+,M+,unassigned / verify V1.2
+M_R,Likely JGB37-520R30-12,M_R_M-,M-,unassigned / verify V1.2
+M_R,Likely JGB37-520R30-12,M_R_VCC,VCC,unassigned / verify V1.2
+M_R,Likely JGB37-520R30-12,M_R_GND,GND,unassigned / verify V1.2
+M_R,Likely JGB37-520R30-12,M_R_A,A,unassigned / verify V1.2
+M_R,Likely JGB37-520R30-12,M_R_B,B,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,POWER_IN,power +,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,POWER_RETURN,return,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_L_M+,M+,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_L_M-,M-,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_L_VCC,VCC,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_L_GND,GND,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_L_A,A,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_L_B,B,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_R_M+,M+,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_R_M-,M-,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_R_VCC,VCC,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_R_GND,GND,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_R_A,A,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,BOARD_M_R_B,B,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,SERVO_SIGNAL,signal,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,SERVO_SUPPLY,supply,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,SERVO_RETURN,return,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,FRONT_CONTACT_A,front A,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,FRONT_CONTACT_B,front B,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,REAR_CONTACT_A,rear A,unassigned / verify V1.2
+U1,Hiwonder ROS Robot Controller V1.2 / STM32F407VET6,REAR_CONTACT_B,rear B,unassigned / verify V1.2
+SV1,LD-1501MG,SIGNAL_WHITE,signal,unassigned / verify V1.2
+SV1,LD-1501MG,POWER_RED,supply,unassigned / verify V1.2
+SV1,LD-1501MG,RETURN_BLACK,return,unassigned / verify V1.2
+S_F,Contact sensor / electrical polarity TBD,S_F_A,A,unassigned / verify V1.2
+S_F,Contact sensor / electrical polarity TBD,S_F_B,B,unassigned / verify V1.2
+S_R,Contact sensor / electrical polarity TBD,S_R_A,A,unassigned / verify V1.2
+S_R,Contact sensor / electrical polarity TBD,S_R_B,B,unassigned / verify V1.2

@@ -32,6 +32,12 @@ Use [safety gates](../architecture/safety.md) and [open decisions](../project/op
 The [EasyEDA chart and candidate BOM](electrical-chart.md) provide an editable
 historical module interconnect from 19 October 2026. Its ESP32 pins, external driver,
 IMU, servo and power allocations do not describe the selected STM32 build. Preserve
-it as reference only; a V1.2 wiring chart is still required.
+it as reference only. The current [STM32 drawing](stm32-electrical-chart.md) provides
+a readable connector-level design-review package; actual V1.2 pin mapping remains open.
 
 Current evidence and open questions: [STM32 controller](stm32-controller.md).
+
+## Current electrical drawing
+
+Use the [revision B STM32 electrical drawing](stm32-electrical-chart.md) for
+sharing and review: native EasyEDA source, two-page vector PDF and SVGs.
