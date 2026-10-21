@@ -11,6 +11,8 @@ See the [recording workflow](../development/error-documentation.md) when creatin
 | 2026-10-21 | Hardware research / vendor docs | Hiwonder; ROS Robot Controller V1.2; inaccessible URL; case-sensitive documentation path | [#19](https://github.com/ResQ-Vision/project/issues/19) |
 | 2026-10-21 | Development / GitHub | gh pr checks; GraphQL; TLS handshake timeout; REST Actions workaround | [#21](https://github.com/ResQ-Vision/project/issues/21) |
 
+| 2026-10-21 | STM32 tooling / supplier docs | Homebrew cask unavailable; native select layout; OneDrive retrieval; undefined browser handle | [#24](https://github.com/ResQ-Vision/project/issues/24) |
+
 Coverage begins with the 21 October 2026 workflow rollout. Earlier errors remain scattered
 in PRs/evidence/chats; this index is not a complete retrospective history. Backfill only
 from preserved evidence, recording uncertain dates/causes as unknown.
