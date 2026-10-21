@@ -28,3 +28,7 @@ Implementation/evidence state: [validation](development/validation.md).
 Hebrew school documentation: [project explanation](school/project-description.md),
 [book outline and completion tracking](school/book-plan.md), and
 [live-proposal update and source review](school/source-review-2026-10-14.md).
+
+Error history: agents follow the [recording workflow](development/error-documentation.md).
+[Error index](errors/README.md) and detailed Issues are read only for relevant diagnosis,
+not as routine startup context. Dates, failed attempts, fixes and verification stay in Issues.

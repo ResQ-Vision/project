@@ -74,6 +74,15 @@ This audit cannot certify unseen chats were recovered or broadcast rules into th
 Useful accessible ResQ-Vision decisions are now in Git; existing chats should use
 [startup](../development/startup.md) against current files before further work.
 
+## Error history authority
+
+From 21 October 2026, detailed error history belongs in GitHub Issues labeled `error-log`;
+[the index](../errors/README.md) provides discovery only. Use the
+[workflow](../development/error-documentation.md) for required dates, attempts, cause,
+fix and verification. Chat claims and closed status do not establish a verified fix.
+Agents read matching history on demand; this is not an additional mandatory context dump.
+Historical error backfill is not complete.
+
 ## Latest controller and hardware context — 21 October 2026
 
 The owner explicitly replaced the motion ESP32 with Hiwonder ROS Robot Controller V1.2;

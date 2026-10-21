@@ -33,3 +33,12 @@ a separate AI worker on that laptop, and STM32-local motion safety. Start at doc
     independently of server, network and AI. Follow `docs/architecture/safety.md`.
 14. This migration PR must not be merged without user review. A clean checkout must remain usable
     without chat history; do not place required startup state only in local files.
+
+15. Record every encountered error, even if fixed immediately, in a GitHub Issue labeled
+    `error-log`; group routine failures in a dated session Issue with separate detailed entries.
+    Follow [error documentation](docs/development/error-documentation.md): dates, exact symptom,
+    environment/reproduction, failed attempts, cause or unknown, fix and actual verification.
+    Link records in the PR/handoff and add short discovery entries in `docs/errors/README.md`.
+    Do not read the error archive at normal startup. When diagnosing, search its index/module
+    keywords and read only relevant Issues (including closed ones); always read relevant open
+    blockers/safety faults. Report GitHub outages and preserve pending records until published.

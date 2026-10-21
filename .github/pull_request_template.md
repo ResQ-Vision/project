@@ -6,6 +6,8 @@ Issue / scope / before and after:
 
 Canonical docs/contracts changed; approved versus proposed status:
 Checks run and actual results:
+Errors encountered: Issue links / none (include immediately fixed failures; update docs/errors/README.md):
+Error publication/verification blockers, if any:
 Hardware/model evidence (or none):
 Unresolved dependencies / risks / reviewer decisions:
 

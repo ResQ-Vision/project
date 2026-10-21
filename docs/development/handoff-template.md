@@ -5,6 +5,7 @@
 - Behavior implemented and affected boundaries:
 - Canonical docs/contracts changed; proposed versus approved status:
 - Setup and exact checks run with actual results:
+- Errors encountered: Issue links / none; discovery index updated; unpublished records/blockers:
 - Hardware/model measurements and raw evidence paths (or explicitly none):
 - Remaining limitations, unresolved decisions and next dependencies:
 - Review or owner decision required:

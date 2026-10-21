@@ -14,7 +14,10 @@
    Contract edits require coordinated review and version/fixture changes before consumers.
 6. Install/run checks from README. Robot-module builds are not available yet; their READMEs
    list toolchain choices to resolve. Do not substitute a docs check for a firmware build.
-7. Implement the small change, applicable tests and canonical documentation. Record source
+7. Record encountered errors, including ones fixed immediately, using the
+   [error workflow](error-documentation.md). Do not preload historical reports; search/read
+   only relevant records when diagnosing. Link them and update the discovery index before handoff.
+   Implement the small change, applicable tests and canonical documentation. Record source
    state and actual measurements only. Run required checks and inspect the diff.
 8. Commit, push and open a PR with issue, behavior, test evidence, limits and approval needs.
    Use `.github/pull_request_template.md`. Review precedes merge; do not merge into main without authorization.
