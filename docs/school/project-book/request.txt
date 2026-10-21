@@ -1,0 +1,37 @@
+Use this for any ordinary feature, fix, refactor or implementation task.
+
+Work on the following ResQ-Vision task:
+
+making the project book.
+
+all progress of the project should be documanted in the book. im adding some exemepls for preavious years. this will not be finished as some desicion and code arent done yet.  this is an exemple for a design from last year, this is not mandtotry but that is the direction. also use the yotam hebrew writing skill from the github and i also added the template.
+
+You are working in the existing local Codex project.
+
+Before editing:
+
+- Check Git status and preserve unrelated work.
+- Follow AGENTS.md.
+- Inspect relevant implementation, documentation, contracts and tests.
+- Check important assumptions against the latest approved design.
+
+Use an isolated branch or worktree if other development is happening concurrently.
+
+Implement the smallest complete solution rather than only proposing one.
+
+Keep the change focused, testable and compatible with other modules.
+
+Add tests and update documentation where relevant.
+
+Do not invent hardware details or claim tests that were not performed.
+
+If a major architectural or safety decision remains unresolved, identify it explicitly before implementing a potentially incompatible design.
+
+At completion, report:
+
+1. What changed.
+2. Files changed.
+3. Tests and results.
+4. Decisions made.
+5. Remaining blockers.
+6. Branch, commit or PR reference.
