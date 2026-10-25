@@ -1,7 +1,8 @@
 # Wi-Fi to STM32 LED bench experiment
 
 Implemented source and successful cross-compilation, 25 October 2026. **ESP32 uploaded
-and AP startup messages observed; STM32 not flashed or physically tested.** This replaces STM32 application firmware when
+and AP startup messages observed; STM32 ROM identified and flash backed up, but the
+LED firmware has not been flashed or tested on STM32.** This replaces STM32 application firmware when
 flashed; it does not extend the factory program. Disconnect motors and servos for
 this LED experiment. It implements no rover control or local motor safety.
 
@@ -213,9 +214,40 @@ Open http://192.168.4.1
 These application messages follow a successful `WiFi.softAP` return in the source.
 They confirm application startup and the reported AP address. A phone association,
 real HTTP/page interaction and radio reliability have not yet been observed.
-STM32 upload/restore, UART acknowledgements, actual LED operation and electrical/
+STM32 application upload/restore, inter-board UART acknowledgements, actual LED operation and electrical/
 motor safety remain untested. Owner reports checking the three jumper connections;
 this is not a continuity or voltage measurement.
+
+### Later STM32 UART1 identification and backup, same date
+
+With its actual UART1 USB-C connected, the Mac enumerated USB Single Serial
+(VID:PID 1A86:55D4). STM32 ROM identification returned device ID `0x0413`
+(STM32F40xxx/41xxx) and bootloader version `0x31`. No manual button presses were
+needed for the successful session. The family ID alone does not identify flash size.
+
+Automatic DTR/RTS entry with stm32flash was intermittent: one identification
+succeeded, subsequent backup attempts failed before reading. A local PySerial
+investigation helper tested a bounded control-line matrix, flushed stale input,
+then used ST AN3155 Get ID and Read Memory commands only. Successful matrix entry
+held logical RTS=True and pulsed logical DTR=False→True. These are API signal
+values, not measured voltage levels. A standalone equivalent stm32flash sequence
+has not been demonstrated reliable; the earlier generic examples remain conditional
+on confirmed bootloader entry.
+
+A read of the flash-size register address `0x1FFF7A22` was NACKed after the address;
+cause unknown. Retried using the owner's photographed STM32F407VET6 marking to
+select the 512 KiB range `0x08000000` through `0x0807FFFF`. All 524,288 bytes were
+read and saved locally, with SHA-256
+`aed769c1130192b67b9b77a59d2129d8e658b0390f26de2e772052c6bd66be0d`.
+Initial stack `0x20017C60` and reset vector `0x08000321` are plausible application
+vectors; they do not verify every byte or prove that restoration will succeed.
+Backup, manifest, read-only helper and relevant logs are preserved outside Git.
+No erase/write/unprotect/option-byte operation was issued.
+
+STM32 firmware remains unchanged. Before overwriting, confirm the V1.2 user LED
+net/polarity: PE10 active-low is still based on generic vendor material, not the
+matching revision schematic. USB/ROM backup success does not resolve this pin
+question or validate the motion system. Error investigation is in session #26.
 
 Errors encountered: [session record #26](https://github.com/ResQ-Vision/project/issues/26).
 
