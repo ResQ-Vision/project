@@ -11,6 +11,7 @@ This migration PR is still subject to review. Proposed protocols are tracked sep
 | [0004](0004-github-source-of-truth.md) | Accepted workflow | Modular GitHub knowledge and Issue/branch/PR workflow |
 | [0005](0005-lidar-only-distance-sensing.md) | Accepted direction | Remove separate ToF/rotation mechanism; use 2D LiDAR for distance sensing |
 | [0006](0006-stm32-motion-controller.md) | Accepted direction | Hiwonder V1.2 STM32 replaces motion ESP32; battery accepted; radio integration open |
+| [0007](0007-wifi-led-bench-experiment.md) | Proposed experiment implementation | ESP32 Wi-Fi webpage to STM32 LED over UART; no motion/radio integration approval |
 
 New decisions use [template](template.md). Record approval source/date, alternatives,
 consequences, verification gaps and supersession links. Do not call a PR-approved interface

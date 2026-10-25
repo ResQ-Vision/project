@@ -2,6 +2,10 @@
 
 Status: planned module; no executable implementation or hardware results yet.
 
+An isolated [Wi-Fi LED experiment](../experiments/wifi-led/README.md) now has
+compilable source. It is separate from this planned motion module and has no
+physical upload, LED or motion-safety validation.
+
 ## Ownership
 
 Own rear encoder feedback, front steering, IMU, contacts, local stops and final C3/laptop authority. Do not apply differential-drive kinematics or obsolete ToF assumptions.
