@@ -7,6 +7,7 @@ See the [recording workflow](../development/error-documentation.md) when creatin
 
 | Occurred (Asia/Jerusalem) | Module | Symptom / search keywords | Detailed record |
 | --- | --- | --- | --- |
+| 2026-10-25 | STM32 / ESP32 LED experiment | iCloud mmap canceled; vendor URL; mixed PlatformIO; Uart API; Python/Node dependencies; native headers; ASan startup; USB host wrong socket; ESP32 chip autodetection short response; STM32 UART1 init retries; flash-size address NACK | [#26](https://github.com/ResQ-Vision/project/issues/26) |
 | 2026-10-21 | Development / Git | git switch; not a git repository; clone destination; working directory | [#17](https://github.com/ResQ-Vision/project/issues/17) |
 | 2026-10-21 | Hardware research / vendor docs | Hiwonder; ROS Robot Controller V1.2; inaccessible URL; case-sensitive documentation path | [#19](https://github.com/ResQ-Vision/project/issues/19) |
 | 2026-10-21 | Development / GitHub | gh pr checks; GraphQL; TLS handshake timeout; REST Actions workaround | [#21](https://github.com/ResQ-Vision/project/issues/21) |
