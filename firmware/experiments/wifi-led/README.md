@@ -1,5 +1,7 @@
 # Wi-Fi to STM32 LED bench experiment
 
+Paused at owner request: [saved checkpoint and resume steps](CHECKPOINT.md).
+
 Implemented source and successful cross-compilation, 25 October 2026. **ESP32 uploaded
 and AP startup messages observed; STM32 ROM identified and flash backed up, but the
 LED firmware has not been flashed or tested on STM32.** This replaces STM32 application firmware when
