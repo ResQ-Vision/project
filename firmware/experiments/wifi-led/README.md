@@ -1,7 +1,7 @@
 # Wi-Fi to STM32 LED bench experiment
 
-Implemented source and successful cross-compilation, 25 October 2026. **Not flashed or
-tested on either physical board.** This replaces STM32 application firmware when
+Implemented source and successful cross-compilation, 25 October 2026. **ESP32 uploaded
+and AP startup messages observed; STM32 not flashed or physically tested.** This replaces STM32 application firmware when
 flashed; it does not extend the factory program. Disconnect motors and servos for
 this LED experiment. It implements no rover control or local motor safety.
 
@@ -21,8 +21,8 @@ Arduino IDE's separately installed core is not the core used by PlatformIO.
 
 Software builds validate these packages for compilation. They do not establish that
 USB drivers, the cable/adapter, bootloader entry, board power or upload work. At the
-check, `/dev/cu.*` listed only Bluetooth-Incoming-Port and debug-console; no board
-was detected. Both boards need a power source during the experiment. One USB cable
+initial check, `/dev/cu.*` listed only Bluetooth-Incoming-Port and debug-console; no board
+was detected. Later ESP32 detection/upload is recorded below. Both boards need a power source during the experiment. One USB cable
 can flash them sequentially; it cannot power both independently at once.
 
 ## Photo review and proposed wiring
@@ -180,7 +180,42 @@ use Check connection. Distinguish a lost ACK from a command that was not applied
   runtime errors passed. This tests the actual embedded HTML against simulated
   replies, not the ESP32 HTTP implementation, radio or UART. No framework overlay
   was present; expected HTTP 504 in the failure scenario is intentional.
-- No board upload, restore, physical LED, electrical, wireless or safety test performed.
+- At the initial software-check stage, no board upload, restore, physical LED,
+  electrical, wireless or safety test had been performed. Later ESP32 results follow.
+
+### Later ESP32 USB bring-up, same date
+
+Owner connected the ESP32 through its own USB connector and reported red LEDs lit.
+Mac enumerated CP2102 (VID:PID 10C4:EA60) at `/dev/cu.usbserial-0001` without a new
+driver installation. Esptool 4.9.0 with explicit `--chip esp32` identified
+ESP32-D0WD-V3 revision 3.1, 40 MHz crystal and 4 MB flash. Chip autodetection initially
+failed on a short response; the successful explicit-chip retry is logged in #26.
+
+Read all 4,194,304 bytes of pre-existing ESP32 flash into a local backup outside
+the repository before writing; a local JSON manifest records size, SHA-256 and
+source identity. The image may contain private settings and was not published.
+Backup restoration has not been tested.
+
+Uploaded the ESP32 project from source commit `d3f4bbf` using:
+
+```sh
+"$HOME/.platformio/penv/bin/pio" run -d esp32 -t upload --upload-port /dev/cu.usbserial-0001
+```
+
+PlatformIO reported SUCCESS; esptool verified written-image hashes and hard reset
+the board. A subsequent reset with a 115200-baud serial capture yielded:
+
+```text
+Join Wi-Fi: ResQ-LED-Lab
+Open http://192.168.4.1
+```
+
+These application messages follow a successful `WiFi.softAP` return in the source.
+They confirm application startup and the reported AP address. A phone association,
+real HTTP/page interaction and radio reliability have not yet been observed.
+STM32 upload/restore, UART acknowledgements, actual LED operation and electrical/
+motor safety remain untested. Owner reports checking the three jumper connections;
+this is not a continuity or voltage measurement.
 
 Errors encountered: [session record #26](https://github.com/ResQ-Vision/project/issues/26).
 
